@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="IES_CREA.API/IES_CREA.API.csproj" />
+  <Project Path="IES_CREA.CORE/IES_CREA.CORE.csproj" />
+  <Project Path="IES_CREA.infrastructure/IES_CREA.infrastructure.csproj" />
+  <Project Path="IES_CREA.shared/IES_CREA.shared.csproj" />
+  <Project Path="IES_CREA.test/IES_CREA.test.csproj" />
+</Solution>

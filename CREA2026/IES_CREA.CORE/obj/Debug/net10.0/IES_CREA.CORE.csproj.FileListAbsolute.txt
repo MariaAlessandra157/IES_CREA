@@ -1,0 +1,16 @@
+C:\Proyecto_Taller2\IES_CREA\CREA2026\IES_CREA.CORE\bin\Debug\net10.0\IES_CREA.CORE.deps.json
+C:\Proyecto_Taller2\IES_CREA\CREA2026\IES_CREA.CORE\bin\Debug\net10.0\IES_CREA.CORE.dll
+C:\Proyecto_Taller2\IES_CREA\CREA2026\IES_CREA.CORE\bin\Debug\net10.0\IES_CREA.CORE.pdb
+C:\Proyecto_Taller2\IES_CREA\CREA2026\IES_CREA.CORE\bin\Debug\net10.0\IES_CREA.infrastructure.dll
+C:\Proyecto_Taller2\IES_CREA\CREA2026\IES_CREA.CORE\bin\Debug\net10.0\IES_CREA.infrastructure.pdb
+C:\Proyecto_Taller2\IES_CREA\CREA2026\IES_CREA.CORE\obj\Debug\net10.0\IES_CREA.CORE.csproj.AssemblyReference.cache
+C:\Proyecto_Taller2\IES_CREA\CREA2026\IES_CREA.CORE\obj\Debug\net10.0\IES_CREA.CORE.GeneratedMSBuildEditorConfig.editorconfig
+C:\Proyecto_Taller2\IES_CREA\CREA2026\IES_CREA.CORE\obj\Debug\net10.0\IES_CREA.CORE.AssemblyInfoInputs.cache
+C:\Proyecto_Taller2\IES_CREA\CREA2026\IES_CREA.CORE\obj\Debug\net10.0\IES_CREA.CORE.AssemblyInfo.cs
+C:\Proyecto_Taller2\IES_CREA\CREA2026\IES_CREA.CORE\obj\Debug\net10.0\IES_CREA.CORE.csproj.CoreCompileInputs.cache
+C:\Proyecto_Taller2\IES_CREA\CREA2026\IES_CREA.CORE\obj\Debug\net10.0\IES_CREA.CORE.sourcelink.json
+C:\Proyecto_Taller2\IES_CREA\CREA2026\IES_CREA.CORE\obj\Debug\net10.0\IES_CREA.ADE63ED5.Up2Date
+C:\Proyecto_Taller2\IES_CREA\CREA2026\IES_CREA.CORE\obj\Debug\net10.0\IES_CREA.CORE.dll
+C:\Proyecto_Taller2\IES_CREA\CREA2026\IES_CREA.CORE\obj\Debug\net10.0\refint\IES_CREA.CORE.dll
+C:\Proyecto_Taller2\IES_CREA\CREA2026\IES_CREA.CORE\obj\Debug\net10.0\IES_CREA.CORE.pdb
+C:\Proyecto_Taller2\IES_CREA\CREA2026\IES_CREA.CORE\obj\Debug\net10.0\ref\IES_CREA.CORE.dll

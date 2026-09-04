@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "MREsBx4MCmY=",
+  "success": true,
+  "projectFilePath": "C:\\Proyecto_Taller2\\IES_CREA\\CREA2026\\IES_CREA.infrastructure\\IES_CREA.infrastructure.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\User\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.2\\microsoft.extensions.dependencyinjection.abstractions.8.0.2.nupkg.sha512",
+    "C:\\Users\\User\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\8.0.2\\microsoft.extensions.logging.abstractions.8.0.2.nupkg.sha512",
+    "C:\\Users\\User\\.nuget\\packages\\mysqlconnector\\2.6.2\\mysqlconnector.2.6.2.nupkg.sha512"
+  ],
+  "logs": []
+}
