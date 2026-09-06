@@ -31,14 +31,36 @@ namespace IES_CREA.CORE.Entidades
         [Display(Name = "Fecha de nacimiento")
         public DateOnly fechaNacimiento { get; set; }
 
-
+        [Required]
+        [RegularExpression(@"^[1-9]\d{1,3}[1-9]\d{5,7}$", ErrorMessage = "Teléfono inválido. Use código de área sin 0 y número sin 15.")]
         public string telefono { get; set; }
 
+        [Required(ErrorMessage = "El email es obligatorio.")]
+        [EmailAddress(ErrorMessage = "El email no es válido.")]
+        [StringLength(100, ErrorMessage = "Máx. 100 caracteres.")]
         public string email { get; set; }
 
+        [Display(Name = "Activo")]
         public bool activo { get; set; }
 
+        [Required(ErrorMessage = "La fecha de alta es obligatoria.")]
+        [NotFutureDate(ErrorMessage = "La fecha de alta no puede ser una fecha futura.")]
         public DateOnly fechaAlta { get; set; }
 
+    }
+
+    public class NotFutureDateAttribute : ValidationAttribute
+    {
+        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+        {
+            if (value is DateOnly dateValue)
+            {
+                if (dateValue > DateOnly.FromDateTime(DateTime.Now))
+                {
+                    return new ValidationResult(ErrorMessage ?? "La fecha no puede ser una fecha futura.");
+                }
+            }
+            return ValidationResult.Success;
+        }
     }
 }

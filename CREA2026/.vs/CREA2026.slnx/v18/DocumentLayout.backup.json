@@ -3,8 +3,8 @@
   "WorkspaceRootPath": "C:\\Proyecto_Taller2\\IES_CREA\\CREA2026\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{839A4978-C472-202E-64BD-F98E6D963E1A}|IES_CREA.CORE\\IES_CREA.CORE.csproj|c:\\proyecto_taller2\\ies_crea\\crea2026\\ies_crea.core\\entidades\\persona.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{839A4978-C472-202E-64BD-F98E6D963E1A}|IES_CREA.CORE\\IES_CREA.CORE.csproj|solutionrelative:ies_crea.core\\entidades\\persona.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{839A4978-C472-202E-64BD-F98E6D963E1A}|IES_CREA.CORE\\IES_CREA.CORE.csproj|c:\\proyecto_taller2\\ies_crea\\crea2026\\ies_crea.core\\entidades\\trayectoria.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{839A4978-C472-202E-64BD-F98E6D963E1A}|IES_CREA.CORE\\IES_CREA.CORE.csproj|solutionrelative:ies_crea.core\\entidades\\trayectoria.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{839A4978-C472-202E-64BD-F98E6D963E1A}|IES_CREA.CORE\\IES_CREA.CORE.csproj|c:\\proyecto_taller2\\ies_crea\\crea2026\\ies_crea.core\\entidades\\disponibilidaddocente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -23,20 +23,8 @@
       "RelativeMoniker": "D:0:0:{839A4978-C472-202E-64BD-F98E6D963E1A}|IES_CREA.CORE\\IES_CREA.CORE.csproj|solutionrelative:ies_crea.core\\entidades\\personal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{839A4978-C472-202E-64BD-F98E6D963E1A}|IES_CREA.CORE\\IES_CREA.CORE.csproj|c:\\proyecto_taller2\\ies_crea\\crea2026\\ies_crea.core\\entidades\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{839A4978-C472-202E-64BD-F98E6D963E1A}|IES_CREA.CORE\\IES_CREA.CORE.csproj|solutionrelative:ies_crea.core\\entidades\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{839A4978-C472-202E-64BD-F98E6D963E1A}|IES_CREA.CORE\\IES_CREA.CORE.csproj|c:\\proyecto_taller2\\ies_crea\\crea2026\\ies_crea.core\\entidades\\usuariorol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{839A4978-C472-202E-64BD-F98E6D963E1A}|IES_CREA.CORE\\IES_CREA.CORE.csproj|solutionrelative:ies_crea.core\\entidades\\usuariorol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{839A4978-C472-202E-64BD-F98E6D963E1A}|IES_CREA.CORE\\IES_CREA.CORE.csproj|c:\\proyecto_taller2\\ies_crea\\crea2026\\ies_crea.core\\entidades\\alumno.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{839A4978-C472-202E-64BD-F98E6D963E1A}|IES_CREA.CORE\\IES_CREA.CORE.csproj|solutionrelative:ies_crea.core\\entidades\\alumno.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{839A4978-C472-202E-64BD-F98E6D963E1A}|IES_CREA.CORE\\IES_CREA.CORE.csproj|c:\\proyecto_taller2\\ies_crea\\crea2026\\ies_crea.core\\entidades\\trayectoria.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{839A4978-C472-202E-64BD-F98E6D963E1A}|IES_CREA.CORE\\IES_CREA.CORE.csproj|solutionrelative:ies_crea.core\\entidades\\trayectoria.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{839A4978-C472-202E-64BD-F98E6D963E1A}|IES_CREA.CORE\\IES_CREA.CORE.csproj|c:\\proyecto_taller2\\ies_crea\\crea2026\\ies_crea.core\\entidades\\seguimiento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -114,7 +102,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 28,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -130,43 +118,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "UsuarioRol.cs",
-              "DocumentMoniker": "C:\\Proyecto_Taller2\\IES_CREA\\CREA2026\\IES_CREA.CORE\\Entidades\\UsuarioRol.cs",
-              "RelativeDocumentMoniker": "IES_CREA.CORE\\Entidades\\UsuarioRol.cs",
-              "ToolTip": "C:\\Proyecto_Taller2\\IES_CREA\\CREA2026\\IES_CREA.CORE\\Entidades\\UsuarioRol.cs",
-              "RelativeToolTip": "IES_CREA.CORE\\Entidades\\UsuarioRol.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-03T01:27:20.799Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Usuario.cs",
-              "DocumentMoniker": "C:\\Proyecto_Taller2\\IES_CREA\\CREA2026\\IES_CREA.CORE\\Entidades\\Usuario.cs",
-              "RelativeDocumentMoniker": "IES_CREA.CORE\\Entidades\\Usuario.cs",
-              "ToolTip": "C:\\Proyecto_Taller2\\IES_CREA\\CREA2026\\IES_CREA.CORE\\Entidades\\Usuario.cs",
-              "RelativeToolTip": "IES_CREA.CORE\\Entidades\\Usuario.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAkwA0AAAAXAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-03T01:29:05.836Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 0,
               "Title": "Trayectoria.cs",
               "DocumentMoniker": "C:\\Proyecto_Taller2\\IES_CREA\\CREA2026\\IES_CREA.CORE\\Entidades\\Trayectoria.cs",
               "RelativeDocumentMoniker": "IES_CREA.CORE\\Entidades\\Trayectoria.cs",
               "ToolTip": "C:\\Proyecto_Taller2\\IES_CREA\\CREA2026\\IES_CREA.CORE\\Entidades\\Trayectoria.cs",
               "RelativeToolTip": "IES_CREA.CORE\\Entidades\\Trayectoria.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAA0wBYAAAAxAAAAAAAAAA==",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAIwBYAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-03T01:24:24.474Z"
+              "WhenOpened": "2026-09-03T01:24:24.474Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 6,
               "Title": "Seguimiento.cs",
               "DocumentMoniker": "C:\\Proyecto_Taller2\\IES_CREA\\CREA2026\\IES_CREA.CORE\\Entidades\\Seguimiento.cs",
               "RelativeDocumentMoniker": "IES_CREA.CORE\\Entidades\\Seguimiento.cs",
@@ -178,7 +143,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 7,
               "Title": "Rol.cs",
               "DocumentMoniker": "C:\\Proyecto_Taller2\\IES_CREA\\CREA2026\\IES_CREA.CORE\\Entidades\\Rol.cs",
               "RelativeDocumentMoniker": "IES_CREA.CORE\\Entidades\\Rol.cs",
@@ -190,7 +155,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 8,
               "Title": "Responsable.cs",
               "DocumentMoniker": "C:\\Proyecto_Taller2\\IES_CREA\\CREA2026\\IES_CREA.CORE\\Entidades\\Responsable.cs",
               "RelativeDocumentMoniker": "IES_CREA.CORE\\Entidades\\Responsable.cs",
@@ -202,7 +167,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 9,
               "Title": "Pago.cs",
               "DocumentMoniker": "C:\\Proyecto_Taller2\\IES_CREA\\CREA2026\\IES_CREA.CORE\\Entidades\\Pago.cs",
               "RelativeDocumentMoniker": "IES_CREA.CORE\\Entidades\\Pago.cs",
@@ -214,7 +179,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 10,
               "Title": "NivelEducativo.cs",
               "DocumentMoniker": "C:\\Proyecto_Taller2\\IES_CREA\\CREA2026\\IES_CREA.CORE\\Entidades\\NivelEducativo.cs",
               "RelativeDocumentMoniker": "IES_CREA.CORE\\Entidades\\NivelEducativo.cs",
@@ -226,7 +191,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 11,
               "Title": "Institucion.cs",
               "DocumentMoniker": "C:\\Proyecto_Taller2\\IES_CREA\\CREA2026\\IES_CREA.CORE\\Entidades\\Institucion.cs",
               "RelativeDocumentMoniker": "IES_CREA.CORE\\Entidades\\Institucion.cs",
@@ -238,7 +203,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 12,
               "Title": "Inscripcion.cs",
               "DocumentMoniker": "C:\\Proyecto_Taller2\\IES_CREA\\CREA2026\\IES_CREA.CORE\\Entidades\\Inscripcion.cs",
               "RelativeDocumentMoniker": "IES_CREA.CORE\\Entidades\\Inscripcion.cs",
@@ -262,7 +227,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 13,
               "Title": "DocenteMateria.cs",
               "DocumentMoniker": "C:\\Proyecto_Taller2\\IES_CREA\\CREA2026\\IES_CREA.CORE\\Entidades\\DocenteMateria.cs",
               "RelativeDocumentMoniker": "IES_CREA.CORE\\Entidades\\DocenteMateria.cs",
@@ -286,7 +251,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 14,
               "Title": "Curso.cs",
               "DocumentMoniker": "C:\\Proyecto_Taller2\\IES_CREA\\CREA2026\\IES_CREA.CORE\\Entidades\\Curso.cs",
               "RelativeDocumentMoniker": "IES_CREA.CORE\\Entidades\\Curso.cs",
@@ -298,7 +263,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 15,
               "Title": "Cuota.cs",
               "DocumentMoniker": "C:\\Proyecto_Taller2\\IES_CREA\\CREA2026\\IES_CREA.CORE\\Entidades\\Cuota.cs",
               "RelativeDocumentMoniker": "IES_CREA.CORE\\Entidades\\Cuota.cs",
@@ -310,7 +275,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 16,
               "Title": "Clase.cs",
               "DocumentMoniker": "C:\\Proyecto_Taller2\\IES_CREA\\CREA2026\\IES_CREA.CORE\\Entidades\\Clase.cs",
               "RelativeDocumentMoniker": "IES_CREA.CORE\\Entidades\\Clase.cs",
@@ -322,7 +287,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 17,
               "Title": "ClaseAlumno.cs",
               "DocumentMoniker": "C:\\Proyecto_Taller2\\IES_CREA\\CREA2026\\IES_CREA.CORE\\Entidades\\ClaseAlumno.cs",
               "RelativeDocumentMoniker": "IES_CREA.CORE\\Entidades\\ClaseAlumno.cs",
@@ -334,7 +299,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 18,
               "Title": "Cargo.cs",
               "DocumentMoniker": "C:\\Proyecto_Taller2\\IES_CREA\\CREA2026\\IES_CREA.CORE\\Entidades\\Cargo.cs",
               "RelativeDocumentMoniker": "IES_CREA.CORE\\Entidades\\Cargo.cs",
@@ -346,7 +311,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 19,
               "Title": "Aula.cs",
               "DocumentMoniker": "C:\\Proyecto_Taller2\\IES_CREA\\CREA2026\\IES_CREA.CORE\\Entidades\\Aula.cs",
               "RelativeDocumentMoniker": "IES_CREA.CORE\\Entidades\\Aula.cs",
@@ -370,7 +335,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 20,
               "Title": "Arancel.cs",
               "DocumentMoniker": "C:\\Proyecto_Taller2\\IES_CREA\\CREA2026\\IES_CREA.CORE\\Entidades\\Arancel.cs",
               "RelativeDocumentMoniker": "IES_CREA.CORE\\Entidades\\Arancel.cs",
@@ -382,7 +347,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 21,
               "Title": "AlumnoResponsable.cs",
               "DocumentMoniker": "C:\\Proyecto_Taller2\\IES_CREA\\CREA2026\\IES_CREA.CORE\\Entidades\\AlumnoResponsable.cs",
               "RelativeDocumentMoniker": "IES_CREA.CORE\\Entidades\\AlumnoResponsable.cs",
@@ -394,7 +359,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 5,
               "Title": "Alumno.cs",
               "DocumentMoniker": "C:\\Proyecto_Taller2\\IES_CREA\\CREA2026\\IES_CREA.CORE\\Entidades\\Alumno.cs",
               "RelativeDocumentMoniker": "IES_CREA.CORE\\Entidades\\Alumno.cs",
@@ -406,7 +371,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 22,
               "Title": "Docente.cs",
               "DocumentMoniker": "C:\\Proyecto_Taller2\\IES_CREA\\CREA2026\\IES_CREA.CORE\\Entidades\\Docente.cs",
               "RelativeDocumentMoniker": "IES_CREA.CORE\\Entidades\\Docente.cs",
@@ -427,19 +392,6 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-09-02T20:44:10.923Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Persona.cs",
-              "DocumentMoniker": "C:\\Proyecto_Taller2\\IES_CREA\\CREA2026\\IES_CREA.CORE\\Entidades\\Persona.cs",
-              "RelativeDocumentMoniker": "IES_CREA.CORE\\Entidades\\Persona.cs",
-              "ToolTip": "C:\\Proyecto_Taller2\\IES_CREA\\CREA2026\\IES_CREA.CORE\\Entidades\\Persona.cs",
-              "RelativeToolTip": "IES_CREA.CORE\\Entidades\\Persona.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAAAYwCQAAAApAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-02T20:30:50.281Z",
-              "EditorCaption": ""
             }
           ]
         }
