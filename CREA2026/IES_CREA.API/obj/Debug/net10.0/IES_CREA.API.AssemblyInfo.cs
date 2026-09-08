@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("IES_CREA.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8ab52ae9bf1b98670562ed178c04c6f762e8b08a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1168af8ad914591e774819c26185b03da50ba6f6")]
 [assembly: System.Reflection.AssemblyProductAttribute("IES_CREA.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("IES_CREA.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
