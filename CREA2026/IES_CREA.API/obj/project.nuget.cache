@@ -1,18 +1,19 @@
 {
   "version": 2,
-  "dgSpecHash": "P1gxBT+3sWo=",
+  "dgSpecHash": "GB4S+8xZLII=",
   "success": true,
   "projectFilePath": "C:\\Proyecto_Taller2\\IES_CREA\\CREA2026\\IES_CREA.API\\IES_CREA.API.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\User\\.nuget\\packages\\microsoft.aspnetcore.openapi\\10.0.9\\microsoft.aspnetcore.openapi.10.0.9.nupkg.sha512",
-    "C:\\Users\\User\\.nuget\\packages\\microsoft.openapi\\2.0.0\\microsoft.openapi.2.0.0.nupkg.sha512",
-    "C:\\Users\\User\\.nuget\\packages\\mysqlconnector\\2.6.2\\mysqlconnector.2.6.2.nupkg.sha512"
+    "C:\\Users\\User\\.nuget\\packages\\microsoft.aspnetcore.openapi\\10.0.11\\microsoft.aspnetcore.openapi.10.0.11.nupkg.sha512",
+    "C:\\Users\\User\\.nuget\\packages\\microsoft.openapi\\3.10.2\\microsoft.openapi.3.10.2.nupkg.sha512",
+    "C:\\Users\\User\\.nuget\\packages\\mysqlconnector\\2.6.2\\mysqlconnector.2.6.2.nupkg.sha512",
+    "C:\\Users\\User\\.nuget\\packages\\newtonsoft.json\\13.0.4\\newtonsoft.json.13.0.4.nupkg.sha512"
   ],
   "logs": [
     {
-      "code": "NU1903",
+      "code": "NU1608",
       "level": "Warning",
-      "message": "El paquete \"Microsoft.OpenApi\" 2.0.0 tiene una vulnerabilidad de gravedad alta conocida, https://github.com/advisories/GHSA-v5pm-xwqc-g5wc",
+      "message": "Se detectó una versión del paquete fuera de la restricción de dependencia: Microsoft.AspNetCore.OpenApi 10.0.11 requiere Microsoft.OpenApi (>= 2.7.5 && < 3.0.0), pero la versión Microsoft.OpenApi 3.10.2 ya se resolvió.",
       "projectPath": "C:\\Proyecto_Taller2\\IES_CREA\\CREA2026\\IES_CREA.API\\IES_CREA.API.csproj",
       "warningLevel": 1,
       "filePath": "C:\\Proyecto_Taller2\\IES_CREA\\CREA2026\\IES_CREA.API\\IES_CREA.API.csproj",

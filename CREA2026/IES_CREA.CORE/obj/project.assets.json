@@ -37,6 +37,19 @@
           "buildTransitive/net6.0/Microsoft.Extensions.Logging.Abstractions.targets": {}
         }
       },
+      "Microsoft.OpenApi/3.10.2": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/Microsoft.OpenApi.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.OpenApi.dll": {
+            "related": ".pdb;.xml"
+          }
+        }
+      },
       "MySqlConnector/2.6.2": {
         "type": "package",
         "dependencies": {
@@ -58,6 +71,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
         "dependencies": {
+          "Microsoft.OpenApi": "3.10.2",
           "MySqlConnector": "2.6.2"
         },
         "compile": {
@@ -175,6 +189,24 @@
         "useSharedDesignerContext.txt"
       ]
     },
+    "Microsoft.OpenApi/3.10.2": {
+      "sha512": "qzg4a3WmgQm28Azaporbnsu+KHA+vq5sgpQQFLiJgB06Rra2S+kzGAU7pzUB8/UIwZJCSCY2JEE/M5e0hQ2K8w==",
+      "type": "package",
+      "path": "microsoft.openapi/3.10.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "lib/net8.0/Microsoft.OpenApi.dll",
+        "lib/net8.0/Microsoft.OpenApi.pdb",
+        "lib/net8.0/Microsoft.OpenApi.xml",
+        "lib/netstandard2.0/Microsoft.OpenApi.dll",
+        "lib/netstandard2.0/Microsoft.OpenApi.pdb",
+        "lib/netstandard2.0/Microsoft.OpenApi.xml",
+        "microsoft.openapi.3.10.2.nupkg.sha512",
+        "microsoft.openapi.nuspec"
+      ]
+    },
     "MySqlConnector/2.6.2": {
       "sha512": "dlTc/tsBa42szdvpj4nrHvQVUb0gsMwR9HT6J0Zz2OSqfP0CdYlGw+qQPqCpbnO97idfvclSjKYtM6y5QaBQaQ==",
       "type": "package",
@@ -214,7 +246,8 @@
   },
   "projectFileDependencyGroups": {
     "net10.0": [
-      "IES_CREA.infrastructure >= 1.0.0"
+      "IES_CREA.infrastructure >= 1.0.0",
+      "Microsoft.OpenApi >= 3.10.2"
     ]
   },
   "packageFolders": {
@@ -272,6 +305,12 @@
       "net10.0": {
         "framework": "net10.0",
         "targetAlias": "net10.0",
+        "dependencies": {
+          "Microsoft.OpenApi": {
+            "target": "Package",
+            "version": "[3.10.2, )"
+          }
+        },
         "imports": [
           "net461",
           "net462",

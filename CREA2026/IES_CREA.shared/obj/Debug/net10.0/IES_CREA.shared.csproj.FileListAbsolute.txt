@@ -1,0 +1,12 @@
+C:\Proyecto_Taller2\IES_CREA\CREA2026\IES_CREA.shared\bin\Debug\net10.0\IES_CREA.shared.deps.json
+C:\Proyecto_Taller2\IES_CREA\CREA2026\IES_CREA.shared\bin\Debug\net10.0\IES_CREA.shared.dll
+C:\Proyecto_Taller2\IES_CREA\CREA2026\IES_CREA.shared\bin\Debug\net10.0\IES_CREA.shared.pdb
+C:\Proyecto_Taller2\IES_CREA\CREA2026\IES_CREA.shared\obj\Debug\net10.0\IES_CREA.shared.GeneratedMSBuildEditorConfig.editorconfig
+C:\Proyecto_Taller2\IES_CREA\CREA2026\IES_CREA.shared\obj\Debug\net10.0\IES_CREA.shared.AssemblyInfoInputs.cache
+C:\Proyecto_Taller2\IES_CREA\CREA2026\IES_CREA.shared\obj\Debug\net10.0\IES_CREA.shared.AssemblyInfo.cs
+C:\Proyecto_Taller2\IES_CREA\CREA2026\IES_CREA.shared\obj\Debug\net10.0\IES_CREA.shared.csproj.CoreCompileInputs.cache
+C:\Proyecto_Taller2\IES_CREA\CREA2026\IES_CREA.shared\obj\Debug\net10.0\IES_CREA.shared.sourcelink.json
+C:\Proyecto_Taller2\IES_CREA\CREA2026\IES_CREA.shared\obj\Debug\net10.0\IES_CREA.shared.dll
+C:\Proyecto_Taller2\IES_CREA\CREA2026\IES_CREA.shared\obj\Debug\net10.0\refint\IES_CREA.shared.dll
+C:\Proyecto_Taller2\IES_CREA\CREA2026\IES_CREA.shared\obj\Debug\net10.0\IES_CREA.shared.pdb
+C:\Proyecto_Taller2\IES_CREA\CREA2026\IES_CREA.shared\obj\Debug\net10.0\ref\IES_CREA.shared.dll
