@@ -31,7 +31,7 @@ namespace IES_CREA.CORE.Entidades
 
         [Column("activo")]
         [Required]
-        [Display(Name = "Activo")]
+        [Display(Name = "activo")]
         public bool activo { get; set; }
 
         [Column("fecha_creacion")]
