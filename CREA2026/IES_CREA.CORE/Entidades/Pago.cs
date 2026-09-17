@@ -30,6 +30,7 @@ namespace IES_CREA.CORE.Entidades
 
         [Column("monto")]
         [Required]
+        [Range(0.01, double.MaxValue, ErrorMessage = "El monto debe ser mayor a 0")]
         public decimal monto { get; set; }
 
         [Column("medio_pago")]

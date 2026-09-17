@@ -30,7 +30,6 @@ namespace IES_CREA.CORE.Entidades
         public string password_hash { get; set; }
 
         [Column("activo")]
-        [Required]
         [Display(Name = "activo")]
         public bool activo { get; set; }
 

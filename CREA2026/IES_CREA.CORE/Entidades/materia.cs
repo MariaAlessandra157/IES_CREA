@@ -19,9 +19,11 @@ namespace IES_CREA.CORE.Entidades
         public string nombre { get; set; }
 
         [Column("descripcion")]
+        [StringLength(300)]
         public string descripcion { get; set; }
 
         [Column("activo")]
+        [Display(Name = "activo")]
         public bool activo { get; set; }
     }
 }

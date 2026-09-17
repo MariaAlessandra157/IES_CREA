@@ -26,6 +26,7 @@ namespace IES_CREA.CORE.Entidades
         [Column("telefono")]
         [Required]
         [StringLength(20)]
+        [RegularExpression(@"^[1-9]\d{1,3}[1-9]\d{5,7}$", ErrorMessage = "Teléfono inválido. Use código de área sin 0 y número sin 15.")]
         public string telefono { get; set; }
 
         [Column("email")]
