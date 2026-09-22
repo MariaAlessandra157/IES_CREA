@@ -1,3 +1,6 @@
+using Microsoft.AspNetCore.Cors;
+using System.Runtime.Versioning;
+
 
 namespace IES_CREA.API
 {
