@@ -9,7 +9,7 @@ namespace IES_CREA.CORE.Entidades
     [Table ("materias")]
     public class materia
     {
-        [Column ("IdMateria")]
+        [Column("IdMateria")]
         [Key]
         public int IdMateria { get; set; }
 
