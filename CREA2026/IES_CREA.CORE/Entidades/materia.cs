@@ -16,14 +16,14 @@ namespace IES_CREA.CORE.Entidades
         [Column ("nombre")]
         [Required]
         [StringLength(100, ErrorMessage = "El nombre de la materia no debe superar los 100 caracteres.")]
-        public string nombre { get; set; }
+        public string Nombre { get; set; }
 
         [Column("descripcion")]
         [StringLength(300)]
-        public string descripcion { get; set; }
+        public string Descripcion { get; set; }
 
         [Column("activo")]
         [Display(Name = "activo")]
-        public bool activo { get; set; }
+        public bool Activo { get; set; }
     }
 }

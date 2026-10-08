@@ -15,41 +15,41 @@ namespace IES_CREA.CORE.Entidades
 
         [Column("id_docente")]
         [Required]
-        public int id_docente { get; set; }
+        public int IdDocente { get; set; }
 
         [Column("id_materia")]
         [Required]
-        public int id_materia { get; set; }
+        public int IdMateria { get; set; }
 
         [Column("id_aula")]
         [Required]
-        public int id_aula { get; set; }
+        public int IdAula { get; set; }
 
         [Column("tipo_clase")]
         [Required]
         [StringLength(50)]
-        public string tipo_clase { get; set; }
+        public string TipoClase { get; set; }
 
         [Column("fecha")]
         [Required]
-        public DateOnly fecha { get; set; }
+        public DateOnly Fecha { get; set; }
 
         [Column("hora_inicio")]
         [Required]
-        public TimeOnly hora_inicio { get; set; }
+        public TimeOnly HoraInicio { get; set; }
 
         [Column("hora_fin")]
         [Required]
-        public TimeOnly hora_final { get; set; }
+        public TimeOnly HoraFinal { get; set; }
 
         [Column("estado")]
         [Display(Name = "estado")]
-        public bool estado { get; set; }
+        public bool Estado { get; set; }
 
         [Column("observacion")]
         [Required]
         [StringLength (300)]
-        public string observacion { get; set; }
+        public string Observacion { get; set; }
 
     }
 }

@@ -16,26 +16,26 @@ namespace IES_CREA.CORE.Entidades
         [Column("nombre")]
         [Required]
         [StringLength(100)]
-        public string nombre { get; set; }
+        public string Nombre { get; set; }
 
         [Column("direccion")]
         [Required]
         [StringLength(100)]
-        public string direccion { get; set; }
+        public string Direccion { get; set; }
 
         [Column("telefono")]
         [Required]
         [StringLength(20)]
         [RegularExpression(@"^[1-9]\d{1,3}[1-9]\d{5,7}$", ErrorMessage = "Teléfono inválido. Use código de área sin 0 y número sin 15.")]
-        public string telefono { get; set; }
+        public string Telefono { get; set; }
 
         [Column("email")]
         [Required]
         [StringLength(100)]
-        public string email { get; set; }
+        public string Email { get; set; }
 
         [Column("activo")]
-        [Display(Name = "email")]
-        public bool activo { get; set; }
+        [Display(Name = "activo")]
+        public bool Activo { get; set; }
     }
 }

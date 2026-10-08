@@ -11,4 +11,10 @@
     <PackageReference Include="MySqlConnector" Version="2.6.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\IES_CREA.CORE\IES_CREA.CORE.csproj" />
+    <ProjectReference Include="..\IES_CREA.shared\IES_CREA.shared.csproj" />
+    <ProjectReference Include="..\IES_CREA.test\IES_CREA.test.csproj" />
+  </ItemGroup>
+
 </Project>

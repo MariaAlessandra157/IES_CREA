@@ -15,19 +15,19 @@ namespace IES_CREA.CORE.Entidades
 
         [Column("id_persona")]
         [Required]
-        public int id_persona { get; set; }
+        public int IdPersona { get; set; }
 
         [Column("id_cargo")]
         [Required]
-        public int id_cargo { get; set; }
+        public int IdCargo { get; set; }
 
         [Column("fecha_ingreso")]
         [Required]
-        public DateOnly fecha_ingreso { get; set; }
+        public DateOnly FechaIngreso { get; set; }
 
         [Column("activo")]
         [Display(Name = "activo")]
-        public bool activo { get; set; }
+        public bool Activo { get; set; }
 
     }
 }

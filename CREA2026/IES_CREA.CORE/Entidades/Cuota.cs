@@ -15,28 +15,28 @@ namespace IES_CREA.CORE.Entidades
 
         [Column("id_arancel")]
         [Required]
-        public int id_arancel { get; set; }
+        public int IdArancel { get; set; }
 
         [Column("id_inscripcion")]
         [Required]
-        public int id_inscripcion { get; set; }
+        public int IdInscripcion { get; set; }
 
         [Column("periodo")]
         [Required]
         [StringLength(50)]
-        public string periodo { get; set; }
+        public string Periodo { get; set; }
 
         [Column("monto")]
         [Required]
-        public decimal monto { get; set; }
+        public decimal Monto { get; set; }
 
         [Column("fecha_vencimiento")]
         [Required]
-        public DateOnly fecha_vencimiento { get; set; }
+        public DateOnly FechaVencimiento { get; set; }
 
         [Column("estado")]
         [Display(Name = "estado")]
-        public bool estado { get; set; }
+        public bool Estado { get; set; }
 
     }
 }

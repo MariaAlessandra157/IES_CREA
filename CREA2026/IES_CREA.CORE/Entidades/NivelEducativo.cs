@@ -16,12 +16,12 @@ namespace IES_CREA.CORE.Entidades
         [Column("nombre")]
         [Required]
         [StringLength(50)]
-        public string nombre { get; set; }
+        public string Nombre { get; set; }
 
         [Column("descripcion")]
         [Required]
         [StringLength(50)]
-        public string descripcion { get; set; }
+        public string Descripcion { get; set; }
 
     }
 }

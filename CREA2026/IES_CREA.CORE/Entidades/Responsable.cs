@@ -16,6 +16,6 @@ namespace IES_CREA.CORE.Entidades
         [Column("id_persona")]
         [Required]
         [Range(1, int.MaxValue, ErrorMessage = "El id de persona debe ser mayor a 0")]
-        public int id_persona { get; set; }
+        public int IdPersona { get; set; }
     }
 }

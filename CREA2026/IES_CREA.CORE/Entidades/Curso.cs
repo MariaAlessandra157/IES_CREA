@@ -15,17 +15,17 @@ namespace IES_CREA.CORE.Entidades
 
         [Column("id_nivel")]
         [Required]
-        public int id_nivel { get; set; }
+        public int IdNivel { get; set; }
 
         [Column("nombre")]
         [Required]
         [StringLength(50)]
-        public string nombre { get; set; }
+        public string Nombre { get; set; }
 
         [Column("orden")]
         [Required]
         [StringLength(10)]
-        public string orden { get; set; }
+        public string Orden { get; set; }
 
 
     }

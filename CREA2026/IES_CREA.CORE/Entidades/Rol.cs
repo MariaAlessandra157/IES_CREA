@@ -16,11 +16,11 @@ namespace IES_CREA.CORE.Entidades
         [Column("nombre")]
         [Required]
         [StringLength(50, ErrorMessage = "El nombre no debe superar los 50 caracteres.")]
-        public string nombre { get; set; }
+        public string Nombre { get; set; }
 
         [Column("descripcion")]
         [Required]
         [StringLength(255, ErrorMessage = "La descripcion no debe superar los 255 caracteres.")]
-        public string descripcion { get; set; }
+        public string Descripcion { get; set; }
     }
 }

@@ -12,7 +12,7 @@ namespace IES_CREA.CORE.Entidades
         [Column("Iddocente")]
         [Required]
         [Range(1, int.MaxValue)]
-        public int Iddocente { get; set; }
+        public int IdDocente { get; set; }
 
         [Column("IdMateria")]
         [Required]

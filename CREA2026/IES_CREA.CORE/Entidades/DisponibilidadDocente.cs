@@ -16,30 +16,30 @@ namespace IES_CREA.CORE.Entidades
         [Column("id_docente")]
         [Required]
         [Range(1, int.MaxValue)]
-        public int id_docente { get; set; }
+        public int IdDocente { get; set; }
 
         [Column("dia_semana")]
         [Required]
         [StringLength(20)]
-        public string dia_semana { get; set; }
+        public string DiaSemana { get; set; }
 
         [Column("hora_inicio")]
         [Required]
         [TimeRange("09:00", "20:00", ErrorMessage = "La hora de inicio debe estar entre 08:00 y 20:00.")]
-        public TimeOnly hora_inicio { get; set; }
+        public TimeOnly HoraInicio { get; set; }
 
         [Column("hora_fin")]
         [Required]
-        public TimeOnly hora_final { get; set; }
+        public TimeOnly HoraFinal { get; set; }
 
         [Column("turno")]
         [Required]
         [StringLength(50)]
-        public string turno { get; set; }
+        public string Turno { get; set; }
 
         [Column("activo")]
         [Display(Name = "activo")]
-        public bool activo { get; set; }
+        public bool Activo { get; set; }
     }
 
     //Metodo para validar que la hora este dentro del rango de las 09:00 a 20:00

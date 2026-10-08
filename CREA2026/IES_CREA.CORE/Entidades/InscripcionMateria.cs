@@ -16,25 +16,25 @@ namespace IES_CREA.CORE.Entidades
         [Column("id_inscripcion")]
         [Required]
         [Range(1, int.MaxValue)]
-        public int id_inscripcion { get; set; }
+        public int IdInscripcion { get; set; }
 
         [Column("id_materia")]
         [Required]
         [Range(1, int.MaxValue)]
-        public int id_materia { get; set; }
+        public int IdMateria { get; set; }
 
         [Column("fecha_inicio")]
         [Required(ErrorMessage = "La fecha de inicio es obligatoria.")]
-        public DateOnly fecha_inicio { get; set; }
+        public DateOnly FechaInicio { get; set; }
 
         [Column("fecha_fin")]
         [NotFutureDate(ErrorMessage = "La fecha de fin no puede ser futura.")]
         [DateGreaterThan("fecha_inicio")]
-        public DateOnly fecha_fin { get; set; }
+        public DateOnly FechaFin { get; set; }
         
         [Column("estado")]
         [Display(Name = "estado")]
-        public bool estado { get; set; }
+        public bool Estado { get; set; }
 
     }
 }

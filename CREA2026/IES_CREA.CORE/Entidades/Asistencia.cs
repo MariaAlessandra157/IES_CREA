@@ -16,19 +16,19 @@ namespace IES_CREA.CORE.Entidades
 
         [Column("id_clase")]
         [Required]
-        public int id_clase { get; set; }
+        public int IdClase { get; set; }
 
         [Column("id_alumno")]
         [Required]
-        public int id_alumno { get; set; }
+        public int IdAlumno { get; set; }
 
         [Column("estado")]
         [Display(Name = "activo")]
-        public bool estado { get; set; }
+        public bool Estado { get; set; }
 
         [Column("observacion")]
         [Required]
         [StringLength(300)]
-        public string observacion { get; set; }
+        public string Observacion  { get; set; }
     }
 }

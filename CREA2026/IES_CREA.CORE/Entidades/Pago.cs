@@ -16,31 +16,31 @@ namespace IES_CREA.CORE.Entidades
         [Column("id_cuota")]
         [Required]
         [Range(1, int.MaxValue, ErrorMessage = "El id de cuota debe ser mayor a 0")]
-        public int id_cuota { get; set; }
+        public int IdCuota { get; set; }
 
         [Column("id_personal")]
         [Required]
         [Range(1, int.MaxValue)]
-        public int id_personal { get; set; }
+        public int IdPersonal { get; set; }
 
         [Column("fecha_pago")]
         [Required]
         [NotFutureDate(ErrorMessage = "La fecha de pago no puede ser futura.")]
-        public DateOnly fecha_pago { get; set; }
+        public DateOnly FechaPago { get; set; }
 
         [Column("monto")]
         [Required]
         [Range(0.01, double.MaxValue, ErrorMessage = "El monto debe ser mayor a 0")]
-        public decimal monto { get; set; }
+        public decimal Monto { get; set; }
 
         [Column("medio_pago")]
         [Required]
         [StringLength(50, ErrorMessage = "Maximo de caracteres 50.")]
-        public string medio_pago { get; set; }
+        public string MedioPago { get; set; }
 
         [Column("observacion")]
         [Required]
         [StringLength(300, ErrorMessage = "La observacion no puede superar los 300 caracteres.")]
-        public string observacion { get; set; }
+        public string Observacion { get; set; }
     }
 }

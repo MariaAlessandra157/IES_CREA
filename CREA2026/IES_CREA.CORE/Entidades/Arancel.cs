@@ -16,28 +16,28 @@ namespace IES_CREA.CORE.Entidades
         [Column("nombre")]
         [Required]
         [StringLength(50)]
-        public string nombre { get; set; }
+        public string Nombre { get; set; }
 
         [Column("descripcion")]
         [Required]
         [StringLength(300)]
-        public string descripcion { get; set; }
+        public string Descripcion { get; set; }
 
         [Column("monto")]
         [Required]
-        public decimal monto { get; set; }
+        public decimal Monto { get; set; }
 
         [Column("fecha_vigencia_desde")]
         [Required]
-        public DateOnly fecha_vigencia_desde { get; set; }
+        public DateOnly FechaVigenciaDesde { get; set; }
 
         [Column("fecha_vigencia_hasta")]
         [Required]
-        public DateOnly fecha_vigencia_hasta { get; set; }
+        public DateOnly FechaVigenciaHasta { get; set; }
 
         [Column("activo")]
         [Display(Name = "activo")]
-        public bool activo { get; set; }
+        public bool Activo { get; set; }
 
     }
 }

@@ -15,20 +15,20 @@ namespace IES_CREA.CORE.Entidades
 
         [Column("id_alumno")]
         [Required]
-        public int id_alumno {  get; set; }
+        public int IdAlumno {  get; set; }
 
         [Column("id_responsable")]
         [Required]
-        public int id_responsable { get; set; }
+        public int IdResponsable { get; set; }
 
         [Column("parentesco")]
         [Required]
         [StringLength(20)]
-        public string parentesco { get; set; }
+        public string Parentesco { get; set; }
 
         [Column("esContactoPrincipal")]
         [Display(Name = "ContactoPrincipal")]
-        public bool esContactoPrincipal { get; set; }
+        public bool EsContactoPrincipal { get; set; }
 
 
     }

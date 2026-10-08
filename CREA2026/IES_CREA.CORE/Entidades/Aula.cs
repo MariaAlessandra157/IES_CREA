@@ -16,21 +16,21 @@ namespace IES_CREA.CORE.Entidades
         [Column("nombre")]
         [Required]
         [StringLength(50)]
-        public string nombre { get; set; }
+        public string Nombre { get; set; }
 
         [Column("capacidad")]
         [Required]
         [Range(1,10)]
-        public int capacidad { get; set; }
+        public int Capacidad { get; set; }
 
         [Column("descripcion")]
         [Required]
         [StringLength (255)]
-        public string descripcion { get; set; }
+        public string Descripcion { get; set; }
 
         [Column("activo")]
         [Display (Name = "activo")]
-        public bool activo { get; set; }
+        public bool Activo { get; set; }
 
 
     }

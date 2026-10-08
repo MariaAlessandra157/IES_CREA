@@ -16,29 +16,29 @@ namespace IES_CREA.CORE.Entidades
         [Column("id_alumno")]
         [Required]
         [Range(1, int.MaxValue)]
-        public int id_alumno { get; set; }
+        public int IdAlumno { get; set; }
 
         [Column("fecha_inicio")]
         [Required]
-        public DateOnly fecha_inicio { get; set; }
+        public DateOnly FechaInicio { get; set; }
 
         [Column("fecha_fin")]
         [Required]
-        public DateOnly fecha_fin { get; set; }
+        public DateOnly FechaFin { get; set; }
 
         [Column("tipo_inscripcion")]
         [Required]
         [StringLength(50)]
-        public string tipo_inscripcion { get; set; }
+        public string TipoInscripcion { get; set; }
 
         [Column("estado")]
         [Display(Name = "estado")]
-        public bool estado { get; set; }
+        public bool Estado { get; set; }
 
         [Column("observacion")]
         [Required]
         [StringLength(500)]
-        public string observacion { get; set; }
+        public string Observacion { get; set; }
 
     }
 }

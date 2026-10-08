@@ -15,25 +15,25 @@ namespace IES_CREA.CORE.Entidades
 
         [Column("id_persona")]
         [Required]
-        public int id_persona { get; set; }
+        public int IdPersona { get; set; }
 
         [Column("fecha_ingreso")]
         [Required]
-        public DateOnly fecha_ingreso { get; set; }
+        public DateOnly FechaIngreso { get; set; }
 
         [Column("fecha_egreso")]
         [Required]
         [NotFutureDate]
-        public DateOnly fecha_egreso { get; set; }
+        public DateOnly FechaEgreso { get; set; }
 
         [Column("activo")]
         [Display(Name = "activo")]
-        public bool activo { get; set; }
+        public bool Activo { get; set; }
 
         [Column("observacion")]
         [Required]
         [StringLength(300)]
-        public string observaciones { get; set; }
+        public string Observaciones { get; set; }
 
     }
 }

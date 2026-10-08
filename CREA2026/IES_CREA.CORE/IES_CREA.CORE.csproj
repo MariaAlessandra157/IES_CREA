@@ -14,8 +14,4 @@
     <PackageReference Include="Microsoft.OpenApi" Version="3.10.2" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\IES_CREA.infrastructure\IES_CREA.infrastructure.csproj" />
-  </ItemGroup>
-
 </Project>
