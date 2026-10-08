@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Proyecto_Taller2\\IES_CREA\\CREA2026\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{839A4978-C472-202E-64BD-F98E6D963E1A}|IES_CREA.CORE\\IES_CREA.CORE.csproj|c:\\proyecto_taller2\\ies_crea\\crea2026\\ies_crea.core\\interfaces\\irepositoriopersona.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{839A4978-C472-202E-64BD-F98E6D963E1A}|IES_CREA.CORE\\IES_CREA.CORE.csproj|solutionrelative:ies_crea.core\\interfaces\\irepositoriopersona.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{2551CC44-DB06-C734-7DCA-A1A84C4F7080}|IES_CREA.API\\IES_CREA.API.csproj|c:\\proyecto_taller2\\ies_crea\\crea2026\\ies_crea.api\\appsetting.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{2551CC44-DB06-C734-7DCA-A1A84C4F7080}|IES_CREA.API\\IES_CREA.API.csproj|solutionrelative:ies_crea.api\\appsetting.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
@@ -13,10 +17,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{2551CC44-DB06-C734-7DCA-A1A84C4F7080}|IES_CREA.API\\IES_CREA.API.csproj|c:\\proyecto_taller2\\ies_crea\\crea2026\\ies_crea.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2551CC44-DB06-C734-7DCA-A1A84C4F7080}|IES_CREA.API\\IES_CREA.API.csproj|solutionrelative:ies_crea.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{839A4978-C472-202E-64BD-F98E6D963E1A}|IES_CREA.CORE\\IES_CREA.CORE.csproj|c:\\proyecto_taller2\\ies_crea\\crea2026\\ies_crea.core\\interfaces\\irepositoriopersona.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{839A4978-C472-202E-64BD-F98E6D963E1A}|IES_CREA.CORE\\IES_CREA.CORE.csproj|solutionrelative:ies_crea.core\\interfaces\\irepositoriopersona.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6714941F-32AD-22ED-B44A-AE80E5B18760}|IES_CREA.test\\IES_CREA.test.csproj|c:\\proyecto_taller2\\ies_crea\\crea2026\\ies_crea.test\\testregistrarerror.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -30,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
@@ -50,7 +50,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "appsetting.json",
               "DocumentMoniker": "C:\\Proyecto_Taller2\\IES_CREA\\CREA2026\\IES_CREA.API\\appsetting.json",
               "RelativeDocumentMoniker": "IES_CREA.API\\appsetting.json",
@@ -63,7 +63,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Proyecto_Taller2\\IES_CREA\\CREA2026\\IES_CREA.API\\Program.cs",
               "RelativeDocumentMoniker": "IES_CREA.API\\Program.cs",
@@ -71,12 +71,11 @@
               "RelativeToolTip": "IES_CREA.API\\Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-07T20:45:50.395Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-07T20:45:50.395Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "RepositorioPersona.cs",
               "DocumentMoniker": "C:\\Proyecto_Taller2\\IES_CREA\\CREA2026\\IES_CREA.infrastructure\\Repositorios\\RepositorioPersona.cs",
               "RelativeDocumentMoniker": "IES_CREA.infrastructure\\Repositorios\\RepositorioPersona.cs",
@@ -84,18 +83,17 @@
               "RelativeToolTip": "IES_CREA.infrastructure\\Repositorios\\RepositorioPersona.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-07T19:50:27.739Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-07T19:50:27.739Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "IRepositorioPersona.cs",
               "DocumentMoniker": "C:\\Proyecto_Taller2\\IES_CREA\\CREA2026\\IES_CREA.CORE\\Interfaces\\IRepositorioPersona.cs",
               "RelativeDocumentMoniker": "IES_CREA.CORE\\Interfaces\\IRepositorioPersona.cs",
               "ToolTip": "C:\\Proyecto_Taller2\\IES_CREA\\CREA2026\\IES_CREA.CORE\\Interfaces\\IRepositorioPersona.cs",
               "RelativeToolTip": "IES_CREA.CORE\\Interfaces\\IRepositorioPersona.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAASAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAcAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-10-07T19:42:15.637Z",
               "EditorCaption": ""
@@ -110,8 +108,7 @@
               "RelativeToolTip": "IES_CREA.test\\TestRegistrarError.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAA/AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-22T01:31:50.916Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-09-22T01:31:50.916Z"
             }
           ]
         }

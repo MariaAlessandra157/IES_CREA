@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Proyecto_Taller2\\IES_CREA\\CREA2026\\IES_CREA.API\\IES_CREA.API.csproj": {}
+    "C:\\Users\\aaron\\source\\repos\\IES_CREA\\CREA2026\\IES_CREA.API\\IES_CREA.API.csproj": {}
   },
   "projects": {
-    "C:\\Proyecto_Taller2\\IES_CREA\\CREA2026\\IES_CREA.API\\IES_CREA.API.csproj": {
+    "C:\\Users\\aaron\\source\\repos\\IES_CREA\\CREA2026\\IES_CREA.API\\IES_CREA.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Proyecto_Taller2\\IES_CREA\\CREA2026\\IES_CREA.API\\IES_CREA.API.csproj",
+        "projectUniqueName": "C:\\Users\\aaron\\source\\repos\\IES_CREA\\CREA2026\\IES_CREA.API\\IES_CREA.API.csproj",
         "projectName": "IES_CREA.API",
-        "projectPath": "C:\\Proyecto_Taller2\\IES_CREA\\CREA2026\\IES_CREA.API\\IES_CREA.API.csproj",
-        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Proyecto_Taller2\\IES_CREA\\CREA2026\\IES_CREA.API\\obj\\",
+        "projectPath": "C:\\Users\\aaron\\source\\repos\\IES_CREA\\CREA2026\\IES_CREA.API\\IES_CREA.API.csproj",
+        "packagesPath": "C:\\Users\\aaron\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\aaron\\source\\repos\\IES_CREA\\CREA2026\\IES_CREA.API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\aaron\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -33,8 +33,8 @@
             "framework": "net10.0",
             "targetAlias": "net10.0",
             "projectReferences": {
-              "C:\\Proyecto_Taller2\\IES_CREA\\CREA2026\\IES_CREA.CORE\\IES_CREA.CORE.csproj": {
-                "projectPath": "C:\\Proyecto_Taller2\\IES_CREA\\CREA2026\\IES_CREA.CORE\\IES_CREA.CORE.csproj"
+              "C:\\Users\\aaron\\source\\repos\\IES_CREA\\CREA2026\\IES_CREA.CORE\\IES_CREA.CORE.csproj": {
+                "projectPath": "C:\\Users\\aaron\\source\\repos\\IES_CREA\\CREA2026\\IES_CREA.CORE\\IES_CREA.CORE.csproj"
               }
             }
           }
@@ -49,7 +49,7 @@
           "auditLevel": "low",
           "auditMode": "all"
         },
-        "SdkAnalysisLevel": "10.0.400"
+        "SdkAnalysisLevel": "10.0.300"
       },
       "frameworks": {
         "net10.0": {
@@ -88,7 +88,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.401/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.302/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.AspNetCore": "(,10.0.32767]",
             "Microsoft.AspNetCore.Antiforgery": "(,10.0.32767]",
@@ -506,20 +506,20 @@
         }
       }
     },
-    "C:\\Proyecto_Taller2\\IES_CREA\\CREA2026\\IES_CREA.CORE\\IES_CREA.CORE.csproj": {
+    "C:\\Users\\aaron\\source\\repos\\IES_CREA\\CREA2026\\IES_CREA.CORE\\IES_CREA.CORE.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Proyecto_Taller2\\IES_CREA\\CREA2026\\IES_CREA.CORE\\IES_CREA.CORE.csproj",
+        "projectUniqueName": "C:\\Users\\aaron\\source\\repos\\IES_CREA\\CREA2026\\IES_CREA.CORE\\IES_CREA.CORE.csproj",
         "projectName": "IES_CREA.CORE",
-        "projectPath": "C:\\Proyecto_Taller2\\IES_CREA\\CREA2026\\IES_CREA.CORE\\IES_CREA.CORE.csproj",
-        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Proyecto_Taller2\\IES_CREA\\CREA2026\\IES_CREA.CORE\\obj\\",
+        "projectPath": "C:\\Users\\aaron\\source\\repos\\IES_CREA\\CREA2026\\IES_CREA.CORE\\IES_CREA.CORE.csproj",
+        "packagesPath": "C:\\Users\\aaron\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\aaron\\source\\repos\\IES_CREA\\CREA2026\\IES_CREA.CORE\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\aaron\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -535,8 +535,8 @@
             "framework": "net10.0",
             "targetAlias": "net10.0",
             "projectReferences": {
-              "C:\\Proyecto_Taller2\\IES_CREA\\CREA2026\\IES_CREA.infrastructure\\IES_CREA.infrastructure.csproj": {
-                "projectPath": "C:\\Proyecto_Taller2\\IES_CREA\\CREA2026\\IES_CREA.infrastructure\\IES_CREA.infrastructure.csproj"
+              "C:\\Users\\aaron\\source\\repos\\IES_CREA\\CREA2026\\IES_CREA.infrastructure\\IES_CREA.infrastructure.csproj": {
+                "projectPath": "C:\\Users\\aaron\\source\\repos\\IES_CREA\\CREA2026\\IES_CREA.infrastructure\\IES_CREA.infrastructure.csproj"
               }
             }
           }
@@ -551,7 +551,7 @@
           "auditLevel": "low",
           "auditMode": "all"
         },
-        "SdkAnalysisLevel": "10.0.400"
+        "SdkAnalysisLevel": "10.0.300"
       },
       "frameworks": {
         "net10.0": {
@@ -579,7 +579,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.401/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.302/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.CSharp": "(,4.7.32767]",
             "Microsoft.VisualBasic": "(,10.4.32767]",
@@ -857,20 +857,20 @@
         }
       }
     },
-    "C:\\Proyecto_Taller2\\IES_CREA\\CREA2026\\IES_CREA.infrastructure\\IES_CREA.infrastructure.csproj": {
+    "C:\\Users\\aaron\\source\\repos\\IES_CREA\\CREA2026\\IES_CREA.infrastructure\\IES_CREA.infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Proyecto_Taller2\\IES_CREA\\CREA2026\\IES_CREA.infrastructure\\IES_CREA.infrastructure.csproj",
+        "projectUniqueName": "C:\\Users\\aaron\\source\\repos\\IES_CREA\\CREA2026\\IES_CREA.infrastructure\\IES_CREA.infrastructure.csproj",
         "projectName": "IES_CREA.infrastructure",
-        "projectPath": "C:\\Proyecto_Taller2\\IES_CREA\\CREA2026\\IES_CREA.infrastructure\\IES_CREA.infrastructure.csproj",
-        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Proyecto_Taller2\\IES_CREA\\CREA2026\\IES_CREA.infrastructure\\obj\\",
+        "projectPath": "C:\\Users\\aaron\\source\\repos\\IES_CREA\\CREA2026\\IES_CREA.infrastructure\\IES_CREA.infrastructure.csproj",
+        "packagesPath": "C:\\Users\\aaron\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\aaron\\source\\repos\\IES_CREA\\CREA2026\\IES_CREA.infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\aaron\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -898,7 +898,7 @@
           "auditLevel": "low",
           "auditMode": "all"
         },
-        "SdkAnalysisLevel": "10.0.400"
+        "SdkAnalysisLevel": "10.0.300"
       },
       "frameworks": {
         "net10.0": {
@@ -930,7 +930,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.401/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.302/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.CSharp": "(,4.7.32767]",
             "Microsoft.VisualBasic": "(,10.4.32767]",
