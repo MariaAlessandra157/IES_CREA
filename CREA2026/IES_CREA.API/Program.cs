@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Cors;
 using System.Runtime.Versioning;
 using IES_CREA.infrastructure.ExtensionesServicios;
 
-
 namespace IES_CREA.API
 {
     public class Program
@@ -12,8 +11,9 @@ namespace IES_CREA.API
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            builder.Services.AddControllers();
+            builder.Services.AddInfrastructure(builder.Configuration);
 
-            builder.Services.AddControllers(builder.Configuration);
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddOpenApi();
 
@@ -29,10 +29,10 @@ namespace IES_CREA.API
 
             app.UseAuthorization();
 
-
             app.MapControllers();
 
             app.Run();
         }
     }
 }
+

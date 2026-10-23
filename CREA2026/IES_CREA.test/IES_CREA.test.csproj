@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
@@ -22,7 +22,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\IES_CREA.CORE\IES_CREA.CORE.csproj" />
+    <Reference Include="IES_CREA.infrastructure">
+      <HintPath>..\IES_CREA.infrastructure\bin\Debug\net10.0\IES_CREA.infrastructure.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
     <Using Include="Xunit" />
   </ItemGroup>
 
+</Project>
 </Project>

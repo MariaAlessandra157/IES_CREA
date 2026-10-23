@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -22,7 +22,7 @@ namespace IES_CREA.CORE.Entidades
         [Required(ErrorMessage = "El Nombre de Usuario es obligatorio.")]
         [StringLength(50, ErrorMessage = "El Nombre de Usuario no puede exceder los 50 caracteres.")]
         [RegularExpression(@"^[a-zA-Z0-9._-]{4,50}$", ErrorMessage = "El Nombre de Usuario solo puede contener letras, números, puntos, guiones bajos y guiones.")]
-        public string Usuario { get; set; }
+        public string NombreUsuario { get; set; }
 
         [Column("password_hash")]
         [Required(ErrorMessage = "El hash de la contraseña es obligatorio.")]

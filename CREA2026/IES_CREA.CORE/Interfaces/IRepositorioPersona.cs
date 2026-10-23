@@ -10,10 +10,9 @@ namespace IES_CREA.CORE.Interfaces
     //que se tenga en la base de datos.
     public interface IRepositorioPersona
     {
-        Task<IEnumerable<Persona>> ObtenerTodosAsync();
-
-        Task<IEnumerable<Persona>> BuscarPersona(string busca_);
-
-
+        Task<int> sp_persona_insertar(Persona persona_);
+        Task<IEnumerable<Persona>> sp_persona_buscar(string busca_);
+        Task<Persona> sp_persona_actualizar(Persona persona_);
+        Task<IEnumerable<Persona>> sp_persona_obtener();
     }
 }
