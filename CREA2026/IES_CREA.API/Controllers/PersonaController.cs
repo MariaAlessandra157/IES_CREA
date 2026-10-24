@@ -1,10 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using FluentValidation;
+using Microsoft.AspNetCore.Mvc;
+using IES_CREA.API.DTOs.Persona;
+using IES_CREA.CORE.Entidades;
+using IES_CREA.CORE.Servicios;
 
 namespace IES_CREA.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class PersonaController : Controller
+    public class PersonaController : ControllerBase
     {
         [HttpGet]
         public string Get()
