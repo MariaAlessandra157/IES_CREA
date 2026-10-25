@@ -1,4 +1,4 @@
-﻿using IES_CREA.CORE.Entidades;
+﻿git using IES_CREA.CORE.Entidades;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,10 +10,13 @@ namespace IES_CREA.CORE.Interfaces
     //que se tenga en la base de datos.
     public interface IRepositorioPersona
     {
-        Task<IEnumerable<Persona>> ObtenerTodosAsync();
+        Task<IEnumerable<Persona>> ObtenerPersonaPorId(int p_id);
 
-        Task<IEnumerable<Persona>> BuscarPersona(string busca_);
+        Task<IEnumerable<Persona>> BuscarPersona(string dni, string nombre, string apellido);
 
+        Task<IEnumerable<Persona>> InsertarPersona(Persona persona);
+
+        Task<IEnumerable<Persona>> ActualizarPersona(int p_id);
 
     }
 }
