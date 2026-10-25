@@ -24,5 +24,7 @@ namespace IES_CREA.infrastructure.ExtensionesServicios
 
             return services;
         }
+
+        //Falta hacer la inyeccion de dependencias de los servicios de infraestructura, como repositorios, servicios de correo, etc.
     }
 }
