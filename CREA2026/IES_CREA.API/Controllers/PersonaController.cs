@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
-using IES_CREA.API.DTOs.Personas;
+using IES_CREA.API.DTOs.Persona;
 using IES_CREA.CORE.Entidades;
 using IES_CREA.CORE.Servicios;
 

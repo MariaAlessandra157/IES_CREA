@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using IES_CREA.CORE.Entidades;
 
 namespace IES_CREA.CORE.Interfaces
 {
-    internal class IAutenticacionServicio
+    public class IAutenticacionServicio
     {
+        Task<Usuario>? ValidarCredencialesAsync(string usuario_, string password_);
+        string GenererToken(Usuario usuario_, List<string> roles_);
     }
 }

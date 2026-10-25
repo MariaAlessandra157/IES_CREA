@@ -4,7 +4,7 @@ using System.Text;
 
 namespace IES_CREA.CORE.Interfaces
 {
-    internal class IRespositorioResponsable
+    internal class IRepositorioResponsable
     {
     }
 }
