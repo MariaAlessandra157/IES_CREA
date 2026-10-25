@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "ITqztDE0dRI=",
+  "dgSpecHash": "7gfZr6dgEYc=",
   "success": true,
-  "projectFilePath": "C:\\Proyecto_Crea(T.D.S)\\IES_CREA\\CREA2026\\IES_CREA.shared\\IES_CREA.shared.csproj",
+  "projectFilePath": "C:\\Proyecto_Taller2\\IES_CREA\\CREA2026\\IES_CREA.shared\\IES_CREA.shared.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\LENOVO\\.nuget\\packages\\microsoft.openapi\\3.10.2\\microsoft.openapi.3.10.2.nupkg.sha512"
+    "C:\\Users\\User\\.nuget\\packages\\microsoft.openapi\\3.10.2\\microsoft.openapi.3.10.2.nupkg.sha512"
   ],
   "logs": []
 }

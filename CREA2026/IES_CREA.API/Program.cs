@@ -1,3 +1,7 @@
+using FluentValidation;
+using IES_CREA:API.Validators;
+using IES:CREA.CORE.Interfaces;
+using IES_CREA.CORE.Servicios;
 using Microsoft.AspNetCore.Cors;
 using System.Runtime.Versioning;
 using IES_CREA.infrastructure.ExtensionesServicios;

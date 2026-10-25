@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Proyecto_Crea(T.D.S)\\IES_CREA\\CREA2026\\IES_CREA.infrastructure\\IES_CREA.infrastructure.csproj": {}
+    "C:\\Proyecto_Taller2\\IES_CREA\\CREA2026\\IES_CREA.infrastructure\\IES_CREA.infrastructure.csproj": {}
   },
   "projects": {
-    "C:\\Proyecto_Crea(T.D.S)\\IES_CREA\\CREA2026\\IES_CREA.CORE\\IES_CREA.CORE.csproj": {
+    "C:\\Proyecto_Taller2\\IES_CREA\\CREA2026\\IES_CREA.CORE\\IES_CREA.CORE.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Proyecto_Crea(T.D.S)\\IES_CREA\\CREA2026\\IES_CREA.CORE\\IES_CREA.CORE.csproj",
+        "projectUniqueName": "C:\\Proyecto_Taller2\\IES_CREA\\CREA2026\\IES_CREA.CORE\\IES_CREA.CORE.csproj",
         "projectName": "IES_CREA.CORE",
-        "projectPath": "C:\\Proyecto_Crea(T.D.S)\\IES_CREA\\CREA2026\\IES_CREA.CORE\\IES_CREA.CORE.csproj",
-        "packagesPath": "C:\\Users\\LENOVO\\.nuget\\packages\\",
-        "outputPath": "C:\\Proyecto_Crea(T.D.S)\\IES_CREA\\CREA2026\\IES_CREA.CORE\\obj\\",
+        "projectPath": "C:\\Proyecto_Taller2\\IES_CREA\\CREA2026\\IES_CREA.CORE\\IES_CREA.CORE.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "C:\\Proyecto_Taller2\\IES_CREA\\CREA2026\\IES_CREA.CORE\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\LENOVO\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -351,20 +351,20 @@
         }
       }
     },
-    "C:\\Proyecto_Crea(T.D.S)\\IES_CREA\\CREA2026\\IES_CREA.infrastructure\\IES_CREA.infrastructure.csproj": {
+    "C:\\Proyecto_Taller2\\IES_CREA\\CREA2026\\IES_CREA.infrastructure\\IES_CREA.infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Proyecto_Crea(T.D.S)\\IES_CREA\\CREA2026\\IES_CREA.infrastructure\\IES_CREA.infrastructure.csproj",
+        "projectUniqueName": "C:\\Proyecto_Taller2\\IES_CREA\\CREA2026\\IES_CREA.infrastructure\\IES_CREA.infrastructure.csproj",
         "projectName": "IES_CREA.infrastructure",
-        "projectPath": "C:\\Proyecto_Crea(T.D.S)\\IES_CREA\\CREA2026\\IES_CREA.infrastructure\\IES_CREA.infrastructure.csproj",
-        "packagesPath": "C:\\Users\\LENOVO\\.nuget\\packages\\",
-        "outputPath": "C:\\Proyecto_Crea(T.D.S)\\IES_CREA\\CREA2026\\IES_CREA.infrastructure\\obj\\",
+        "projectPath": "C:\\Proyecto_Taller2\\IES_CREA\\CREA2026\\IES_CREA.infrastructure\\IES_CREA.infrastructure.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "C:\\Proyecto_Taller2\\IES_CREA\\CREA2026\\IES_CREA.infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\LENOVO\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -380,8 +380,8 @@
             "framework": "net10.0",
             "targetAlias": "net10.0",
             "projectReferences": {
-              "C:\\Proyecto_Crea(T.D.S)\\IES_CREA\\CREA2026\\IES_CREA.CORE\\IES_CREA.CORE.csproj": {
-                "projectPath": "C:\\Proyecto_Crea(T.D.S)\\IES_CREA\\CREA2026\\IES_CREA.CORE\\IES_CREA.CORE.csproj"
+              "C:\\Proyecto_Taller2\\IES_CREA\\CREA2026\\IES_CREA.CORE\\IES_CREA.CORE.csproj": {
+                "projectPath": "C:\\Proyecto_Taller2\\IES_CREA\\CREA2026\\IES_CREA.CORE\\IES_CREA.CORE.csproj"
               }
             }
           }

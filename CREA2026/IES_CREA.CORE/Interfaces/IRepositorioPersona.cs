@@ -5,9 +5,7 @@ using System.Text;
 
 namespace IES_CREA.CORE.Interfaces
 {
-    //REVISAR!!!!!
-    //Se debe realizar la interfaz de cada tabla de acuerdo a los procedimientos
-    //que se tenga en la base de datos.
+
     public interface IRepositorioPersona
     {
         Task<int> sp_persona_insertar(Persona persona_);
