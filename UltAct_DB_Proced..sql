@@ -851,7 +851,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_inscripcion_consultar`()
 BEGIN
 SELECT *
 FROM inscripciones
-WHERE p_id IS NULL OR IdInscripcion = p_id;
+WHERE p_sp_alumno_responsablesid IS NULL OR IdInscripcion = p_id;
 END//
 DELIMITER ;
 

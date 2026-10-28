@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.ComponentModel.DataAnnotations;
@@ -11,7 +11,7 @@ namespace IES_CREA.CORE.Entidades
     {
         [Column("IdAlumnoResponsable")]
         [Key]
-        public int IdAlumnoResponsable { get; set}
+        public int IdAlumnoResponsable { get; set; }
 
         [Column("id_alumno")]
         [Required]

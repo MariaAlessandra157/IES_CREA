@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using System;
+using System.IO;
+using IES_CREA.infrastructure.Contexto;
+using Xunit;
 
 namespace IES_CREA.test
 {
     public class TestRegistrarError
     {
-        private readonly string _rutaBase = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Errorlog");
+        private readonly string _rutaBase = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ErrorLog");
 
         [Fact]
         public void RegistrarErrores_DeberiaCrearCarpetaYArchivo()
@@ -15,28 +16,17 @@ namespace IES_CREA.test
             var fecha = DateTime.Now;
             var carpetaEsperada = fecha.ToString("yyyy-MM-dd");
 
-            ArchivoLog.RegistrarErrores(exception);
+            ArchivoLog.RegistrarError(exception);
 
-            //Assert - Verificar
-            //verificar que la carpeta se creo
             string rutaCarpeta = Path.Combine(_rutaBase, carpetaEsperada);
             bool carpetaExiste = Directory.Exists(rutaCarpeta);
 
-            //Verificar que el archivo se creo
-            var archivos = Directory.GetFiles(rutaCarpeta, "*.txt");
+            var archivos = Directory.Exists(rutaCarpeta) ? Directory.GetFiles(rutaCarpeta, "*.txt") : Array.Empty<string>();
             bool archivoExiste = archivos.Length > 0;
 
-            //Mostrar resultados
-            Console.WriteLine($"Carpeta: {rutaCarpeta}");
-            Console.WriteLine($"Archivos encontrados: {archivos.Length}");
-            if (archivoExiste)
-            {
-                Console.WriteLine($"Archivo: {archivos[0]}");
-            }
-
-            //Assertions
             Assert.True(carpetaExiste, "La carpeta de logs no se creó.");
             Assert.True(archivoExiste, "No se creó ningun archivo de Log");
         }
     }
 }
+

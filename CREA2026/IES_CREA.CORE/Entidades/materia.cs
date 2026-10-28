@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace IES_CREA.CORE.Entidades
 {
     [Table ("materias")]
-    public class materia
+    public class Materia
     {
         [Column("IdMateria")]
         [Key]
