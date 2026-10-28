@@ -1,4 +1,4 @@
-﻿namespace IES_CREA.API.DTOs
+﻿namespace IES_CREA.API.DTOs.Persona
 {
     public class PersonaCrearDto
     {
