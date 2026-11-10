@@ -31,7 +31,7 @@ namespace IES_CREA.CORE.Entidades
         [Column("fecha")]
         [Required]
         [NotFutureDate(ErrorMessage = "La fecha no puede ser futura")]
-        public DateOnly Fecha { get; set; }
+        public DateTime Fecha { get; set; }
 
         [Column("tema_trabajado")]
         [Required]

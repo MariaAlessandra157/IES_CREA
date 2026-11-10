@@ -1,9 +1,8 @@
 using FluentValidation;
-using IES_CREA:API.Validators;
-using IES:CREA.CORE.Interfaces;
+using IES_CREA.API.AutoMapper;
+using IES_CREA.API.DTOs;
+using IES_CREA.API.Validators;
 using IES_CREA.CORE.Servicios;
-using Microsoft.AspNetCore.Cors;
-using System.Runtime.Versioning;
 using IES_CREA.infrastructure.ExtensionesServicios;
 
 namespace IES_CREA.API
@@ -16,6 +15,8 @@ namespace IES_CREA.API
 
             // Add services to the container.
             builder.Services.AddControllers();
+            builder.Services.AddAutoMapper(cfg => cfg.AddProfile<MappeoObjeto>());
+            builder.Services.AddScoped<IValidator<PersonaCrearDto>, CrearPersonaValidator>();
             builder.Services.AddInfrastructure(builder.Configuration);
 
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi

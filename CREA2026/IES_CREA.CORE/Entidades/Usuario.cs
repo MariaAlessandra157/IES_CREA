@@ -36,11 +36,11 @@ namespace IES_CREA.CORE.Entidades
         [Column("fecha_creacion")]
         [Required(ErrorMessage = "La fecha de creacion es obligatoria")]
         [NotFutureDate(ErrorMessage = "La fecha de creación no puede ser una fecha futura.")]
-        public DateOnly FechaCreacion { get; set; }
+        public DateTime FechaCreacion { get; set; }
 
         [Column("ultimo_accseo")]
         [NotFutureDate(ErrorMessage = "La fecha de último acceso no puede ser una fecha futura.")]
-        public DateOnly UltimoAcceso { get; set; }
+        public DateTime UltimoAcceso { get; set; }
 
     }
 }

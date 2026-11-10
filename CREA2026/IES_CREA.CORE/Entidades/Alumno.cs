@@ -19,12 +19,12 @@ namespace IES_CREA.CORE.Entidades
 
         [Column("fecha_ingreso")]
         [Required]
-        public DateOnly FechaIngreso { get; set; }
+        public DateTime FechaIngreso { get; set; }
 
         [Column("fecha_egreso")]
         [Required]
         [NotFutureDate]
-        public DateOnly FechaEgreso { get; set; }
+        public DateTime FechaEgreso { get; set; }
 
         [Column("activo")]
         [Display(Name = "activo")]

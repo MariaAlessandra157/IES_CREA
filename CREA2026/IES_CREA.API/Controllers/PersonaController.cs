@@ -1,12 +1,10 @@
 ﻿using AutoMapper;
 using FluentValidation;
 using IES_CREA.API.DTOs;
-using IES_CREA.API.DTOs.Persona;
 using IES_CREA.CORE.Entidades;
 using IES_CREA.CORE.Interfaces;
 using IES_CREA.CORE.Servicios;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using System.Threading.Tasks;
 
 namespace IES_CREA.API.Controllers
@@ -15,16 +13,16 @@ namespace IES_CREA.API.Controllers
     [Route("api/[controller]")]
     public class PersonaController : ControllerBase
     {
-        private readonly ServicioPersona _servicio;
-        private IValidator<CrearPersonaDto> _validatorCrearPersona;
-        private IValidator<PersonaActualizarDto> _validatorActualizarPerson;
-        private IMapper _mapper;
+        private readonly ServicioPersona _servicioPersona;
+        private readonly IRepositorioPersona _repositorioPersona;
+        private readonly IValidator<PersonaCrearDto> _validator;
+        private readonly IMapper _mapper;
 
         public PersonaController(
             ServicioPersona servicioPersona,
             IRepositorioPersona repositorioPersona,
             IMapper mapper,
-            IValidator<CrearPersonaDto> validator)
+            IValidator<PersonaCrearDto> validator)
         {
             _servicioPersona = servicioPersona;
             _repositorioPersona = repositorioPersona;
@@ -48,7 +46,7 @@ namespace IES_CREA.API.Controllers
 
         // POST: api/Persona
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] CrearPersonaDto crearPersonaDto)
+        public async Task<IActionResult> Post([FromBody] PersonaCrearDto crearPersonaDto)
         {
             // 1. Validamos con FluentValidation
             var validationResult = await _validator.ValidateAsync(crearPersonaDto);

@@ -20,11 +20,11 @@ namespace IES_CREA.CORE.Entidades
 
         [Column("fecha_inicio")]
         [Required]
-        public DateOnly FechaInicio { get; set; }
+        public DateTime FechaInicio { get; set; }
 
         [Column("fecha_fin")]
         [Required]
-        public DateOnly FechaFin { get; set; }
+        public DateTime FechaFin { get; set; }
 
         [Column("tipo_inscripcion")]
         [Required]

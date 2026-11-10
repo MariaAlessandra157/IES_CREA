@@ -32,7 +32,7 @@ namespace IES_CREA.CORE.Entidades
         [Column("fechaNacimiento")]
         [Required(ErrorMessage = "La fecha de nacimiento es obligatoria.")]
         [DataType(DataType.Date)]
-        public DateOnly FechaNacimiento { get; set; }
+        public DateTime FechaNacimiento { get; set; }
 
         [Column("telefono")]
         [Required]
@@ -58,7 +58,7 @@ namespace IES_CREA.CORE.Entidades
         [Column("fechaAlta")]
         [Required(ErrorMessage = "La fecha de alta es obligatoria.")]
         [NotFutureDate(ErrorMessage = "La fecha de alta no puede ser una fecha futura.")]
-        public DateOnly FechaAlta { get; set; }
+        public DateTime FechaAlta { get; set; }
 
     }
 
@@ -66,9 +66,9 @@ namespace IES_CREA.CORE.Entidades
     {
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
-            if (value is DateOnly dateValue)
+            if (value is DateTime dateValue)
             {
-                if (dateValue > DateOnly.FromDateTime(DateTime.Now))
+                if (dateValue > DateTime.Now)
                 {
                     return new ValidationResult(ErrorMessage ?? "La fecha no puede ser una fecha futura.");
                 }

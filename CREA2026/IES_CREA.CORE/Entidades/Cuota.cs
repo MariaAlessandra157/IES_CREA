@@ -32,7 +32,7 @@ namespace IES_CREA.CORE.Entidades
 
         [Column("fecha_vencimiento")]
         [Required]
-        public DateOnly FechaVencimiento { get; set; }
+        public DateTime FechaVencimiento { get; set; }
 
         [Column("estado")]
         [Display(Name = "estado")]

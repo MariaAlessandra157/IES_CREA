@@ -29,11 +29,11 @@ namespace IES_CREA.CORE.Entidades
 
         [Column("fecha_vigencia_desde")]
         [Required]
-        public DateOnly FechaVigenciaDesde { get; set; }
+        public DateTime FechaVigenciaDesde { get; set; }
 
         [Column("fecha_vigencia_hasta")]
         [Required]
-        public DateOnly FechaVigenciaHasta { get; set; }
+        public DateTime FechaVigenciaHasta { get; set; }
 
         [Column("activo")]
         [Display(Name = "activo")]

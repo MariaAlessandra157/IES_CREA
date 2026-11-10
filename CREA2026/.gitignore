@@ -4,3 +4,13 @@ CREA2026/obj/
 *.vsidx
 *.slnx
 *.cache
+
+# Carpetas de compilación de .NET
+[Bb]in/
+[Oo]bj/
+
+# Carpeta de configuración de Visual Studio
+.vs/
+
+# Archivos de usuario locales
+*.user
