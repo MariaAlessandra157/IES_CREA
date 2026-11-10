@@ -36,7 +36,6 @@ IES_CREA.test/obj/
 *.exe
 *.pdb
 *.cache
-*.json
 *.mdb
 *.log
 
