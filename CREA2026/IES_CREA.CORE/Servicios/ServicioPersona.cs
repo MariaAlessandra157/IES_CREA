@@ -1,4 +1,5 @@
-﻿using IES_CREA.CORE.Interfaces;
+﻿using IES_CREA.CORE.Entidades;
+using IES_CREA.CORE.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Data;
