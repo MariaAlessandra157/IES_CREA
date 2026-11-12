@@ -9,6 +9,6 @@ namespace IES_CREA.CORE.Interfaces
     {
         Task<int> sp_personal_insertar(Personal personal);
         Task<IEnumerable<Personal>> sp_personal_consultar(int idPersonal);
-        Task<Personal> sp_personal_actualizar(int idPersonal);
+        Task<Personal> sp_personal_actualizar(Personal personal);
     }
 }

@@ -54,6 +54,19 @@ namespace IES_CREA.infrastructure.ExtensionesServicios
             services.AddScoped<ServicioPersona>();
             services.AddScoped<IES_CREA.CORE.Servicios.ServicioPersona>();
             services.AddScoped<IES_CREA.CORE.Servicios.ServicioMateria>();
+            services.AddScoped<IES_CREA.CORE.Servicios.ServicioAula>();
+            services.AddScoped<IES_CREA.CORE.Servicios.ServicioClase>();
+            services.AddScoped<IES_CREA.CORE.Servicios.ServicioCurso>();
+            services.AddScoped<IES_CREA.CORE.Servicios.ServicioInscripcion>();
+            services.AddScoped<IES_CREA.CORE.Servicios.ServicioArancel>();
+            services.AddScoped<IES_CREA.CORE.Servicios.ServicioCuota>();
+            services.AddScoped<IES_CREA.CORE.Servicios.ServicioPago>();
+            services.AddScoped<IES_CREA.CORE.Servicios.ServicioPersonal>();
+            services.AddScoped<IES_CREA.CORE.Servicios.ServicioResponsable>();
+            services.AddScoped<IES_CREA.CORE.Servicios.ServicioSeguimiento>();
+            services.AddScoped<IES_CREA.CORE.Servicios.ServicioTrayectoria>();
+            services.AddScoped<IES_CREA.CORE.Servicios.ServicioRol>();
+            services.AddScoped<IES_CREA.CORE.Servicios.ServicioUsuario>();
             // (Si luego creas ServicioAlumno, ServicioCurso, etc., los agregas aquí también)
             return services;
         }

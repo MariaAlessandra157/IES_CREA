@@ -6,7 +6,7 @@ using System.Text;
 
 namespace IES_CREA.CORE.Entidades
 {
-    [Table ("trayectoria-educativa")]
+    [Table ("trayectoria_educativa")]
     public class Trayectoria
     {
         [Column("IdTrayectoriaEducativa")]
@@ -36,7 +36,7 @@ namespace IES_CREA.CORE.Entidades
         [Column("ciclo_lectivo")]
         [Required]
         [StringLength(4, ErrorMessage = "El ciclo lectivo no debe contener mas de 4 caracteres")]
-        public string Cicloectivo { get; set; }
+        public string Ciclolectivo { get; set; }
 
         [Column("fecha_desde")]
         [Required]

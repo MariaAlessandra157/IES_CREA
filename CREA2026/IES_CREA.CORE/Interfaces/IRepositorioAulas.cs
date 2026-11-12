@@ -8,7 +8,7 @@ namespace IES_CREA.CORE.Interfaces
     public interface IRepositorioAulas
     {
         Task<int> sp_aula_insertar(Aula aulas);
-        Task<IEnumerable<Aula>> sp_aula_cosultar(string busca_);
+        Task<IEnumerable<Aula>> sp_aula_consultar(string busca_);
         Task<Aula> sp_aula_actualizar(Aula aulas);
     }
 }
