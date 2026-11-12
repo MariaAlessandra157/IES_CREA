@@ -6,10 +6,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IES_CREA.CORE.Entidades
 {
-    [Table ("seguimiento-pedagogico")]
+    [Table ("seguimiento_pedagogico")]
     public class Seguimiento
     {
-        [Column ("IdSeguimeinto")]
+        [Column ("IdSeguimiento")]
         [Key]
         public int IdSeguimiento { get; set; }
 

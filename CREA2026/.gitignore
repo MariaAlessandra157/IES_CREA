@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 CREA2026/.vs/
 CREA2026/bin/
 CREA2026/obj/
@@ -14,3 +15,80 @@ CREA2026/obj/
 
 # Archivos de usuario locales
 *.user
+=======
+##############################
+# Visual Studio / .NET Ignore
+##############################
+
+# Carpetas de Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Carpetas de compilación
+bin/
+obj/
+[Bb]uild/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa]rtifacts/
+
+# Ignorar bin/ y obj/ dentro de subproyectos
+IES_CREA.API/bin/
+IES_CREA.API/obj/
+IES_CREA.CORE/bin/
+IES_CREA.CORE/obj/
+IES_CREA.infrastructure/bin/
+IES_CREA.infrastructure/obj/
+IES_CREA.shared/bin/
+IES_CREA.shared/obj/
+IES_CREA.test/bin/
+IES_CREA.test/obj/
+
+# Archivos compilados
+*.dll
+*.exe
+*.pdb
+*.cache
+*.mdb
+*.log
+
+# Archivos generados por Test
+IES_CREA.test/**/*.dll
+IES_CREA.test/**/*.pdb
+IES_CREA.test/**/*.cache
+IES_CREA.test/**/*.json
+
+# Archivos temporales
+*.tmp
+*.temp
+*.vsidx
+*.dbmdl
+*.FileListAbsolute.txt
+
+# NuGet
+packages/
+*.nupkg
+project.lock.json
+project.fragment.lock.json
+*.nuget.props
+*.nuget.targets
+
+# Rider / JetBrains
+.idea/
+*.iml
+
+# Publicaciones
+publish/
+
+# Archivos de diagramas Dia
+*.dia
+*.dia~
+
+# Archivos de Copilot en Visual Studio
+.vs/CopilotSnapshots/
+>>>>>>> main

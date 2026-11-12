@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using IES_CREA.CORE.Entidades;
+﻿using IES_CREA.CORE.Entidades;
 using IES_CREA.CORE.Interfaces;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace IES_CREA.CORE.Servicios
 {
@@ -16,23 +15,29 @@ namespace IES_CREA.CORE.Servicios
             _repositorio = repositorio;
         }
 
-        public async Task<IEnumerable<Persona>> ObtenerPersonaPorId(int p_id)
+        // 1. Obtener todos (útil para un futuro GET general)
+        public async Task<IEnumerable<Persona>> ObtenerTodosAsync()
         {
-            // NOTA: En lugar de traer TODOS y filtrar en memoria (Where), 
-            // es mejor crear un SP que busque por ID, o usar el de buscar si aplica.
-            // Si no tienes uno por ID, aquí está el filtro en memoria:
-            var personas = await _repositorio.sp_persona_obtener();
-            return personas.Where(p => p.IdPersona == p_id);
+            // NOTA: Necesitarás crear este método en tu IRepositorioPersona y RepositorioPersona
+            // return await _repositorio.ObtenerTodosAsync();
+            throw new NotImplementedException("Falta implementar en el repositorio");
         }
 
-        public async Task<Persona> GetByIdAsync(int p_id)
+        // 2. Obtener por ID (Corregido: devuelve una sola Persona)
+        public async Task<Persona> ObtenerPorIdAsync(int id)
         {
-            if (p_id <= 0)
+            if (id <= 0)
                 throw new ArgumentException("El ID debe ser mayor a 0");
 
-            // Idealmente deberías tener un método en tu repositorio: _repositorio.sp_persona_obtener_por_id(p_id)
-            var personas = await _repositorio.sp_persona_obtener();
-            return personas.FirstOrDefault(p => p.IdPersona == p_id);
+            return await _repositorio.ObtenerPersonaPorId(id); // Asumo que tu repositorio devuelve un Task<Persona>
+        }
+
+        // 3. CREAR ALUMNO (El que usaremos en el Controlador)
+        public async Task<Persona> CrearAlumnoAsync(Persona persona)
+        {
+            var idGenerado = await _repositorio.sp_persona_insertar(persona);
+            if (idGenerado > 0) persona.IdPersona = idGenerado;
+            return persona;
         }
     }
 }

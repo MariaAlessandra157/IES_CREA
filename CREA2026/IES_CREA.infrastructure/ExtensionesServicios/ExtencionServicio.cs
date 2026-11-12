@@ -7,6 +7,7 @@ using IES_CREA.infrastructure.Contexto;
 using IES_CREA.infrastructure.Repositorios;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
+using IES_CREA.CORE.Servicios;
 
 namespace IES_CREA.infrastructure.ExtensionesServicios
 {
@@ -50,9 +51,14 @@ namespace IES_CREA.infrastructure.ExtensionesServicios
             services.AddScoped<IRepositorioTrayectoriaEducativa, RepositorioTrayectoriaEducativa>();
             services.AddScoped<IRepositorioUsuarioRol, RepositorioUsuarioRol>();
             services.AddScoped<IRepositorioUsuarios, RepositorioUsuarios>();
-
+            services.AddScoped<ServicioPersona>();
+            services.AddScoped<IES_CREA.CORE.Servicios.ServicioPersona>();
+            services.AddScoped<IES_CREA.CORE.Servicios.ServicioMateria>();
+            // (Si luego creas ServicioAlumno, ServicioCurso, etc., los agregas aquí también)
             return services;
         }
+
+        //Falta hacer la inyeccion de dependencias de los servicios de infraestructura, como repositorios, servicios de correo, etc.
     }
 }
 

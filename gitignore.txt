@@ -1,0 +1,57 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.autosave
+CopilotIndices/
+
+
+# Build results
+bin/
+obj/
+Debug/
+Release/
+x64/
+x86/
+[Aa]rtifacts/
+
+# ASP.NET / C#
+*.dll
+*.exe
+*.pdb
+*.cache
+*.log
+*.json.tmp
+*.tmp
+*.dbmdl
+
+# Entity Framework
+Migrations/
+
+# Base de datos
+*.db
+*.sqlite
+*.mdf
+*.ldf
+
+# NuGet
+packages/
+*.nupkg
+project.lock.json
+project.fragment.lock.json
+
+# Rider / JetBrains
+.idea/
+*.iml
+
+# Otros archivos temporales
+*.FileListAbsolute.txt
+*.dgspec.json
+*.csproj.user
+*.vsidx
+*.vscode/
+
+# Publicaciones
+publish/

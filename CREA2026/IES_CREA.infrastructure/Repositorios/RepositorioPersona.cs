@@ -1,13 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
+using System.IO;
 using Dapper;
 using IES_CREA.CORE.Entidades;
 using IES_CREA.CORE.Interfaces;
 using IES_CREA.CORE.Interfaces.Conexion;
 using IES_CREA.infrastructure.Contexto;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace IES_CREA.infrastructure.Repositorios
 {
@@ -17,51 +18,13 @@ namespace IES_CREA.infrastructure.Repositorios
         {
         }
 
-        public async Task<int> sp_persona_insertar(Persona persona_)
-        {
-            try
-            {
-                using var conexion = await _conn.obtenerConexionAsync();
-                var parametros = new
-                {
-                    p_dni = persona_.Dni,
-                    p_nombre = persona_.Nombre,
-                    p_apellido = persona_.Apellido,
-                    p_fechaNacimiento = persona_.FechaNacimiento,
-                    p_telefono = persona_.Telefono,
-                    p_email = persona_.Email,
-                    p_direccion = persona_.Direccion,
-                    p_activo = persona_.Activo,
-                    p_fechaAlta = persona_.FechaAlta,
-                    persona_.Dni,
-                    persona_.Nombre,
-                    persona_.Apellido,
-                    persona_.FechaNacimiento,
-                    persona_.Telefono,
-                    persona_.Email,
-                    persona_.Direccion,
-                    persona_.Activo,
-                    persona_.FechaAlta
-                };
-                return await conexion.ExecuteAsync(
-                    "sp_persona_insertar",
-                    parametros,
-                    commandType: CommandType.StoredProcedure
-                );
-            }
-            catch (Exception ex)
-            {
-                ArchivoLog.RegistrarError(ex);
-                return 0;
-            }
-        }
-
+        // 1. Buscar / Obtener
         public async Task<IEnumerable<Persona>> sp_persona_buscar(string busca_)
         {
             try
             {
                 using var conexion = await _conn.obtenerConexionAsync();
-                var parametros = new { p_busqueda = $"%{busca_}%", busca_ };
+                var parametros = new { p_busqueda = $"%{busca_}%" };
                 return await conexion.QueryAsync<Persona>(
                     "sp_persona_buscar",
                     parametros,
@@ -75,6 +38,62 @@ namespace IES_CREA.infrastructure.Repositorios
             }
         }
 
+        // 2. Obtener por ID (Adaptado para que devuelva 1 sola persona como pide tu interfaz)
+        public async Task<Persona> ObtenerPersonaPorId(int p_id)
+        {
+            try
+            {
+                using var conexion = await _conn.obtenerConexionAsync();
+                var parametros = new { p_id = p_id };
+                var resultado = await conexion.QueryFirstOrDefaultAsync<Persona>(
+                    "sp_persona_obtener", // Asumo que el SP acepta p_id para filtrar
+                    parametros,
+                    commandType: CommandType.StoredProcedure
+                );
+                return resultado;
+            }
+            catch (Exception ex)
+            {
+                ArchivoLog.RegistrarError(ex);
+                return null;
+            }
+        }
+
+        // 3. Insertar
+        public async Task<int> sp_persona_insertar(Persona persona_)
+        {
+            try
+            {
+                using var conexion = await _conn.obtenerConexionAsync();
+
+                var parametros = new
+                {
+                    p_dni = persona_.Dni,
+                    p_nombre = persona_.Nombre,
+                    p_apellido = persona_.Apellido,
+                    p_fechaNacimiento = persona_.FechaNacimiento,
+                    p_telefono = persona_.Telefono,
+                    p_email = persona_.Email,
+                    p_direccion = persona_.Direccion,
+                    p_activo = persona_.Activo,
+                    p_fechaAlta = persona_.FechaAlta
+                };
+
+                // ExecuteScalarAsync devuelve el primer valor de la primera fila (el ID generado por el SP)
+                return await conexion.ExecuteScalarAsync<int>(
+                    "sp_persona_insertar",
+                    parametros,
+                    commandType: CommandType.StoredProcedure
+                );
+            }
+            catch (Exception ex)
+            {
+                ArchivoLog.RegistrarError(ex); 
+                return 0;
+            }
+        }
+
+        // 4. Actualizar
         public async Task<Persona> sp_persona_actualizar(Persona persona_)
         {
             try
@@ -89,16 +108,9 @@ namespace IES_CREA.infrastructure.Repositorios
                     p_fechaNacimiento = persona_.FechaNacimiento,
                     p_telefono = persona_.Telefono,
                     p_email = persona_.Email,
-                    p_direccion = persona_.Direccion,
-                    persona_.IdPersona,
-                    persona_.Dni,
-                    persona_.Nombre,
-                    persona_.Apellido,
-                    persona_.FechaNacimiento,
-                    persona_.Telefono,
-                    persona_.Email,
-                    persona_.Direccion
+                    p_direccion = persona_.Direccion
                 };
+
                 await conexion.ExecuteAsync(
                     "sp_persona_actualizar",
                     parametros,
@@ -113,6 +125,7 @@ namespace IES_CREA.infrastructure.Repositorios
             }
         }
 
+        // 5. Obtener Todos
         public async Task<IEnumerable<Persona>> sp_persona_obtener()
         {
             try
@@ -120,7 +133,7 @@ namespace IES_CREA.infrastructure.Repositorios
                 using var conexion = await _conn.obtenerConexionAsync();
                 return await conexion.QueryAsync<Persona>(
                     "sp_persona_obtener",
-                    new { p_id = (int?)null },
+                    new { p_id = (int?)null }, // Enviamos null para que el SP devuelva todos
                     commandType: CommandType.StoredProcedure
                 );
             }
