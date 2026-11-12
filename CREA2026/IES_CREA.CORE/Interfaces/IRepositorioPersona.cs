@@ -2,10 +2,6 @@
 
 namespace IES_CREA.CORE.Interfaces
 {
-<<<<<<< HEAD
-
-=======
->>>>>>> main
     public interface IRepositorioPersona
     {
         // Consultas

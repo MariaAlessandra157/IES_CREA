@@ -1,6 +1,7 @@
 ﻿
 using FluentValidation;
 using IES_CREA.API.DTOs;
+using IES_CREA.API.DTOs.Persona;
 
 namespace IES_CREA.API.Validators
 {

@@ -39,5 +39,10 @@ namespace IES_CREA.CORE.Servicios
             if (idGenerado > 0) persona.IdPersona = idGenerado;
             return persona;
         }
+
+        public async Task GetByIdAsync(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

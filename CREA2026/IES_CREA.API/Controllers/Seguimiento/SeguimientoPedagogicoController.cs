@@ -38,7 +38,7 @@ namespace IES_CREA.API.Controllers.Academico
 
         // POST: api/SeguimientoPedagogico
         [HttpPost]
-        public async Task<IActionResult> Registrar([FromBody] Seguimiento seguimiento)
+        public async Task<IActionResult> Registrar([FromBody] ServicioSeguimiento seguimiento)
         {
             try
             {
@@ -57,7 +57,7 @@ namespace IES_CREA.API.Controllers.Academico
 
         // PUT: api/SeguimientoPedagogico/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> Actualizar(int id, [FromBody] Seguimiento seguimiento)
+        public async Task<IActionResult> Actualizar(int id, [FromBody] ServicioSeguimiento seguimiento)
         {
             try
             {

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace IES_CREA.CORE.Servicios
 {
-    internal class ServicioSeguimiento
+    public class ServicioSeguimiento
     {
     }
 }

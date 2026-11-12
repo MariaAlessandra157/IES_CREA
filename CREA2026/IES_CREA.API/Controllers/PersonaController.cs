@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using FluentValidation;
 using IES_CREA.API.DTOs;
+using IES_CREA.API.DTOs.Persona;
 using IES_CREA.CORE.Entidades;
 using IES_CREA.CORE.Interfaces;
 using IES_CREA.CORE.Servicios;
