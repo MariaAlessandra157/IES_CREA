@@ -21,7 +21,7 @@ namespace IES_CREA.infrastructure.Repositorios
         {
             try
             {
-                using var conexion = await _conn.obtenerConexionAsync();
+                using var conexion = await _conn.ObtenerConexionAsync();
                 var parametros = new
                 {
                     p_id_clase = asistencias.IdClase,
@@ -50,7 +50,7 @@ namespace IES_CREA.infrastructure.Repositorios
         {
             try
             {
-                using var conexion = await _conn.obtenerConexionAsync();
+                using var conexion = await _conn.ObtenerConexionAsync();
                 var parametros = new { p_id = busca_, busca_ };
                 return await conexion.QueryAsync<Asistencia>(
                     "sp_asistencia_actualizar",
@@ -69,7 +69,7 @@ namespace IES_CREA.infrastructure.Repositorios
         {
             try
             {
-                using var conexion = await _conn.obtenerConexionAsync();
+                using var conexion = await _conn.ObtenerConexionAsync();
                 var parametros = new { p_id_alumno = busca_, busca_ };
                 return await conexion.QueryAsync<Asistencia>(
                     "sp_asistencias_alumno",

@@ -1,7 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using IES_CREA.CORE.Servicios;
 using IES_CREA.CORE.Entidades;
+using IES_CREA.API.DTOs.Persona;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace IES_CREA.API.Controllers.Personas
@@ -11,20 +14,23 @@ namespace IES_CREA.API.Controllers.Personas
     public class ResponsableController : ControllerBase
     {
         private readonly ServicioResponsable _servicioResponsable;
+        private readonly IMapper _mapper;
 
-        public ResponsableController(ServicioResponsable servicioResponsable)
+        public ResponsableController(ServicioResponsable servicioResponsable, IMapper mapper)
         {
             _servicioResponsable = servicioResponsable;
+            _mapper = mapper;
         }
 
-        // GET: api/Responsable/5 (por ID) o api/Responsable/0 (todos)
+        // GET: api/Responsable/5
         [HttpGet("{idResponsable}")]
         public async Task<IActionResult> Obtener(int idResponsable)
         {
             try
             {
                 var responsables = await _servicioResponsable.ObtenerResponsablesAsync(idResponsable);
-                return Ok(responsables);
+                var responsablesDto = _mapper.Map<IEnumerable<ResponsableDto>>(responsables);
+                return Ok(responsablesDto);
             }
             catch (Exception ex)
             {
@@ -34,10 +40,11 @@ namespace IES_CREA.API.Controllers.Personas
 
         // POST: api/Responsable
         [HttpPost]
-        public async Task<IActionResult> Crear([FromBody] Responsable responsable)
+        public async Task<IActionResult> Crear([FromBody] ResponsableCrearDto dto)
         {
             try
             {
+                var responsable = _mapper.Map<Responsable>(dto);
                 var idGenerado = await _servicioResponsable.CrearResponsableAsync(responsable);
                 return Ok(new { mensaje = "Responsable creado exitosamente", id = idGenerado });
             }
@@ -51,13 +58,14 @@ namespace IES_CREA.API.Controllers.Personas
             }
         }
 
-        // PUT: api/Responsable/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Actualizar(int id, [FromBody] Responsable responsable)
+        // PUT: api/Responsable
+        [HttpPut]
+        public async Task<IActionResult> Actualizar([FromBody] ResponsableActualizarDto dto)
         {
             try
             {
-                var responsableActualizado = await _servicioResponsable.ActualizarResponsableAsync(id, responsable);
+                var responsable = _mapper.Map<Responsable>(dto);
+                var responsableActualizado = await _servicioResponsable.ActualizarResponsableAsync(responsable.IdResponsable, responsable);
                 return Ok(new { mensaje = "Responsable actualizado exitosamente", datos = responsableActualizado });
             }
             catch (ArgumentException ex)

@@ -18,6 +18,7 @@
   <ItemGroup>
     <ProjectReference Include="..\IES_CREA.CORE\IES_CREA.CORE.csproj" />
     <ProjectReference Include="..\IES_CREA.infrastructure\IES_CREA.infrastructure.csproj" />
+    <ProjectReference Include="..\IES_CREA.shared\IES_CREA.shared.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,7 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using IES_CREA.CORE.Servicios;
 using IES_CREA.CORE.Entidades;
+using IES_CREA.API.DTOs.Academico;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace IES_CREA.API.Controllers.Academico
@@ -11,10 +14,12 @@ namespace IES_CREA.API.Controllers.Academico
     public class InscripcionesController : ControllerBase
     {
         private readonly ServicioInscripcion _servicioInscripcion;
+        private readonly IMapper _mapper;
 
-        public InscripcionesController(ServicioInscripcion servicioInscripcion)
+        public InscripcionesController(ServicioInscripcion servicioInscripcion, IMapper mapper)
         {
             _servicioInscripcion = servicioInscripcion;
+            _mapper = mapper;
         }
 
         // GET: api/Inscripciones
@@ -24,7 +29,8 @@ namespace IES_CREA.API.Controllers.Academico
             try
             {
                 var inscripciones = await _servicioInscripcion.ObtenerTodasAsync();
-                return Ok(inscripciones);
+                var inscripcionesDto = _mapper.Map<IEnumerable<InscripcionDto>>(inscripciones);
+                return Ok(inscripcionesDto);
             }
             catch (Exception ex)
             {
@@ -39,7 +45,8 @@ namespace IES_CREA.API.Controllers.Academico
             try
             {
                 var inscripciones = await _servicioInscripcion.ObtenerPorAlumnoAsync(idAlumno);
-                return Ok(inscripciones);
+                var inscripcionesDto = _mapper.Map<IEnumerable<InscripcionDto>>(inscripciones);
+                return Ok(inscripcionesDto);
             }
             catch (ArgumentException ex)
             {
@@ -53,10 +60,13 @@ namespace IES_CREA.API.Controllers.Academico
 
         // POST: api/Inscripciones
         [HttpPost]
-        public async Task<IActionResult> Crear([FromBody] Inscripcion inscripcion)
+        public async Task<IActionResult> Crear([FromBody] InscripcionCrearDto dto)
         {
             try
             {
+                var inscripcion = _mapper.Map<Inscripcion>(dto);
+                inscripcion.Estado = true; // Por defecto activa
+
                 var idGenerado = await _servicioInscripcion.CrearInscripcionAsync(inscripcion);
                 return Ok(new { mensaje = "Inscripción creada exitosamente", id = idGenerado });
             }
@@ -70,15 +80,39 @@ namespace IES_CREA.API.Controllers.Academico
             }
         }
 
-        // PUT: api/Inscripciones/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Actualizar(int id, [FromBody] Inscripcion inscripcion)
+        // PUT: api/Inscripciones
+        [HttpPut]
+        public async Task<IActionResult> Actualizar([FromBody] InscripcionActualizarDto dto)
         {
             try
             {
-                inscripcion.IdInscripcion = id; // Ajusta según tu entidad
+                var inscripcion = _mapper.Map<Inscripcion>(dto);
                 var inscripcionActualizada = await _servicioInscripcion.ActualizarInscripcionAsync(inscripcion);
                 return Ok(new { mensaje = "Inscripción actualizada exitosamente", datos = inscripcionActualizada });
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error interno: {ex.Message}");
+            }
+        }
+        // DELETE: api/Inscripciones/5
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Desactivar(int id)
+        {
+            try
+            {
+                var resultado = await _servicioInscripcion.DesactivarInscripcionAsync(id);
+
+                if (resultado)
+                {
+                    return Ok(new { mensaje = "Inscripción desactivada exitosamente (borrado lógico)." });
+                }
+
+                return NotFound("Inscripción no encontrada.");
             }
             catch (ArgumentException ex)
             {

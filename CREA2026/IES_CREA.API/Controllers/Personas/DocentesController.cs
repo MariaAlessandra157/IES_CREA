@@ -1,8 +1,10 @@
-﻿using IES_CREA.API.DTOs.Persona;
-using IES_CREA.CORE.Entidades;
-using IES_CREA.CORE.Servicios;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using IES_CREA.CORE.Servicios;
+using IES_CREA.CORE.Entidades;
+using IES_CREA.API.DTOs.Persona;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace IES_CREA.API.Controllers.Personas
@@ -11,11 +13,13 @@ namespace IES_CREA.API.Controllers.Personas
     [ApiController]
     public class DocentesController : ControllerBase
     {
-        private readonly ServicioPersona _servicioPersona;
+        private readonly ServicioDocente _servicioDocente;
+        private readonly IMapper _mapper;
 
-        public DocentesController(ServicioPersona servicioPersona)
+        public DocentesController(ServicioDocente servicioDocente, IMapper mapper)
         {
-            _servicioPersona = servicioPersona;
+            _servicioDocente = servicioDocente;
+            _mapper = mapper;
         }
 
         // GET: api/Docentes
@@ -24,9 +28,9 @@ namespace IES_CREA.API.Controllers.Personas
         {
             try
             {
-                // A futuro: Aquí podrías llamar a un ServicioDocente o reutilizar el de persona
-                // var docentes = await _servicioPersona.ObtenerTodosAsync();
-                return Ok(new { mensaje = "Lista de docentes (Por implementar)" });
+                var docentes = await _servicioDocente.ObtenerTodosAsync();
+                var docentesDto = _mapper.Map<IEnumerable<DocenteDto>>(docentes);
+                return Ok(docentesDto);
             }
             catch (Exception ex)
             {
@@ -36,24 +40,39 @@ namespace IES_CREA.API.Controllers.Personas
 
         // POST: api/Docentes
         [HttpPost]
-        public async Task<IActionResult> Crear([FromBody] PersonaCrearDto dto) // Reutilizamos el DTO por ahora
+        public async Task<IActionResult> Crear([FromBody] DocenteCrearDto dto)
         {
-            // Aquí deberías validar con FluentValidation (igual que en Alumnos)
             try
             {
-                // 1. Mapear a entidad Docente (o Persona si Docente hereda de Persona)
-                var nuevoDocente = new Persona
-                {
-                    Nombre = dto.Nombre,
-                    Apellido = dto.Apellido,
-                    Dni = dto.Dni,
-                    // ... etc
-                };
+                var docente = _mapper.Map<Docente>(dto);
+                docente.Activo = true; // Por defecto activo
 
-                // 2. Llamar al servicio (a futuro deberías tener un CrearDocenteAsync)
-                // var resultado = await _servicioPersona.CrearDocenteAsync(nuevoDocente);
+                var idGenerado = await _servicioDocente.CrearDocenteAsync(docente);
+                return Ok(new { mensaje = "Docente creado exitosamente", id = idGenerado });
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error interno: {ex.Message}");
+            }
+        }
 
-                return Ok(new { mensaje = "Docente creado exitosamente", datos = nuevoDocente });
+        // PUT: api/Docentes
+        [HttpPut]
+        public async Task<IActionResult> Actualizar([FromBody] DocenteActualizarDto dto)
+        {
+            try
+            {
+                var docente = _mapper.Map<Docente>(dto);
+                var docenteActualizado = await _servicioDocente.ActualizarDocenteAsync(docente);
+                return Ok(new { mensaje = "Docente actualizado exitosamente", datos = docenteActualizado });
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
             }
             catch (Exception ex)
             {

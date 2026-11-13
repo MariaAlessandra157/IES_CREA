@@ -1,7 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using IES_CREA.CORE.Servicios;
 using IES_CREA.CORE.Entidades;
+using IES_CREA.API.DTOs.Academico;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace IES_CREA.API.Controllers.Academico
@@ -11,10 +14,12 @@ namespace IES_CREA.API.Controllers.Academico
     public class TrayectoriaController : ControllerBase
     {
         private readonly ServicioTrayectoria _servicioTrayectoria;
+        private readonly IMapper _mapper;
 
-        public TrayectoriaController(ServicioTrayectoria servicioTrayectoria)
+        public TrayectoriaController(ServicioTrayectoria servicioTrayectoria, IMapper mapper)
         {
             _servicioTrayectoria = servicioTrayectoria;
+            _mapper = mapper;
         }
 
         // GET: api/Trayectoria/alumno/5
@@ -24,7 +29,8 @@ namespace IES_CREA.API.Controllers.Academico
             try
             {
                 var trayectorias = await _servicioTrayectoria.ObtenerPorAlumnoAsync(idAlumno);
-                return Ok(trayectorias);
+                var trayectoriasDto = _mapper.Map<IEnumerable<TrayectoriaDto>>(trayectorias);
+                return Ok(trayectoriasDto);
             }
             catch (ArgumentException ex)
             {
@@ -38,10 +44,11 @@ namespace IES_CREA.API.Controllers.Academico
 
         // POST: api/Trayectoria
         [HttpPost]
-        public async Task<IActionResult> Registrar([FromBody] Trayectoria trayectoria)
+        public async Task<IActionResult> Registrar([FromBody] TrayectoriaCrearDto dto)
         {
             try
             {
+                var trayectoria = _mapper.Map<Trayectoria>(dto);
                 var idGenerado = await _servicioTrayectoria.RegistrarTrayectoriaAsync(trayectoria);
                 return Ok(new { mensaje = "Trayectoria registrada exitosamente", id = idGenerado });
             }
@@ -55,13 +62,13 @@ namespace IES_CREA.API.Controllers.Academico
             }
         }
 
-        // PUT: api/Trayectoria/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Actualizar(int id, [FromBody] Trayectoria trayectoria)
+        // PUT: api/Trayectoria
+        [HttpPut]
+        public async Task<IActionResult> Actualizar([FromBody] TrayectoriaActualizarDto dto)
         {
             try
             {
-                trayectoria.IdTrayectoria = id;
+                var trayectoria = _mapper.Map<Trayectoria>(dto);
                 var trayectoriaActualizada = await _servicioTrayectoria.ActualizarTrayectoriaAsync(trayectoria);
                 return Ok(new { mensaje = "Trayectoria actualizada exitosamente", datos = trayectoriaActualizada });
             }

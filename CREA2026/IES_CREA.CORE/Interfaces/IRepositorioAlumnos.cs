@@ -9,6 +9,6 @@ namespace IES_CREA.CORE.Interfaces
     {
         Task<int>sp_alumno_insertar(Alumno salumnos );
         Task<IEnumerable<Alumno>> sp_alumno_consultar();
-        Task<IEnumerable<Alumno>> sp_alumno_actualizar(string busca_);
+        Task<Alumno> sp_alumno_actualizar(Alumno alumno);
     }
 }

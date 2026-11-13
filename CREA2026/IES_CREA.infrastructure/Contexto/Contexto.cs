@@ -1,5 +1,6 @@
 using System;
 using System.Data;
+using System.Threading;
 using System.Threading.Tasks;
 using MySqlConnector;
 using IES_CREA.CORE.Interfaces.Conexion;
@@ -10,27 +11,40 @@ namespace IES_CREA.infrastructure.Contexto
     {
         private readonly string _cadenaDeConexion;
 
-        /* el constructor recibe la cadena de conexion desde appsetting.json*/
-        public MyConexion(string _cadena)
+        public MyConexion(string cadenaDeConexion)
         {
-            _cadenaDeConexion = _cadena;
+            _cadenaDeConexion = cadenaDeConexion
+                ?? throw new ArgumentNullException(nameof(cadenaDeConexion));
         }
 
-        /* el siguiente método (sincronico) es para obtener una conexion abierta*/
-        public IDbConnection obtenerConexion()
+        public IDbConnection ObtenerConexion()
         {
             var conn = new MySqlConnection(_cadenaDeConexion);
-            conn.Open();
-            return conn;
+            try
+            {
+                conn.Open();
+                return conn;
+            }
+            catch
+            {
+                conn.Dispose();
+                throw;
+            }
         }
 
-        /* el siguiente método (asincronico) es para obtener una conexion abierta*/
-        public async Task<IDbConnection> obtenerConexionAsync()
+        public async Task<IDbConnection> ObtenerConexionAsync(CancellationToken ct = default)
         {
             var conn = new MySqlConnection(_cadenaDeConexion);
-            await conn.OpenAsync();
-            return conn;
+            try
+            {
+                await conn.OpenAsync(ct);
+                return conn;
+            }
+            catch
+            {
+                await conn.DisposeAsync();
+                throw;
+            }
         }
     }
 }
-

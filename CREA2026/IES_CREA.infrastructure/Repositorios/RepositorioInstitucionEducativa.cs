@@ -21,7 +21,7 @@ namespace IES_CREA.infrastructure.Repositorios
         {
             try
             {
-                using var conexion = await _conn.obtenerConexionAsync();
+                using var conexion = await _conn.ObtenerConexionAsync();
                 var parametros = new
                 {
                     p_nombre = institucion.Nombre,
@@ -52,7 +52,7 @@ namespace IES_CREA.infrastructure.Repositorios
         {
             try
             {
-                using var conexion = await _conn.obtenerConexionAsync();
+                using var conexion = await _conn.ObtenerConexionAsync();
                 var parametros = new { p_id = idInstitucion > 0 ? (int?)idInstitucion : null, idInstitucion };
                 return await conexion.QueryAsync<Institucion>(
                     "sp_institucion_consultar",
@@ -71,7 +71,7 @@ namespace IES_CREA.infrastructure.Repositorios
         {
             try
             {
-                using var conexion = await _conn.obtenerConexionAsync();
+                using var conexion = await _conn.ObtenerConexionAsync();
                 var parametros = new
                 {
                     p_id = institucion.IdInstitucion,

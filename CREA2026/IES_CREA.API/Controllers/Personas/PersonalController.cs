@@ -1,7 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using IES_CREA.CORE.Servicios;
 using IES_CREA.CORE.Entidades;
+using IES_CREA.API.DTOs.Persona;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace IES_CREA.API.Controllers.Personas
@@ -11,20 +14,23 @@ namespace IES_CREA.API.Controllers.Personas
     public class PersonalController : ControllerBase
     {
         private readonly ServicioPersonal _servicioPersonal;
+        private readonly IMapper _mapper;
 
-        public PersonalController(ServicioPersonal servicioPersonal)
+        public PersonalController(ServicioPersonal servicioPersonal, IMapper mapper)
         {
             _servicioPersonal = servicioPersonal;
+            _mapper = mapper;
         }
 
-        // GET: api/Personal/5 (por ID) o api/Personal/0 (todos)
+        // GET: api/Personal/5
         [HttpGet("{idPersonal}")]
         public async Task<IActionResult> Obtener(int idPersonal)
         {
             try
             {
                 var personal = await _servicioPersonal.ObtenerPersonalAsync(idPersonal);
-                return Ok(personal);
+                var personalDto = _mapper.Map<IEnumerable<PersonalDto>>(personal);
+                return Ok(personalDto);
             }
             catch (Exception ex)
             {
@@ -34,10 +40,13 @@ namespace IES_CREA.API.Controllers.Personas
 
         // POST: api/Personal
         [HttpPost]
-        public async Task<IActionResult> Crear([FromBody] Personal personal)
+        public async Task<IActionResult> Crear([FromBody] PersonalCrearDto dto)
         {
             try
             {
+                var personal = _mapper.Map<Personal>(dto);
+                personal.Activo = true;
+
                 var idGenerado = await _servicioPersonal.CrearPersonalAsync(personal);
                 return Ok(new { mensaje = "Personal creado exitosamente", id = idGenerado });
             }
@@ -51,13 +60,14 @@ namespace IES_CREA.API.Controllers.Personas
             }
         }
 
-        // PUT: api/Personal/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Actualizar(int id, [FromBody] Personal personal)
+        // PUT: api/Personal
+        [HttpPut]
+        public async Task<IActionResult> Actualizar([FromBody] PersonalActualizarDto dto)
         {
             try
             {
-                var personalActualizado = await _servicioPersonal.ActualizarPersonalAsync(id, personal);
+                var personal = _mapper.Map<Personal>(dto);
+                var personalActualizado = await _servicioPersonal.ActualizarPersonalAsync(personal.IdPersonal, personal);
                 return Ok(new { mensaje = "Personal actualizado exitosamente", datos = personalActualizado });
             }
             catch (ArgumentException ex)

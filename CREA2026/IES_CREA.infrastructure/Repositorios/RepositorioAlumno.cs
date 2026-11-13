@@ -21,25 +21,23 @@ namespace IES_CREA.infrastructure.Repositorios
         {
             try
             {
-                using var conexion = await _conn.obtenerConexionAsync();
+                using var conexion = await _conn.ObtenerConexionAsync();
+
+                string sql = @"
+            INSERT INTO alumnos (id_persona, fecha_ingreso, fecha_egreso, activo, observacion) 
+            VALUES (@IdPersona, @FechaIngreso, @FechaEgreso, @Activo, @Observaciones);
+            SELECT LAST_INSERT_ID();";
+
                 var parametros = new
                 {
-                    p_id_persona = salumnos.IdPersona,
-                    p_fecha_ingreso = salumnos.FechaIngreso,
-                    p_fecha_egreso = salumnos.FechaEgreso,
-                    p_activo = salumnos.Activo,
-                    p_observacion = salumnos.Observaciones,
-                    salumnos.IdPersona,
-                    salumnos.FechaIngreso,
-                    salumnos.FechaEgreso,
-                    salumnos.Activo,
-                    salumnos.Observaciones
+                    IdPersona = salumnos.IdPersona,
+                    FechaIngreso = salumnos.FechaIngreso,
+                    FechaEgreso = salumnos.FechaEgreso,
+                    Activo = salumnos.Activo,
+                    Observaciones = salumnos.Observaciones
                 };
-                return await conexion.ExecuteAsync(
-                    "sp_alumno_insertar",
-                    parametros,
-                    commandType: CommandType.StoredProcedure
-                );
+
+                return await conexion.ExecuteScalarAsync<int>(sql, parametros);
             }
             catch (Exception ex)
             {
@@ -52,7 +50,7 @@ namespace IES_CREA.infrastructure.Repositorios
         {
             try
             {
-                using var conexion = await _conn.obtenerConexionAsync();
+                using var conexion = await _conn.ObtenerConexionAsync();
                 return await conexion.QueryAsync<Alumno>(
                     "sp_alumno_consultar",
                     new { p_id_alumno = (int?)null },
@@ -66,22 +64,39 @@ namespace IES_CREA.infrastructure.Repositorios
             }
         }
 
-        public async Task<IEnumerable<Alumno>> sp_alumno_actualizar(string busca_)
+        public async Task<Alumno> sp_alumno_actualizar(Alumno alumno)
         {
             try
             {
-                using var conexion = await _conn.obtenerConexionAsync();
-                var parametros = new { p_id = busca_, busca_ };
-                return await conexion.QueryAsync<Alumno>(
-                    "sp_alumno_actualizar",
-                    parametros,
-                    commandType: CommandType.StoredProcedure
-                );
+                using var conexion = await _conn.ObtenerConexionAsync();
+
+                // Usamos SQL directo para evitar problemas con el SP
+                string sql = @"
+            UPDATE alumnos 
+            SET id_persona = @IdPersona,
+                fecha_ingreso = @FechaIngreso,
+                fecha_egreso = @FechaEgreso,
+                activo = @Activo,
+                observacion = @Observaciones
+            WHERE IdAlumno = @IdAlumno";
+
+                var parametros = new
+                {
+                    IdAlumno = alumno.IdAlumno,
+                    IdPersona = alumno.IdPersona,
+                    FechaIngreso = alumno.FechaIngreso,
+                    FechaEgreso = alumno.FechaEgreso,
+                    Activo = alumno.Activo,
+                    Observaciones = alumno.Observaciones
+                };
+
+                await conexion.ExecuteAsync(sql, parametros);
+                return alumno;
             }
             catch (Exception ex)
             {
                 ArchivoLog.RegistrarError(ex);
-                return Enumerable.Empty<Alumno>();
+                return alumno;
             }
         }
     }

@@ -1,7 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using IES_CREA.CORE.Servicios;
 using IES_CREA.CORE.Entidades;
+using IES_CREA.API.DTOs.Sistema;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace IES_CREA.API.Controllers.Sistema
@@ -11,10 +14,12 @@ namespace IES_CREA.API.Controllers.Sistema
     public class RolesController : ControllerBase
     {
         private readonly ServicioRol _servicioRol;
+        private readonly IMapper _mapper;
 
-        public RolesController(ServicioRol servicioRol)
+        public RolesController(ServicioRol servicioRol, IMapper mapper)
         {
             _servicioRol = servicioRol;
+            _mapper = mapper;
         }
 
         // GET: api/Roles?busca=Admin
@@ -24,7 +29,8 @@ namespace IES_CREA.API.Controllers.Sistema
             try
             {
                 var roles = await _servicioRol.ObtenerRolesAsync(busca);
-                return Ok(roles);
+                var rolesDto = _mapper.Map<IEnumerable<RolDto>>(roles);
+                return Ok(rolesDto);
             }
             catch (Exception ex)
             {
@@ -34,10 +40,11 @@ namespace IES_CREA.API.Controllers.Sistema
 
         // POST: api/Roles
         [HttpPost]
-        public async Task<IActionResult> Crear([FromBody] Rol rol)
+        public async Task<IActionResult> Crear([FromBody] RolCrearDto dto)
         {
             try
             {
+                var rol = _mapper.Map<Rol>(dto);
                 var idGenerado = await _servicioRol.CrearRolAsync(rol);
                 return Ok(new { mensaje = "Rol creado exitosamente", id = idGenerado });
             }

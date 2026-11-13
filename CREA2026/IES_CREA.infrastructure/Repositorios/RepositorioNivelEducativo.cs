@@ -21,7 +21,7 @@ namespace IES_CREA.infrastructure.Repositorios
         {
             try
             {
-                using var conexion = await _conn.obtenerConexionAsync();
+                using var conexion = await _conn.ObtenerConexionAsync();
                 var parametros = new
                 {
                     p_nombre = nivelEducativo.Nombre,
@@ -46,7 +46,7 @@ namespace IES_CREA.infrastructure.Repositorios
         {
             try
             {
-                using var conexion = await _conn.obtenerConexionAsync();
+                using var conexion = await _conn.ObtenerConexionAsync();
                 var parametros = new { p_id = idNivelEducativo > 0 ? (int?)idNivelEducativo : null, idNivelEducativo };
                 return await conexion.QueryAsync<NivelEducativo>(
                     "sp_nivel_educativo_consultar",
@@ -65,7 +65,7 @@ namespace IES_CREA.infrastructure.Repositorios
         {
             try
             {
-                using var conexion = await _conn.obtenerConexionAsync();
+                using var conexion = await _conn.ObtenerConexionAsync();
                 var parametros = new
                 {
                     p_id = nivelEducativo.IdNivelEducativo,

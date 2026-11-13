@@ -21,7 +21,7 @@ namespace IES_CREA.infrastructure.Repositorios
         {
             try
             {
-                using var conexion = await _conn.obtenerConexionAsync();
+                using var conexion = await _conn.ObtenerConexionAsync();
                 return await conexion.QueryAsync<Cargo>(
                     "sp_cargo_listado",
                     new { p_id = (int?)null },
@@ -39,7 +39,7 @@ namespace IES_CREA.infrastructure.Repositorios
         {
             try
             {
-                using var conexion = await _conn.obtenerConexionAsync();
+                using var conexion = await _conn.ObtenerConexionAsync();
                 var parametros = new
                 {
                     p_nombre = cargos.Nombre,
@@ -64,7 +64,7 @@ namespace IES_CREA.infrastructure.Repositorios
         {
             try
             {
-                using var conexion = await _conn.obtenerConexionAsync();
+                using var conexion = await _conn.ObtenerConexionAsync();
                 var parametros = new
                 {
                     p_id = cargos.IdCargo,

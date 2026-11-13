@@ -21,14 +21,21 @@ namespace IES_CREA.infrastructure.Repositorios
         {
             try
             {
-                using var conexion = await _conn.obtenerConexionAsync();
+                using var conexion = await _conn.ObtenerConexionAsync();
+
+                // Si busca_ es un número, buscamos por ID; si no, traemos todos
                 int.TryParse(busca_, out int idVal);
-                var parametros = new { p_id = idVal > 0 ? (int?)idVal : null, busca_ };
-                return await conexion.QueryAsync<Rol>(
-                    "sp_rol_consultar",
-                    parametros,
-                    commandType: CommandType.StoredProcedure
-                );
+
+                if (idVal > 0)
+                {
+                    string sql = "SELECT * FROM roles WHERE IdRol = @IdRol";
+                    return await conexion.QueryAsync<Rol>(sql, new { IdRol = idVal });
+                }
+                else
+                {
+                    string sql = "SELECT * FROM roles";
+                    return await conexion.QueryAsync<Rol>(sql);
+                }
             }
             catch (Exception ex)
             {
@@ -41,7 +48,7 @@ namespace IES_CREA.infrastructure.Repositorios
         {
             try
             {
-                using var conexion = await _conn.obtenerConexionAsync();
+                using var conexion = await _conn.ObtenerConexionAsync();
                 int.TryParse(busca_, out int idVal);
                 var parametros = new { p_id = idVal > 0 ? (int?)idVal : null, busca_ };
                 return await conexion.QueryAsync<Rol>(
@@ -61,19 +68,20 @@ namespace IES_CREA.infrastructure.Repositorios
         {
             try
             {
-                using var conexion = await _conn.obtenerConexionAsync();
+                using var conexion = await _conn.ObtenerConexionAsync();
+
+                string sql = @"
+            INSERT INTO roles (nombre, descripcion) 
+            VALUES (@Nombre, @Descripcion);
+            SELECT LAST_INSERT_ID();";
+
                 var parametros = new
                 {
-                    p_nombre = rol.Nombre,
-                    p_descripcion = rol.Descripcion,
-                    rol.Nombre,
-                    rol.Descripcion
+                    Nombre = rol.Nombre,
+                    Descripcion = rol.Descripcion
                 };
-                return await conexion.ExecuteAsync(
-                    "sp_rol_insertar",
-                    parametros,
-                    commandType: CommandType.StoredProcedure
-                );
+
+                return await conexion.ExecuteScalarAsync<int>(sql, parametros);
             }
             catch (Exception ex)
             {

@@ -21,7 +21,7 @@ namespace IES_CREA.infrastructure.Repositorios
         {
             try
             {
-                using var conexion = await _conn.obtenerConexionAsync();
+                using var conexion = await _conn.ObtenerConexionAsync();
                 var parametros = new { p_id_alumno = id_alumno, id_alumno };
                 return await conexion.QueryAsync<AlumnoResponsable>(
                     "sp_alumno_asignar_responsable",
@@ -40,7 +40,7 @@ namespace IES_CREA.infrastructure.Repositorios
         {
             try
             {
-                using var conexion = await _conn.obtenerConexionAsync();
+                using var conexion = await _conn.ObtenerConexionAsync();
                 var parametros = new { p_id = id_alumno, p_id_alumno = id_alumno, id_alumno };
                 return await conexion.QueryAsync<AlumnoResponsable>(
                     "sp_alumno_desasignar_responsable",
@@ -59,7 +59,7 @@ namespace IES_CREA.infrastructure.Repositorios
         {
             try
             {
-                using var conexion = await _conn.obtenerConexionAsync();
+                using var conexion = await _conn.ObtenerConexionAsync();
                 var parametros = new { p_id_alumno = id_responsable, p_id_responsable = id_responsable, id_responsable };
                 return await conexion.QueryAsync<AlumnoResponsable>(
                     "sp_alumno_responsables",

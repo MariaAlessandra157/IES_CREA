@@ -16,12 +16,11 @@ namespace IES_CREA.CORE.Servicios
         }
 
         // 1. Obtener las cuotas de una inscripción
-        public async Task<int> ObtenerPorInscripcionAsync(int idInscripcion)
+        public async Task<IEnumerable<Cuota>> ObtenerPorInscripcionAsync(int idInscripcion)
         {
-            if (idInscripcion <= 0) throw new ArgumentException("El ID de inscripción es inválido.");
+            if (idInscripcion <= 0)
+                throw new ArgumentException("El ID de inscripción es inválido.");
 
-            // NOTA: Tu interfaz dice que devuelve Task<int>, pero lo lógico sería Task<IEnumerable<Cuota>>
-            // Si te da error, tendrás que cambiar la interfaz. Por ahora lo dejamos así.
             return await _repositorio.sp_cuotas_inscripcion(idInscripcion);
         }
 
@@ -58,6 +57,29 @@ namespace IES_CREA.CORE.Servicios
             }
 
             return await _repositorio.sp_cuotas_actualizar(cuota);
+        }
+        // 4. Desactivar (Borrado lógico)
+        public async Task<bool> DesactivarCuotaAsync(int idCuota)
+        {
+            if (idCuota <= 0)
+                throw new ArgumentException("El ID de la cuota es inválido.");
+
+            // Regla 1: La cuota debe existir
+            var cuota = await _repositorio.sp_cuota_obtener_por_id(idCuota);
+
+            if (cuota == null)
+                throw new ArgumentException("La cuota no existe en el sistema.");
+
+            // Regla 2: No se puede desactivar una cuota que ya está inactiva
+            if (!cuota.Estado)
+                throw new ArgumentException("La cuota ya se encuentra desactivada.");
+
+            // Regla 3: No se puede desactivar una cuota que ya fue pagada
+            // (Opcional, si tu sistema considera que "estado = true" significa "pagada")
+            // if (cuota.Estado) // Si estado true = pagada
+            //     throw new ArgumentException("No se puede desactivar una cuota ya pagada.");
+
+            return await _repositorio.sp_cuota_desactivar(idCuota);
         }
     }
 }

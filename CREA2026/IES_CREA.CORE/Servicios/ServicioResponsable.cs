@@ -45,8 +45,12 @@ namespace IES_CREA.CORE.Servicios
                 throw new ArgumentException("El ID del responsable es inválido.");
             }
 
+            // Asignamos el ID al objeto
             responsable.IdResponsable = idResponsable;
-            return await _repositorio.sp_responsable_actualizar(idResponsable);
+
+            // Le pasamos el OBJETO, no el ID
+            return await _repositorio.sp_responsable_actualizar(responsable);
         }
     }
+
 }

@@ -58,5 +58,29 @@ namespace IES_CREA.CORE.Servicios
 
             return await _repositorio.sp_clase_actualizar(clase);
         }
+        // 4. Desactivar (Borrado lógico)
+        public async Task<bool> DesactivarClaseAsync(int idClase)
+        {
+            if (idClase <= 0)
+                throw new ArgumentException("El ID de la clase es inválido.");
+
+            // Regla 1: La clase debe existir
+            var clases = await _repositorio.sp_clase_consultar(idClase);
+            var clase = clases.FirstOrDefault(c => c.IdClase == idClase);
+
+            if (clase == null)
+                throw new ArgumentException("La clase no existe en el sistema.");
+
+            // Regla 2: No se puede desactivar una clase que ya está inactiva
+            if (!clase.Estado)
+                throw new ArgumentException("La clase ya se encuentra desactivada.");
+
+            // Regla 3 (Opcional): No desactivar si la clase es en el futuro (por si se cancela)
+            // var hoy = DateOnly.FromDateTime(DateTime.Today);
+            // if (clase.Fecha > hoy) 
+            //     throw new ArgumentException("No se puede desactivar una clase futura. Cancelela en su lugar.");
+
+            return await _repositorio.sp_clase_desactivar(idClase);
+        }
     }
 }

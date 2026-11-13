@@ -21,30 +21,26 @@ namespace IES_CREA.infrastructure.Repositorios
         {
             try
             {
-                using var conexion = await _conn.obtenerConexionAsync();
+                using var conexion = await _conn.ObtenerConexionAsync();
+
+                string sql = @"
+            INSERT INTO trayectoria_educativa (id_alumno, id_institucion, id_curso, division, ciclo_lectivo, fecha_desde, fecha_hasta, observaciones) 
+            VALUES (@IdAlumno, @IdInstitucion, @IdCurso, @Division, @Ciclolectivo, @FechaDesde, @FechaHasta, @Observaciones);
+            SELECT LAST_INSERT_ID();";
+
                 var parametros = new
                 {
-                    p_id_alumno = trayectoria.IdAlumno,
-                    p_id_institucion = trayectoria.IdInstitucion,
-                    p_id_curso = trayectoria.IdCurso,
-                    p_division = trayectoria.Division,
-                    p_ciclo_lectivo = trayectoria.Cicloectivo,
-                    p_fecha_desde = trayectoria.FechaDesde,
-                    p_fecha_hasta = trayectoria.FechaHasta,
-                    p_observaciones = trayectoria.Observaciones,
-                    trayectoria.IdAlumno,
-                    trayectoria.IdInstitucion,
-                    trayectoria.IdCurso,
-                    trayectoria.Division,
-                    trayectoria.FechaDesde,
-                    trayectoria.FechaHasta,
-                    trayectoria.Observaciones
+                    IdAlumno = trayectoria.IdAlumno,
+                    IdInstitucion = trayectoria.IdInstitucion,
+                    IdCurso = trayectoria.IdCurso,
+                    Division = trayectoria.Division,
+                    Ciclolectivo = trayectoria.Ciclolectivo,
+                    FechaDesde = trayectoria.FechaDesde,
+                    FechaHasta = trayectoria.FechaHasta,
+                    Observaciones = trayectoria.Observaciones
                 };
-                return await conexion.ExecuteAsync(
-                    "sp_trayectoria_registrar",
-                    parametros,
-                    commandType: CommandType.StoredProcedure
-                );
+
+                return await conexion.ExecuteScalarAsync<int>(sql, parametros);
             }
             catch (Exception ex)
             {
@@ -57,8 +53,8 @@ namespace IES_CREA.infrastructure.Repositorios
         {
             try
             {
-                using var conexion = await _conn.obtenerConexionAsync();
-                var parametros = new { p_id_alumno = idAlumno, idAlumno };
+                using var conexion = await _conn.ObtenerConexionAsync();
+                var parametros = new { p_id_alumno = idAlumno };
                 return await conexion.QueryAsync<Trayectoria>(
                     "sp_trayectoria_alumno",
                     parametros,
@@ -76,13 +72,13 @@ namespace IES_CREA.infrastructure.Repositorios
         {
             try
             {
-                using var conexion = await _conn.obtenerConexionAsync();
+                using var conexion = await _conn.ObtenerConexionAsync();
                 var parametros = new
                 {
                     p_id = trayectoria.IdTrayectoria,
                     p_id_curso = trayectoria.IdCurso,
                     p_division = trayectoria.Division,
-                    p_ciclo_lectivo = trayectoria.Cicloectivo,
+                    p_ciclo_lectivo = trayectoria.Ciclolectivo,
                     p_fecha_desde = trayectoria.FechaDesde,
                     p_fecha_hasta = trayectoria.FechaHasta,
                     p_observaciones = trayectoria.Observaciones,

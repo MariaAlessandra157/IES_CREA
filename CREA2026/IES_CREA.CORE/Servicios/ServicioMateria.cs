@@ -45,5 +45,24 @@ namespace IES_CREA.CORE.Servicios
 
             return await _repositorio.sp_materia_actualizar(materia);
         }
+        // 4. Desactivar (Borrado lógico)
+        public async Task<bool> DesactivarMateriaAsync(int idMateria)
+        {
+            if (idMateria <= 0)
+                throw new ArgumentException("El ID de la materia es inválido.");
+
+            // Regla 1: La materia debe existir
+            var materias = await _repositorio.sp_materia_consultar();
+            var materia = materias.FirstOrDefault(m => m.IdMateria == idMateria);
+
+            if (materia == null)
+                throw new ArgumentException("La materia no existe en el sistema.");
+
+            // Regla 2: No se puede desactivar una materia que ya está inactiva
+            if (!materia.Activo)
+                throw new ArgumentException("La materia ya se encuentra desactivada.");
+
+            return await _repositorio.sp_materia_desactivar(idMateria);
+        }
     }
 }

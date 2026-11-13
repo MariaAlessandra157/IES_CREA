@@ -61,5 +61,24 @@ namespace IES_CREA.CORE.Servicios
 
             return await _repositorio.sp_inscripcion_actualizar(inscripcion);
         }
+        // 5. Desactivar (Borrado lógico)
+        public async Task<bool> DesactivarInscripcionAsync(int idInscripcion)
+        {
+            if (idInscripcion <= 0)
+                throw new ArgumentException("El ID de la inscripción es inválido.");
+
+            // Regla 1: La inscripción debe existir
+            var inscripciones = await _repositorio.sp_inscripcion_consultar();
+            var inscripcion = inscripciones.FirstOrDefault(i => i.IdInscripcion == idInscripcion);
+
+            if (inscripcion == null)
+                throw new ArgumentException("La inscripción no existe en el sistema.");
+
+            // Regla 2: No se puede desactivar una inscripción que ya está inactiva
+            if (!inscripcion.Estado)
+                throw new ArgumentException("La inscripción ya se encuentra desactivada.");
+
+            return await _repositorio.sp_inscripcion_desactivar(idInscripcion);
+        }
     }
 }

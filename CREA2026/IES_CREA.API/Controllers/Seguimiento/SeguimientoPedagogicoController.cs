@@ -1,7 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using IES_CREA.CORE.Servicios;
-using IES_CREA.CORE.Entidades; // <-- ESTE ES EL QUE FALTABA
+using IES_CREA.CORE.Entidades;
+using IES_CREA.API.DTOs.Academico;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace IES_CREA.API.Controllers.Academico
@@ -11,10 +14,12 @@ namespace IES_CREA.API.Controllers.Academico
     public class SeguimientoPedagogicoController : ControllerBase
     {
         private readonly ServicioSeguimiento _servicioSeguimiento;
+        private readonly IMapper _mapper;
 
-        public SeguimientoPedagogicoController(ServicioSeguimiento servicioSeguimiento)
+        public SeguimientoPedagogicoController(ServicioSeguimiento servicioSeguimiento, IMapper mapper)
         {
             _servicioSeguimiento = servicioSeguimiento;
+            _mapper = mapper;
         }
 
         // GET: api/SeguimientoPedagogico/alumno/5
@@ -24,7 +29,8 @@ namespace IES_CREA.API.Controllers.Academico
             try
             {
                 var seguimientos = await _servicioSeguimiento.ObtenerPorAlumnoAsync(idAlumno);
-                return Ok(seguimientos);
+                var seguimientosDto = _mapper.Map<IEnumerable<SeguimientoDto>>(seguimientos);
+                return Ok(seguimientosDto);
             }
             catch (ArgumentException ex)
             {
@@ -38,10 +44,11 @@ namespace IES_CREA.API.Controllers.Academico
 
         // POST: api/SeguimientoPedagogico
         [HttpPost]
-        public async Task<IActionResult> Registrar([FromBody] Seguimiento seguimiento)
+        public async Task<IActionResult> Registrar([FromBody] SeguimientoCrearDto dto)
         {
             try
             {
+                var seguimiento = _mapper.Map<Seguimiento>(dto);
                 var idGenerado = await _servicioSeguimiento.RegistrarSeguimientoAsync(seguimiento);
                 return Ok(new { mensaje = "Seguimiento registrado exitosamente", id = idGenerado });
             }
@@ -55,13 +62,13 @@ namespace IES_CREA.API.Controllers.Academico
             }
         }
 
-        // PUT: api/SeguimientoPedagogico/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Actualizar(int id, [FromBody] Seguimiento seguimiento)
+        // PUT: api/SeguimientoPedagogico
+        [HttpPut]
+        public async Task<IActionResult> Actualizar([FromBody] SeguimientoActualizarDto dto)
         {
             try
             {
-                seguimiento.IdSeguimiento = id;
+                var seguimiento = _mapper.Map<Seguimiento>(dto);
                 var seguimientoActualizado = await _servicioSeguimiento.ActualizarSeguimientoAsync(seguimiento);
                 return Ok(new { mensaje = "Seguimiento actualizado exitosamente", datos = seguimientoActualizado });
             }

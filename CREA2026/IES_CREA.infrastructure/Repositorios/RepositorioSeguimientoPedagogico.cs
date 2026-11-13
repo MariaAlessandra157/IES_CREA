@@ -21,33 +21,27 @@ namespace IES_CREA.infrastructure.Repositorios
         {
             try
             {
-                using var conexion = await _conn.obtenerConexionAsync();
+                using var conexion = await _conn.ObtenerConexionAsync();
+
+                string sql = @"
+            INSERT INTO seguimiento_pedagogico (id_materia, id_alumno, id_docente, fecha, tema_trabajado, avance, dificultades, recomendacion, observacion) 
+            VALUES (@IdMateria, @IdAlumno, @IdDocente, @Fecha, @TemaTrabajado, @Avance, @Dificultades, @Recomendaciones, @Observaciones);
+            SELECT LAST_INSERT_ID();";
+
                 var parametros = new
                 {
-                    p_id_materia = seguimiento.IdMateria,
-                    p_id_alumno = seguimiento.IdAlumno,
-                    p_id_docente = seguimiento.IdDocente,
-                    p_fecha = seguimiento.Fecha,
-                    p_tema_trabajado = seguimiento.TemaTrabajado,
-                    p_avance = seguimiento.Avance,
-                    p_dificultades = seguimiento.Dificultades,
-                    p_recomendacion = seguimiento.Recomendaciones,
-                    p_observacion = seguimiento.Observaciones,
-                    seguimiento.IdMateria,
-                    seguimiento.IdAlumno,
-                    seguimiento.IdDocente,
-                    seguimiento.Fecha,
-                    seguimiento.TemaTrabajado,
-                    seguimiento.Avance,
-                    seguimiento.Dificultades,
-                    seguimiento.Recomendaciones,
-                    seguimiento.Observaciones
+                    IdMateria = seguimiento.IdMateria,
+                    IdAlumno = seguimiento.IdAlumno,
+                    IdDocente = seguimiento.IdDocente,
+                    Fecha = seguimiento.Fecha,
+                    TemaTrabajado = seguimiento.TemaTrabajado,
+                    Avance = seguimiento.Avance,
+                    Dificultades = seguimiento.Dificultades,
+                    Recomendaciones = seguimiento.Recomendaciones,
+                    Observaciones = seguimiento.Observaciones
                 };
-                return await conexion.ExecuteAsync(
-                    "sp_seguimientop_registrar",
-                    parametros,
-                    commandType: CommandType.StoredProcedure
-                );
+
+                return await conexion.ExecuteScalarAsync<int>(sql, parametros);
             }
             catch (Exception ex)
             {
@@ -60,8 +54,8 @@ namespace IES_CREA.infrastructure.Repositorios
         {
             try
             {
-                using var conexion = await _conn.obtenerConexionAsync();
-                var parametros = new { p_id_alumno = idAlumno, idAlumno };
+                using var conexion = await _conn.ObtenerConexionAsync();
+                var parametros = new { p_id_alumno = idAlumno };
                 return await conexion.QueryAsync<Seguimiento>(
                     "sp_seguimientop_alumno",
                     parametros,
@@ -79,7 +73,7 @@ namespace IES_CREA.infrastructure.Repositorios
         {
             try
             {
-                using var conexion = await _conn.obtenerConexionAsync();
+                using var conexion = await _conn.ObtenerConexionAsync();
                 var parametros = new
                 {
                     p_id = seguimiento.IdSeguimiento,

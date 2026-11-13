@@ -21,7 +21,7 @@ namespace IES_CREA.infrastructure.Repositorios
         {
             try
             {
-                using var conexion = await _conn.obtenerConexionAsync();
+                using var conexion = await _conn.ObtenerConexionAsync();
                 var parametros = new
                 {
                     p_id_docente = disponibilidad.IdDocente,
@@ -54,7 +54,7 @@ namespace IES_CREA.infrastructure.Repositorios
         {
             try
             {
-                using var conexion = await _conn.obtenerConexionAsync();
+                using var conexion = await _conn.ObtenerConexionAsync();
                 var parametros = new { p_id_docente = idDocente, idDocente };
                 return await conexion.QueryAsync<DisponibilidadDocente>(
                     "sp_disponibilidad_docente",
@@ -73,7 +73,7 @@ namespace IES_CREA.infrastructure.Repositorios
         {
             try
             {
-                using var conexion = await _conn.obtenerConexionAsync();
+                using var conexion = await _conn.ObtenerConexionAsync();
                 return await conexion.QueryAsync<DisponibilidadDocente>(
                     "sp_disponibilidad_actualizar",
                     commandType: CommandType.StoredProcedure

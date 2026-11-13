@@ -11,7 +11,7 @@ using IES_CREA.CORE.Servicios;
 
 namespace IES_CREA.infrastructure.ExtensionesServicios
 {
-    public static class ExtencionServicio
+    public static class ExtencionServicios
     {
         public static IServiceCollection AddInfrastructure(
             this IServiceCollection services,
@@ -22,7 +22,7 @@ namespace IES_CREA.infrastructure.ExtensionesServicios
                     "La cadena de conexion 'DefaultConnection' no esta configurada."
                  );
 
-            services.AddSingleton<IMyConexion>(new MyConexion(connectionString));
+            services.AddScoped<IMyConexion>(_ => new MyConexion(connectionString));
 
             services.AddScoped<IRepositorioAlumnoResponsable, RepositorioAlumnoResponsable>();
             services.AddScoped<IRepositorioAlumnos, RepositorioAlumno>();
@@ -51,7 +51,6 @@ namespace IES_CREA.infrastructure.ExtensionesServicios
             services.AddScoped<IRepositorioTrayectoriaEducativa, RepositorioTrayectoriaEducativa>();
             services.AddScoped<IRepositorioUsuarioRol, RepositorioUsuarioRol>();
             services.AddScoped<IRepositorioUsuarios, RepositorioUsuarios>();
-            services.AddScoped<ServicioPersona>();
             services.AddScoped<IES_CREA.CORE.Servicios.ServicioPersona>();
             services.AddScoped<IES_CREA.CORE.Servicios.ServicioMateria>();
             services.AddScoped<IES_CREA.CORE.Servicios.ServicioAula>();
@@ -67,6 +66,8 @@ namespace IES_CREA.infrastructure.ExtensionesServicios
             services.AddScoped<IES_CREA.CORE.Servicios.ServicioTrayectoria>();
             services.AddScoped<IES_CREA.CORE.Servicios.ServicioRol>();
             services.AddScoped<IES_CREA.CORE.Servicios.ServicioUsuario>();
+            services.AddScoped<IES_CREA.CORE.Servicios.ServicioAlumno>();
+            services.AddScoped<IES_CREA.CORE.Servicios.ServicioDocente>();
             // (Si luego creas ServicioAlumno, ServicioCurso, etc., los agregas aquí también)
             return services;
         }

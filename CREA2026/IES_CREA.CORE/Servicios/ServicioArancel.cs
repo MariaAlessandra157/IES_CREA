@@ -60,5 +60,24 @@ namespace IES_CREA.CORE.Servicios
 
             return await _repositorio.sp_arancel_actualizar(arancel);
         }
+        // 4. Desactivar (Borrado lógico)
+        public async Task<bool> DesactivarArancelAsync(int idArancel)
+        {
+            if (idArancel <= 0)
+                throw new ArgumentException("El ID del arancel es inválido.");
+
+            // Regla 1: El arancel debe existir
+            var aranceles = await _repositorio.sp_arancel_listado();
+            var arancel = aranceles.FirstOrDefault(a => a.IdArancel == idArancel);
+
+            if (arancel == null)
+                throw new ArgumentException("El arancel no existe en el sistema.");
+
+            // Regla 2: No se puede desactivar un arancel que ya está inactivo
+            if (!arancel.Activo)
+                throw new ArgumentException("El arancel ya se encuentra desactivado.");
+
+            return await _repositorio.sp_arancel_desactivar(idArancel);
+        }
     }
 }

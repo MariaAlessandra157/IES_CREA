@@ -23,7 +23,7 @@ namespace IES_CREA.infrastructure.Repositorios
         {
             try
             {
-                using var conexion = await _conn.obtenerConexionAsync();
+                using var conexion = await _conn.ObtenerConexionAsync();
                 var parametros = new { p_busqueda = $"%{busca_}%" };
                 return await conexion.QueryAsync<Persona>(
                     "sp_persona_buscar",
@@ -43,7 +43,7 @@ namespace IES_CREA.infrastructure.Repositorios
         {
             try
             {
-                using var conexion = await _conn.obtenerConexionAsync();
+                using var conexion = await _conn.ObtenerConexionAsync();
                 var parametros = new { p_id = p_id };
                 var resultado = await conexion.QueryFirstOrDefaultAsync<Persona>(
                     "sp_persona_obtener", // Asumo que el SP acepta p_id para filtrar
@@ -64,7 +64,7 @@ namespace IES_CREA.infrastructure.Repositorios
         {
             try
             {
-                using var conexion = await _conn.obtenerConexionAsync();
+                using var conexion = await _conn.ObtenerConexionAsync();
 
                 var parametros = new
                 {
@@ -98,7 +98,7 @@ namespace IES_CREA.infrastructure.Repositorios
         {
             try
             {
-                using var conexion = await _conn.obtenerConexionAsync();
+                using var conexion = await _conn.ObtenerConexionAsync();
                 var parametros = new
                 {
                     p_id = persona_.IdPersona,
@@ -130,7 +130,7 @@ namespace IES_CREA.infrastructure.Repositorios
         {
             try
             {
-                using var conexion = await _conn.obtenerConexionAsync();
+                using var conexion = await _conn.ObtenerConexionAsync();
                 return await conexion.QueryAsync<Persona>(
                     "sp_persona_obtener",
                     new { p_id = (int?)null }, // Enviamos null para que el SP devuelva todos

@@ -61,10 +61,14 @@ namespace IES_CREA.CORE.Servicios
         // 3. Actualizar un pago (por si se cargó mal el monto)
         public async Task<Pago> ActualizarPagoAsync(int idPago, Pago pago)
         {
-            if (idPago <= 0) throw new ArgumentException("El ID del pago es inválido.");
+            if (idPago <= 0)
+                throw new ArgumentException("El ID del pago es inválido.");
 
+            // Asignamos el ID al objeto
             pago.IdPago = idPago;
-            return await _repositorio.sp_pago_actualizar(idPago);
+
+            // Le pasamos el OBJETO, no el ID
+            return await _repositorio.sp_pago_actualizar(pago);
         }
     }
 }

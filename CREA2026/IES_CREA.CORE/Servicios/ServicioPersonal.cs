@@ -56,8 +56,11 @@ namespace IES_CREA.CORE.Servicios
                 throw new ArgumentException("El ID del personal es inválido.");
             }
 
+            // Asignamos el ID al objeto (por si el frontend no lo envió)
             personal.IdPersonal = idPersonal;
-            return await _repositorio.sp_personal_actualizar(idPersonal);
+
+            // AHORA LE PASAMOS EL OBJETO COMPLETO, NO EL ID
+            return await _repositorio.sp_personal_actualizar(personal);
         }
     }
 }

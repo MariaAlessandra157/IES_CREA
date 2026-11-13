@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using Dapper;
@@ -17,43 +16,22 @@ namespace IES_CREA.infrastructure.Repositorios
         {
         }
 
-        public async Task<int> sp_materia_insertar(Materia materia)
-        {
-            try
-            {
-                using var conexion = await _conn.obtenerConexionAsync();
-                var parametros = new
-                {
-                    p_nombre = materia.Nombre,
-                    p_descripcion = materia.Descripcion,
-                    p_activo = materia.Activo,
-                    materia.Nombre,
-                    materia.Descripcion,
-                    materia.Activo
-                };
-                return await conexion.ExecuteAsync(
-                    "sp_materia_insertar",
-                    parametros,
-                    commandType: CommandType.StoredProcedure
-                );
-            }
-            catch (Exception ex)
-            {
-                ArchivoLog.RegistrarError(ex);
-                return 0;
-            }
-        }
-
+        // 1. GET: Obtener todas
         public async Task<IEnumerable<Materia>> sp_materia_consultar()
         {
             try
             {
-                using var conexion = await _conn.obtenerConexionAsync();
-                return await conexion.QueryAsync<Materia>(
-                    "sp_materia_consultar",
-                    new { p_id = (int?)null },
-                    commandType: CommandType.StoredProcedure
-                );
+                using var conexion = await _conn.ObtenerConexionAsync();
+
+                string sql = @"
+                    SELECT 
+                        IdMateria AS IdMateria,
+                        nombre AS Nombre,
+                        descripcion AS Descripcion,
+                        activo AS Activo
+                    FROM materias";
+
+                return await conexion.QueryAsync<Materia>(sql);
             }
             catch (Exception ex)
             {
@@ -62,33 +40,83 @@ namespace IES_CREA.infrastructure.Repositorios
             }
         }
 
+        // 2. POST: Crear y devolver ID
+        public async Task<int> sp_materia_insertar(Materia materia)
+        {
+            try
+            {
+                using var conexion = await _conn.ObtenerConexionAsync();
+
+                string sql = @"
+                    INSERT INTO materias (nombre, descripcion, activo) 
+                    VALUES (@Nombre, @Descripcion, @Activo);
+                    SELECT LAST_INSERT_ID();";
+
+                var parametros = new
+                {
+                    Nombre = materia.Nombre,
+                    Descripcion = materia.Descripcion,
+                    Activo = materia.Activo
+                };
+
+                return await conexion.ExecuteScalarAsync<int>(sql, parametros);
+            }
+            catch (Exception ex)
+            {
+                ArchivoLog.RegistrarError(ex);
+                return 0;
+            }
+        }
+
+        // 3. PUT: Actualizar
         public async Task<Materia> sp_materia_actualizar(Materia materia)
         {
             try
             {
-                using var conexion = await _conn.obtenerConexionAsync();
+                using var conexion = await _conn.ObtenerConexionAsync();
+
+                string sql = @"
+                    UPDATE materias 
+                    SET nombre = @Nombre,
+                        descripcion = @Descripcion,
+                        activo = @Activo
+                    WHERE IdMateria = @IdMateria";
+
                 var parametros = new
                 {
-                    p_id = materia.IdMateria,
-                    p_nombre = materia.Nombre,
-                    p_descripcion = materia.Descripcion,
-                    p_activo = materia.Activo,
-                    materia.IdMateria,
-                    materia.Nombre,
-                    materia.Descripcion,
-                    materia.Activo
+                    IdMateria = materia.IdMateria,
+                    Nombre = materia.Nombre,
+                    Descripcion = materia.Descripcion,
+                    Activo = materia.Activo
                 };
-                await conexion.ExecuteAsync(
-                    "sp_materia_actualizar",
-                    parametros,
-                    commandType: CommandType.StoredProcedure
-                );
+
+                await conexion.ExecuteAsync(sql, parametros);
                 return materia;
             }
             catch (Exception ex)
             {
                 ArchivoLog.RegistrarError(ex);
                 return materia;
+            }
+        }
+
+        // 4. DELETE: Borrado lógico
+        public async Task<bool> sp_materia_desactivar(int idMateria)
+        {
+            try
+            {
+                using var conexion = await _conn.ObtenerConexionAsync();
+
+                string sql = "UPDATE materias SET activo = 0 WHERE IdMateria = @IdMateria";
+
+                var filasAfectadas = await conexion.ExecuteAsync(sql, new { IdMateria = idMateria });
+
+                return filasAfectadas > 0;
+            }
+            catch (Exception ex)
+            {
+                ArchivoLog.RegistrarError(ex);
+                return false;
             }
         }
     }

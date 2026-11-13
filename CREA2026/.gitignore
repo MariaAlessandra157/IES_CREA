@@ -66,3 +66,5 @@ project.fragment.lock.json
 
 # Publicaciones
 publish/
+*.dia.autosave
+*.dia
