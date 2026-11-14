@@ -21,7 +21,7 @@ namespace IES_CREA.infrastructure.Repositorios
         {
             try
             {
-                using var conexion = await _conn.obtenerConexionAsync();
+                using var conexion = await _conn.ObtenerConexionAsync();
                 return await conexion.QueryAsync<T>(
                     $"sp_{_nombreTabla}_consultar",
                     new { _id = id_ },
@@ -40,7 +40,7 @@ namespace IES_CREA.infrastructure.Repositorios
         {
             try
             {
-                using var conexion = await _conn.obtenerConexionAsync();
+                using var conexion = await _conn.ObtenerConexionAsync();
                 return await conexion.QueryFirstOrDefaultAsync<T>(
                     $"sp_{_nombreTabla}_consultar",
                     new { _id = id_ },
@@ -59,7 +59,7 @@ namespace IES_CREA.infrastructure.Repositorios
         {
             try
             {
-                using var conexion = await _conn.obtenerConexionAsync();
+                using var conexion = await _conn.ObtenerConexionAsync();
                 return await conexion.ExecuteScalarAsync<int>(
                     $"sp_{_nombreTabla}_insertar",
                     entidad_,
@@ -78,7 +78,7 @@ namespace IES_CREA.infrastructure.Repositorios
         {
             try
             {
-                using var conexion = await _conn.obtenerConexionAsync();
+                using var conexion = await _conn.ObtenerConexionAsync();
                 int filasAfectadas = await conexion.ExecuteAsync(
                     $"sp_{_nombreTabla}_actualizar",
                     entidad_,

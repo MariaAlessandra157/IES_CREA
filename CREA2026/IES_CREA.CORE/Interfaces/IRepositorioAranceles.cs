@@ -10,5 +10,6 @@ namespace IES_CREA.CORE.Interfaces
         Task<IEnumerable<Arancel>> sp_arancel_listado();
         Task<int> sp_arancel_insertar(Arancel aranceles);
         Task<Arancel> sp_arancel_actualizar(Arancel aranceles);
+        Task<bool> sp_arancel_desactivar(int idArancel);
     }
 }

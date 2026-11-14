@@ -10,5 +10,6 @@ namespace IES_CREA.CORE.Interfaces
         Task<int> sp_materia_insertar(Materia materia);
         Task<IEnumerable<Materia>> sp_materia_consultar();
         Task<Materia> sp_materia_actualizar(Materia materia);
+        Task<bool> sp_materia_desactivar(int idMateria);
     }
 }

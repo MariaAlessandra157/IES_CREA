@@ -21,23 +21,22 @@ namespace IES_CREA.infrastructure.Repositorios
         {
             try
             {
-                using var conexion = await _conn.obtenerConexionAsync();
+                using var conexion = await _conn.ObtenerConexionAsync();
+
+                string sql = @"
+            INSERT INTO docentes (id_persona, especialidad, fecha_alta, activo) 
+            VALUES (@IdPersona, @Especialidad, @FechaAlta, @Activo);
+            SELECT LAST_INSERT_ID();";
+
                 var parametros = new
                 {
-                    p_id_persona = docente.IdPersona,
-                    p_especialidad = docente.Especialidad,
-                    p_fecha_alta = docente.FechaAlta,
-                    p_activo = docente.Activo,
-                    docente.IdPersona,
-                    docente.Especialidad,
-                    docente.FechaAlta,
-                    docente.Activo
+                    IdPersona = docente.IdPersona,
+                    Especialidad = docente.Especialidad,
+                    FechaAlta = docente.FechaAlta,
+                    Activo = docente.Activo
                 };
-                return await conexion.ExecuteAsync(
-                    "sp_docente_insertar",
-                    parametros,
-                    commandType: CommandType.StoredProcedure
-                );
+
+                return await conexion.ExecuteScalarAsync<int>(sql, parametros);
             }
             catch (Exception ex)
             {
@@ -50,7 +49,7 @@ namespace IES_CREA.infrastructure.Repositorios
         {
             try
             {
-                using var conexion = await _conn.obtenerConexionAsync();
+                using var conexion = await _conn.ObtenerConexionAsync();
                 return await conexion.QueryAsync<Docente>(
                     "sp_docente_consultar",
                     new { p_id = (int?)null },
@@ -68,7 +67,7 @@ namespace IES_CREA.infrastructure.Repositorios
         {
             try
             {
-                using var conexion = await _conn.obtenerConexionAsync();
+                using var conexion = await _conn.ObtenerConexionAsync();
                 var parametros = new
                 {
                     p_id = docentes.IdDocente,

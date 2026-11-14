@@ -21,24 +21,22 @@ namespace IES_CREA.infrastructure.Repositorios
         {
             try
             {
-                using var conexion = await _conn.obtenerConexionAsync();
+                using var conexion = await _conn.ObtenerConexionAsync();
+
+                string sql = @"
+            INSERT INTO personal (id_persona, id_cargo, fecha_ingreso, activo) 
+            VALUES (@IdPersona, @IdCargo, @FechaIngreso, @Activo);
+            SELECT LAST_INSERT_ID();";
+
                 var parametros = new
                 {
-                    p_id_persona = personal.IdPersona,
-                    p_id_cargo = personal.IdCargo,
-                    p_fecha_ingreso = personal.FechaIngreso,
-                    p_actvio = personal.Activo,
-                    p_activo = personal.Activo,
-                    personal.IdPersona,
-                    personal.IdCargo,
-                    personal.FechaIngreso,
-                    personal.Activo
+                    IdPersona = personal.IdPersona,
+                    IdCargo = personal.IdCargo,
+                    FechaIngreso = personal.FechaIngreso,
+                    Activo = personal.Activo
                 };
-                return await conexion.ExecuteAsync(
-                    "sp_personal_insertar",
-                    parametros,
-                    commandType: CommandType.StoredProcedure
-                );
+
+                return await conexion.ExecuteScalarAsync<int>(sql, parametros);
             }
             catch (Exception ex)
             {
@@ -51,7 +49,7 @@ namespace IES_CREA.infrastructure.Repositorios
         {
             try
             {
-                using var conexion = await _conn.obtenerConexionAsync();
+                using var conexion = await _conn.ObtenerConexionAsync();
                 var parametros = new { p_id = idPersonal > 0 ? (int?)idPersonal : null, idPersonal };
                 return await conexion.QueryAsync<Personal>(
                     "sp_personal_consultar",
@@ -66,23 +64,34 @@ namespace IES_CREA.infrastructure.Repositorios
             }
         }
 
-        public async Task<Personal> sp_personal_actualizar(int idPersonal)
+        public async Task<Personal> sp_personal_actualizar(Personal personal)
         {
             try
             {
-                using var conexion = await _conn.obtenerConexionAsync();
-                var parametros = new { p_id = idPersonal, idPersonal };
+                using var conexion = await _conn.ObtenerConexionAsync();
+
+                // Enviamos TODOS los parámetros necesarios para actualizar
+                var parametros = new
+                {
+                    p_id_personal = personal.IdPersonal,
+                    p_id_persona = personal.IdPersona,
+                    p_id_cargo = personal.IdCargo,
+                    p_fecha_ingreso = personal.FechaIngreso,
+                    p_activo = personal.Activo
+                };
+
                 await conexion.ExecuteAsync(
                     "sp_personal_actualizar",
                     parametros,
                     commandType: CommandType.StoredProcedure
                 );
-                return (await ObtenerPorIdAsync(idPersonal))!;
+
+                return personal; // Devolvemos el objeto actualizado
             }
             catch (Exception ex)
             {
                 ArchivoLog.RegistrarError(ex);
-                return null!;
+                return personal;
             }
         }
     }

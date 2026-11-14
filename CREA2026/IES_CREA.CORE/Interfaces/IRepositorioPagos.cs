@@ -10,7 +10,6 @@ namespace IES_CREA.CORE.Interfaces
     {
         Task<int> sp_pago_registrar(Pago pagos);
         Task<IEnumerable<Pago>> sp_pagos_cuota(int idCuota);
-        Task<Pago> sp_pago_actualizar(int idPago);
+        Task<Pago> sp_pago_actualizar(Pago pago);
     }
 }
-

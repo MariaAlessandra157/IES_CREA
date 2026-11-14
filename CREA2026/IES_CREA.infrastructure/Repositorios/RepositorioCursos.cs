@@ -17,43 +17,22 @@ namespace IES_CREA.infrastructure.Repositorios
         {
         }
 
-        public async Task<int> sp_curso_insertar(Curso cursos)
-        {
-            try
-            {
-                using var conexion = await _conn.obtenerConexionAsync();
-                var parametros = new
-                {
-                    p_id_nivel = cursos.IdNivel,
-                    p_nombre = cursos.Nombre,
-                    p_orden = cursos.Orden,
-                    cursos.IdNivel,
-                    cursos.Nombre,
-                    cursos.Orden
-                };
-                return await conexion.ExecuteAsync(
-                    "sp_curso_insertar",
-                    parametros,
-                    commandType: CommandType.StoredProcedure
-                );
-            }
-            catch (Exception ex)
-            {
-                ArchivoLog.RegistrarError(ex);
-                return 0;
-            }
-        }
-
+        // 1. GET: Obtener todos los cursos
         public async Task<IEnumerable<Curso>> sp_curso_consultar()
         {
             try
             {
-                using var conexion = await _conn.obtenerConexionAsync();
-                return await conexion.QueryAsync<Curso>(
-                    "sp_curso_consultar",
-                    new { p_id = (int?)null },
-                    commandType: CommandType.StoredProcedure
-                );
+                using var conexion = await _conn.ObtenerConexionAsync();
+
+                string sql = @"
+                    SELECT 
+                        IdCurso AS IdCurso,
+                        id_nivel AS IdNivel,
+                        nombre AS Nombre,
+                        orden AS Orden
+                    FROM cursos";
+
+                return await conexion.QueryAsync<Curso>(sql);
             }
             catch (Exception ex)
             {
@@ -62,27 +41,57 @@ namespace IES_CREA.infrastructure.Repositorios
             }
         }
 
+        // 2. POST: Crear y devolver ID
+        public async Task<int> sp_curso_insertar(Curso cursos)
+        {
+            try
+            {
+                using var conexion = await _conn.ObtenerConexionAsync();
+
+                string sql = @"
+                    INSERT INTO cursos (id_nivel, nombre, orden) 
+                    VALUES (@IdNivel, @Nombre, @Orden);
+                    SELECT LAST_INSERT_ID();";
+
+                var parametros = new
+                {
+                    IdNivel = cursos.IdNivel,
+                    Nombre = cursos.Nombre,
+                    Orden = cursos.Orden
+                };
+
+                return await conexion.ExecuteScalarAsync<int>(sql, parametros);
+            }
+            catch (Exception ex)
+            {
+                ArchivoLog.RegistrarError(ex);
+                return 0;
+            }
+        }
+
+        // 3. PUT: Actualizar
         public async Task<Curso> sp_curso_actualizar(Curso cursos)
         {
             try
             {
-                using var conexion = await _conn.obtenerConexionAsync();
+                using var conexion = await _conn.ObtenerConexionAsync();
+
+                string sql = @"
+                    UPDATE cursos 
+                    SET id_nivel = @IdNivel,
+                        nombre = @Nombre,
+                        orden = @Orden
+                    WHERE IdCurso = @IdCurso";
+
                 var parametros = new
                 {
-                    p_id = cursos.IdCurso,
-                    p_id_nivel = cursos.IdNivel,
-                    p_nombre = cursos.Nombre,
-                    p_orden = cursos.Orden,
-                    cursos.IdCurso,
-                    cursos.IdNivel,
-                    cursos.Nombre,
-                    cursos.Orden
+                    IdCurso = cursos.IdCurso,
+                    IdNivel = cursos.IdNivel,
+                    Nombre = cursos.Nombre,
+                    Orden = cursos.Orden
                 };
-                await conexion.ExecuteAsync(
-                    "sp_curso_actualizar",
-                    parametros,
-                    commandType: CommandType.StoredProcedure
-                );
+
+                await conexion.ExecuteAsync(sql, parametros);
                 return cursos;
             }
             catch (Exception ex)

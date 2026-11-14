@@ -91,7 +91,3 @@ publish/
 
 # Archivos de Copilot en Visual Studio
 .vs/CopilotSnapshots/
->>>>>>> main
-# Archivos de Visual Studio Code y DB
-.vs/
-BackupDB/

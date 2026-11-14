@@ -5,7 +5,11 @@ using IES_CREA.API.Validators;
 using IES_CREA.CORE.Servicios;
 using IES_CREA.infrastructure.ExtensionesServicios;
 using IES_CREA.API;
+<<<<<<< HEAD
 using IES_CREA.API.DTOs.Persona;
+=======
+using IES_CREA.API.AutoMapper; // <-- 1. Agregamos el using
+>>>>>>> main
 
 namespace IES_CREA.API
 {
@@ -18,9 +22,14 @@ namespace IES_CREA.API
             // Add services to the container.
             builder.Services.AddControllers();
 
+<<<<<<< HEAD
             builder.Services.AddAutoMapper(cfg => cfg.AddProfile<MappeoObjeto>());
             builder.Services.AddScoped<IValidator<PersonaCrearDto>, CrearPersonaValidator>();
 
+=======
+            // 2. Registramos AutoMapper (¡NUEVO!)
+            builder.Services.AddAutoMapper(cfg => { }, typeof(MappeoObjeto).Assembly);
+>>>>>>> main
 
             // 1. Inyección de Infraestructura (Repositorios y Servicios de CORE)
 

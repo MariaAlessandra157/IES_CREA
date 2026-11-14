@@ -11,5 +11,6 @@ namespace IES_CREA.CORE.Interfaces
         Task<IEnumerable<Inscripcion>> sp_inscripcion_consultar();
         Task<IEnumerable<Inscripcion>> sp_inscripciones_alumno(int idAlumno);
         Task<Inscripcion> sp_inscripcion_actualizar(Inscripcion inscripcion);
+        Task<bool> sp_inscripcion_desactivar(int idInscripcion);
     }
 }

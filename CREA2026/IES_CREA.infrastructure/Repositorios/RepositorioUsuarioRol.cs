@@ -21,7 +21,7 @@ namespace IES_CREA.infrastructure.Repositorios
         {
             try
             {
-                using var conexion = await _conn.obtenerConexionAsync();
+                using var conexion = await _conn.ObtenerConexionAsync();
                 var parametros = new
                 {
                     p_id_usuario = idUsuario,
@@ -46,7 +46,7 @@ namespace IES_CREA.infrastructure.Repositorios
         {
             try
             {
-                using var conexion = await _conn.obtenerConexionAsync();
+                using var conexion = await _conn.ObtenerConexionAsync();
                 var parametros = new { p_id_rol = idRol, p_id_usuario = 0, idRol };
                 return await conexion.QueryAsync<UsuarioRol>(
                     "sp_usuario_quitar_rol",
@@ -65,7 +65,7 @@ namespace IES_CREA.infrastructure.Repositorios
         {
             try
             {
-                using var conexion = await _conn.obtenerConexionAsync();
+                using var conexion = await _conn.ObtenerConexionAsync();
                 var parametros = new { p_id_usuario = idUsuario, idUsuario };
                 return await conexion.QueryAsync<UsuarioRol>(
                     "sp_usuario_roles",
