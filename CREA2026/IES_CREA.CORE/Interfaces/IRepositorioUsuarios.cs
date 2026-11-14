@@ -10,6 +10,6 @@ namespace IES_CREA.CORE.Interfaces
         Task<int> sp_usuario_crear(Usuario usuario);
         Task<IEnumerable<Usuario>> sp_usuario_cosultar(int idUsuario);
         Task<Usuario> sp_usuario_actualizar(Usuario usuario);
-        Task<IEnumerable<Usuario>> sp_usuario_login(bool activo);
+        Task<Usuario> sp_usuario_login(string nombreUsuario);
     }
 }

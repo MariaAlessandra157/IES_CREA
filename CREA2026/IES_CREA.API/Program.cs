@@ -1,5 +1,6 @@
 using IES_CREA.infrastructure.ExtensionesServicios;
 using IES_CREA.API;
+using IES_CREA.API.AutoMapper; // <-- 1. Agregamos el using
 
 namespace IES_CREA.API
 {
@@ -11,6 +12,9 @@ namespace IES_CREA.API
 
             // Add services to the container.
             builder.Services.AddControllers();
+
+            // 2. Registramos AutoMapper (¡NUEVO!)
+            builder.Services.AddAutoMapper(cfg => { }, typeof(MappeoObjeto).Assembly);
 
             // 1. Inyección de Infraestructura (Repositorios y Servicios de CORE)
             builder.Services.AddInfrastructure(builder.Configuration);

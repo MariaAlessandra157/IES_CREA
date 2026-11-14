@@ -17,47 +17,29 @@ namespace IES_CREA.infrastructure.Repositorios
         {
         }
 
-        public async Task<int> sp_aula_insertar(Aula aulas)
+        // 1. GET: Obtener todas o buscar
+        public async Task<IEnumerable<Aula>> sp_aula_consultar(string busca_)
         {
             try
             {
-                using var conexion = await _conn.obtenerConexionAsync();
-                var parametros = new
-                {
-                    p_nombre = aulas.Nombre,
-                    p_capacidad = aulas.Capacidad,
-                    p_descripcion = aulas.Descripcion,
-                    p_activo = aulas.Activo,
-                    aulas.Nombre,
-                    aulas.Capacidad,
-                    aulas.Descripcion,
-                    aulas.Activo
-                };
-                return await conexion.ExecuteAsync(
-                    "sp_aula_insertar",
-                    parametros,
-                    commandType: CommandType.StoredProcedure
-                );
-            }
-            catch (Exception ex)
-            {
-                ArchivoLog.RegistrarError(ex);
-                return 0;
-            }
-        }
+                using var conexion = await _conn.ObtenerConexionAsync();
 
-        public async Task<IEnumerable<Aula>> sp_aula_cosultar(string busca_)
-        {
-            try
-            {
-                using var conexion = await _conn.obtenerConexionAsync();
-                int.TryParse(busca_, out int idVal);
-                var parametros = new { p_id = idVal > 0 ? (int?)idVal : null, busca_ };
-                return await conexion.QueryAsync<Aula>(
-                    "sp_aula_consultar",
-                    parametros,
-                    commandType: CommandType.StoredProcedure
-                );
+                string sql = @"
+                    SELECT 
+                        IdAula AS IdAula,
+                        nombre AS Nombre,
+                        capacidad AS Capacidad,
+                        descripcion AS Descripcion,
+                        activo AS Activo
+                    FROM aulas";
+
+                if (!string.IsNullOrWhiteSpace(busca_))
+                {
+                    sql += " WHERE nombre LIKE @Busca";
+                    return await conexion.QueryAsync<Aula>(sql, new { Busca = $"%{busca_}%" });
+                }
+
+                return await conexion.QueryAsync<Aula>(sql);
             }
             catch (Exception ex)
             {
@@ -66,29 +48,60 @@ namespace IES_CREA.infrastructure.Repositorios
             }
         }
 
+        // 2. POST: Crear y devolver ID
+        public async Task<int> sp_aula_insertar(Aula aulas)
+        {
+            try
+            {
+                using var conexion = await _conn.ObtenerConexionAsync();
+
+                string sql = @"
+                    INSERT INTO aulas (nombre, capacidad, descripcion, activo) 
+                    VALUES (@Nombre, @Capacidad, @Descripcion, @Activo);
+                    SELECT LAST_INSERT_ID();";
+
+                var parametros = new
+                {
+                    Nombre = aulas.Nombre,
+                    Capacidad = aulas.Capacidad,
+                    Descripcion = aulas.Descripcion,
+                    Activo = aulas.Activo
+                };
+
+                return await conexion.ExecuteScalarAsync<int>(sql, parametros);
+            }
+            catch (Exception ex)
+            {
+                ArchivoLog.RegistrarError(ex);
+                return 0;
+            }
+        }
+
+        // 3. PUT: Actualizar
         public async Task<Aula> sp_aula_actualizar(Aula aulas)
         {
             try
             {
-                using var conexion = await _conn.obtenerConexionAsync();
+                using var conexion = await _conn.ObtenerConexionAsync();
+
+                string sql = @"
+                    UPDATE aulas 
+                    SET nombre = @Nombre,
+                        capacidad = @Capacidad,
+                        descripcion = @Descripcion,
+                        activo = @Activo
+                    WHERE IdAula = @IdAula";
+
                 var parametros = new
                 {
-                    p_id = aulas.IdAula,
-                    p_nombre = aulas.Nombre,
-                    p_capacidad = aulas.Capacidad,
-                    p_descripcion = aulas.Descripcion,
-                    p_activo = aulas.Activo,
-                    aulas.IdAula,
-                    aulas.Nombre,
-                    aulas.Capacidad,
-                    aulas.Descripcion,
-                    aulas.Activo
+                    IdAula = aulas.IdAula,
+                    Nombre = aulas.Nombre,
+                    Capacidad = aulas.Capacidad,
+                    Descripcion = aulas.Descripcion,
+                    Activo = aulas.Activo
                 };
-                await conexion.ExecuteAsync(
-                    "sp_aula_actualizar",
-                    parametros,
-                    commandType: CommandType.StoredProcedure
-                );
+
+                await conexion.ExecuteAsync(sql, parametros);
                 return aulas;
             }
             catch (Exception ex)
@@ -97,6 +110,24 @@ namespace IES_CREA.infrastructure.Repositorios
                 return aulas;
             }
         }
+
+        // 4. DELETE: Borrado lógico (desactivar)
+        public async Task<bool> sp_aula_desactivar(int idAula)
+        {
+            try
+            {
+                using var conexion = await _conn.ObtenerConexionAsync();
+
+                string sql = "UPDATE aulas SET activo = 0 WHERE IdAula = @IdAula";
+                var filasAfectadas = await conexion.ExecuteAsync(sql, new { IdAula = idAula });
+
+                return filasAfectadas > 0;
+            }
+            catch (Exception ex)
+            {
+                ArchivoLog.RegistrarError(ex);
+                return false;
+            }
+        }
     }
 }
-

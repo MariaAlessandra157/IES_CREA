@@ -66,10 +66,5 @@ project.fragment.lock.json
 
 # Publicaciones
 publish/
-
-# Archivos de diagramas Dia
+*.dia.autosave
 *.dia
-*.dia~
-
-# Archivos de Copilot en Visual Studio
-.vs/CopilotSnapshots/

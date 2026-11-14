@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using Dapper;
@@ -17,16 +16,25 @@ namespace IES_CREA.infrastructure.Repositorios
         {
         }
 
+        // 1. GET: Obtener todos
         public async Task<IEnumerable<Arancel>> sp_arancel_listado()
         {
             try
             {
-                using var conexion = await _conn.obtenerConexionAsync();
-                return await conexion.QueryAsync<Arancel>(
-                    "sp_arancel_listado",
-                    new { p_id = (int?)null },
-                    commandType: CommandType.StoredProcedure
-                );
+                using var conexion = await _conn.ObtenerConexionAsync();
+
+                string sql = @"
+                    SELECT 
+                        IdArancel AS IdArancel,
+                        nombre AS Nombre,
+                        descripcion AS Descripcion,
+                        monto AS Monto,
+                        fecha_vigencia_desde AS FechaVigenciaDesde,
+                        fecha_vigencia_hasta AS FechaVigenciaHasta,
+                        activo AS Activo
+                    FROM aranceles";
+
+                return await conexion.QueryAsync<Arancel>(sql);
             }
             catch (Exception ex)
             {
@@ -35,31 +43,29 @@ namespace IES_CREA.infrastructure.Repositorios
             }
         }
 
+        // 2. POST: Crear y devolver ID
         public async Task<int> sp_arancel_insertar(Arancel aranceles)
         {
             try
             {
-                using var conexion = await _conn.obtenerConexionAsync();
+                using var conexion = await _conn.ObtenerConexionAsync();
+
+                string sql = @"
+                    INSERT INTO aranceles (nombre, descripcion, monto, fecha_vigencia_desde, fecha_vigencia_hasta, activo) 
+                    VALUES (@Nombre, @Descripcion, @Monto, @FechaVigenciaDesde, @FechaVigenciaHasta, @Activo);
+                    SELECT LAST_INSERT_ID();";
+
                 var parametros = new
                 {
-                    p_nombre = aranceles.Nombre,
-                    p_descripcion = aranceles.Descripcion,
-                    p_monto = aranceles.Monto,
-                    p_fecha_desde = aranceles.FechaVigenciaDesde,
-                    p_fecha_hasta = aranceles.FechaVigenciaHasta,
-                    p_activo = aranceles.Activo,
-                    aranceles.Nombre,
-                    aranceles.Descripcion,
-                    aranceles.Monto,
-                    aranceles.FechaVigenciaDesde,
-                    aranceles.FechaVigenciaHasta,
-                    aranceles.Activo
+                    Nombre = aranceles.Nombre,
+                    Descripcion = aranceles.Descripcion,
+                    Monto = aranceles.Monto,
+                    FechaVigenciaDesde = aranceles.FechaVigenciaDesde,
+                    FechaVigenciaHasta = aranceles.FechaVigenciaHasta,
+                    Activo = aranceles.Activo
                 };
-                return await conexion.ExecuteAsync(
-                    "sp_arancel_insertar",
-                    parametros,
-                    commandType: CommandType.StoredProcedure
-                );
+
+                return await conexion.ExecuteScalarAsync<int>(sql, parametros);
             }
             catch (Exception ex)
             {
@@ -68,37 +74,61 @@ namespace IES_CREA.infrastructure.Repositorios
             }
         }
 
+        // 3. PUT: Actualizar
         public async Task<Arancel> sp_arancel_actualizar(Arancel aranceles)
         {
             try
             {
-                using var conexion = await _conn.obtenerConexionAsync();
+                using var conexion = await _conn.ObtenerConexionAsync();
+
+                string sql = @"
+                    UPDATE aranceles 
+                    SET nombre = @Nombre,
+                        descripcion = @Descripcion,
+                        monto = @Monto,
+                        fecha_vigencia_desde = @FechaVigenciaDesde,
+                        fecha_vigencia_hasta = @FechaVigenciaHasta,
+                        activo = @Activo
+                    WHERE IdArancel = @IdArancel";
+
                 var parametros = new
                 {
-                    p_id = aranceles.IdArancel,
-                    p_nombre = aranceles.Nombre,
-                    p_descripcion = aranceles.Descripcion,
-                    p_monto = aranceles.Monto,
-                    p_fecha_hasta = aranceles.FechaVigenciaHasta,
-                    p_activo = aranceles.Activo,
-                    aranceles.IdArancel,
-                    aranceles.Nombre,
-                    aranceles.Descripcion,
-                    aranceles.Monto,
-                    aranceles.FechaVigenciaHasta,
-                    aranceles.Activo
+                    IdArancel = aranceles.IdArancel,
+                    Nombre = aranceles.Nombre,
+                    Descripcion = aranceles.Descripcion,
+                    Monto = aranceles.Monto,
+                    FechaVigenciaDesde = aranceles.FechaVigenciaDesde,
+                    FechaVigenciaHasta = aranceles.FechaVigenciaHasta,
+                    Activo = aranceles.Activo
                 };
-                await conexion.ExecuteAsync(
-                    "sp_arancel_actualizar",
-                    parametros,
-                    commandType: CommandType.StoredProcedure
-                );
+
+                await conexion.ExecuteAsync(sql, parametros);
                 return aranceles;
             }
             catch (Exception ex)
             {
                 ArchivoLog.RegistrarError(ex);
                 return aranceles;
+            }
+        }
+
+        // 4. DELETE: Borrado lógico
+        public async Task<bool> sp_arancel_desactivar(int idArancel)
+        {
+            try
+            {
+                using var conexion = await _conn.ObtenerConexionAsync();
+
+                string sql = "UPDATE aranceles SET activo = 0 WHERE IdArancel = @IdArancel";
+
+                var filasAfectadas = await conexion.ExecuteAsync(sql, new { IdArancel = idArancel });
+
+                return filasAfectadas > 0;
+            }
+            catch (Exception ex)
+            {
+                ArchivoLog.RegistrarError(ex);
+                return false;
             }
         }
     }

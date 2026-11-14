@@ -21,23 +21,24 @@ namespace IES_CREA.infrastructure.Repositorios
         {
             try
             {
-                using var conexion = await _conn.obtenerConexionAsync();
+                using var conexion = await _conn.ObtenerConexionAsync();
+
+                string sql = @"
+            INSERT INTO usuarios (id_persona, usuario, password_hash, activo, fecha_creacion, ultimo_acceso) 
+            VALUES (@IdPersona, @NombreUsuario, @PasswordHash, @Activo, @FechaCreacion, @UltimoAcceso);
+            SELECT LAST_INSERT_ID();";
+
                 var parametros = new
                 {
-                    p_id_persona = usuario.IdPersona,
-                    p_usuario = usuario.NombreUsuario,
-                    p_password_hash = usuario.PasswordHash,
-                    p_activo = usuario.Activo,
-                    usuario.IdPersona,
-                    usuario.NombreUsuario,
-                    usuario.PasswordHash,
-                    usuario.Activo
+                    IdPersona = usuario.IdPersona,
+                    NombreUsuario = usuario.NombreUsuario,
+                    PasswordHash = usuario.PasswordHash,
+                    Activo = usuario.Activo,
+                    FechaCreacion = usuario.FechaCreacion,
+                    UltimoAcceso = usuario.UltimoAcceso
                 };
-                return await conexion.ExecuteAsync(
-                    "sp_usuario_crear",
-                    parametros,
-                    commandType: CommandType.StoredProcedure
-                );
+
+                return await conexion.ExecuteScalarAsync<int>(sql, parametros);
             }
             catch (Exception ex)
             {
@@ -50,7 +51,7 @@ namespace IES_CREA.infrastructure.Repositorios
         {
             try
             {
-                using var conexion = await _conn.obtenerConexionAsync();
+                using var conexion = await _conn.ObtenerConexionAsync();
                 var parametros = new { p_id = idUsuario > 0 ? (int?)idUsuario : null, idUsuario };
                 return await conexion.QueryAsync<Usuario>(
                     "sp_usuario_consultar",
@@ -69,7 +70,7 @@ namespace IES_CREA.infrastructure.Repositorios
         {
             try
             {
-                using var conexion = await _conn.obtenerConexionAsync();
+                using var conexion = await _conn.ObtenerConexionAsync();
                 var parametros = new
                 {
                     p_id = usuario.IdUsuario,
@@ -95,23 +96,25 @@ namespace IES_CREA.infrastructure.Repositorios
             }
         }
 
-        public async Task<IEnumerable<Usuario>> sp_usuario_login(bool activo)
-        {
-            try
-            {
-                using var conexion = await _conn.obtenerConexionAsync();
-                var parametros = new { p_activo = activo, activo, p_usuario = "" };
-                return await conexion.QueryAsync<Usuario>(
-                    "sp_usuario_login",
-                    parametros,
-                    commandType: CommandType.StoredProcedure
-                );
-            }
-            catch (Exception ex)
-            {
-                ArchivoLog.RegistrarError(ex);
-                return Enumerable.Empty<Usuario>();
-            }
-        }
+        public async Task<Usuario> sp_usuario_login(string nombreUsuario)
+{
+    try
+    {
+        using var conexion = await _conn.ObtenerConexionAsync();
+        var parametros = new { p_usuario = nombreUsuario };
+        
+        // Usamos QueryFirstOrDefaultAsync porque un login devuelve un solo usuario (o null)
+        return await conexion.QueryFirstOrDefaultAsync<Usuario>(
+            "sp_usuario_login",
+            parametros,
+            commandType: CommandType.StoredProcedure
+        )!;
+    }
+    catch (Exception ex)
+    {
+        ArchivoLog.RegistrarError(ex);
+        return null!;
+    }
+}
     }
 }
