@@ -10,5 +10,6 @@ namespace IES_CREA.CORE.Interfaces
         Task<int> sp_clase_crear(Clase clases);
         Task<IEnumerable<Clase>> sp_clase_consultar(int idClase);
         Task<Clase> sp_clase_actualizar(Clase clases);
+        Task<bool> sp_clase_desactivar(int idClase);
     }
 }

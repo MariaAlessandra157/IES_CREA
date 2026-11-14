@@ -21,27 +21,24 @@ namespace IES_CREA.infrastructure.Repositorios
         {
             try
             {
-                using var conexion = await _conn.obtenerConexionAsync();
+                using var conexion = await _conn.ObtenerConexionAsync();
+
+                string sql = @"
+            INSERT INTO pagos (id_cuota, id_personal, fecha_pago, monto, medio_pago, observacion) 
+            VALUES (@IdCuota, @IdPersonal, @FechaPago, @Monto, @MedioPago, @Observacion);
+            SELECT LAST_INSERT_ID();";
+
                 var parametros = new
                 {
-                    p_id_cuota = pagos.IdCuota,
-                    p_id_personal = pagos.IdPersonal,
-                    p_fecha_pago = pagos.FechaPago,
-                    p_monto = pagos.Monto,
-                    p_medio_pago = pagos.MedioPago,
-                    p_observacion = pagos.Observacion,
-                    pagos.IdCuota,
-                    pagos.IdPersonal,
-                    pagos.FechaPago,
-                    pagos.Monto,
-                    pagos.MedioPago,
-                    pagos.Observacion
+                    IdCuota = pagos.IdCuota,
+                    IdPersonal = pagos.IdPersonal,
+                    FechaPago = pagos.FechaPago,
+                    Monto = pagos.Monto,
+                    MedioPago = pagos.MedioPago,
+                    Observacion = pagos.Observacion
                 };
-                return await conexion.ExecuteAsync(
-                    "sp_pago_registar",
-                    parametros,
-                    commandType: CommandType.StoredProcedure
-                );
+
+                return await conexion.ExecuteScalarAsync<int>(sql, parametros);
             }
             catch (Exception ex)
             {
@@ -54,7 +51,7 @@ namespace IES_CREA.infrastructure.Repositorios
         {
             try
             {
-                using var conexion = await _conn.obtenerConexionAsync();
+                using var conexion = await _conn.ObtenerConexionAsync();
                 var parametros = new { p_id_cuota = idCuota, idCuota };
                 return await conexion.QueryAsync<Pago>(
                     "sp_pagos_cuota",
@@ -69,23 +66,36 @@ namespace IES_CREA.infrastructure.Repositorios
             }
         }
 
-        public async Task<Pago> sp_pago_actualizar(int idPago)
+        public async Task<Pago> sp_pago_actualizar(Pago pago)
         {
             try
             {
-                using var conexion = await _conn.obtenerConexionAsync();
-                var parametros = new { p_id = idPago, idPago };
+                using var conexion = await _conn.ObtenerConexionAsync();
+
+                // Pasamos los parámetros necesarios para actualizar el pago
+                var parametros = new
+                {
+                    p_id_pago = pago.IdPago,
+                    p_id_cuota = pago.IdCuota,
+                    p_id_personal = pago.IdPersonal,
+                    p_fecha_pago = pago.FechaPago,
+                    p_monto = pago.Monto,
+                    p_medio_pago = pago.MedioPago,
+                    p_observacion = pago.Observacion
+                };
+
                 await conexion.ExecuteAsync(
                     "sp_pago_actualizar",
                     parametros,
                     commandType: CommandType.StoredProcedure
                 );
-                return (await ObtenerPorIdAsync(idPago))!;
+
+                return pago; // Devolvemos el objeto actualizado
             }
             catch (Exception ex)
             {
                 ArchivoLog.RegistrarError(ex);
-                return null!;
+                return pago;
             }
         }
     }

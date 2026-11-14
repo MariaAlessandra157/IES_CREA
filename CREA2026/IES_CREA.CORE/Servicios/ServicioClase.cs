@@ -1,10 +1,86 @@
-﻿using System;
+﻿using IES_CREA.CORE.Entidades;
+using IES_CREA.CORE.Interfaces;
+using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Threading.Tasks;
 
 namespace IES_CREA.CORE.Servicios
 {
-    internal class ServicioClase
+    public class ServicioClase
     {
+        private readonly IRepositorioClases _repositorio;
+
+        public ServicioClase(IRepositorioClases repositorio)
+        {
+            _repositorio = repositorio;
+        }
+
+        // 1. Consultar (por ID o traer todas si el ID es 0)
+        public async Task<IEnumerable<Clase>> ObtenerClasesAsync(int idClase)
+        {
+            return await _repositorio.sp_clase_consultar(idClase);
+        }
+
+        // 2. Crear (con reglas de negocio)
+        public async Task<int> CrearClaseAsync(Clase clase)
+        {
+            // Regla de negocio 1: La fecha no puede ser en el pasado
+            // Como Fecha es DateOnly, usamos DateOnly.FromDateTime para comparar
+            var hoy = DateOnly.FromDateTime(DateTime.Today);
+
+            if (clase.Fecha < hoy)
+            {
+                throw new ArgumentException("La fecha de la clase no puede ser en el pasado.");
+            }
+
+            // Regla de negocio 2: Validar que tenga asignado un docente y una materia
+            if (clase.IdDocente <= 0 || clase.IdMateria <= 0)
+            {
+                throw new ArgumentException("La clase debe tener un docente y una materia asignados.");
+            }
+
+            // Regla de negocio 3 (Opcional): Validar que la hora de fin sea mayor a la de inicio
+            if (clase.HoraFinal <= clase.HoraInicio)
+            {
+                throw new ArgumentException("La hora de finalización debe ser posterior a la hora de inicio.");
+            }
+
+            return await _repositorio.sp_clase_crear(clase);
+        }
+
+        // 3. Actualizar
+        public async Task<Clase> ActualizarClaseAsync(Clase clase)
+        {
+            if (clase.IdClase <= 0)
+            {
+                throw new ArgumentException("El ID de la clase es inválido.");
+            }
+
+            return await _repositorio.sp_clase_actualizar(clase);
+        }
+        // 4. Desactivar (Borrado lógico)
+        public async Task<bool> DesactivarClaseAsync(int idClase)
+        {
+            if (idClase <= 0)
+                throw new ArgumentException("El ID de la clase es inválido.");
+
+            // Regla 1: La clase debe existir
+            var clases = await _repositorio.sp_clase_consultar(idClase);
+            var clase = clases.FirstOrDefault(c => c.IdClase == idClase);
+
+            if (clase == null)
+                throw new ArgumentException("La clase no existe en el sistema.");
+
+            // Regla 2: No se puede desactivar una clase que ya está inactiva
+            if (!clase.Estado)
+                throw new ArgumentException("La clase ya se encuentra desactivada.");
+
+            // Regla 3 (Opcional): No desactivar si la clase es en el futuro (por si se cancela)
+            // var hoy = DateOnly.FromDateTime(DateTime.Today);
+            // if (clase.Fecha > hoy) 
+            //     throw new ArgumentException("No se puede desactivar una clase futura. Cancelela en su lugar.");
+
+            return await _repositorio.sp_clase_desactivar(idClase);
+        }
     }
 }

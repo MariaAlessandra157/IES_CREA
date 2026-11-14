@@ -21,7 +21,7 @@ namespace IES_CREA.infrastructure.Repositorios
         {
             try
             {
-                using var conexion = await _conn.obtenerConexionAsync();
+                using var conexion = await _conn.ObtenerConexionAsync();
                 var parametros = new
                 {
                     p_id_inscripcion = inscripcionMateria.IdInscripcion,
@@ -50,7 +50,7 @@ namespace IES_CREA.infrastructure.Repositorios
         {
             try
             {
-                using var conexion = await _conn.obtenerConexionAsync();
+                using var conexion = await _conn.ObtenerConexionAsync();
                 var parametros = new { p_id = idInscripcionMateria, idInscripcionMateria };
                 return await conexion.ExecuteAsync(
                     "sp_inscripcion_quitar_materia",
@@ -69,7 +69,7 @@ namespace IES_CREA.infrastructure.Repositorios
         {
             try
             {
-                using var conexion = await _conn.obtenerConexionAsync();
+                using var conexion = await _conn.ObtenerConexionAsync();
                 var parametros = new { p_id_inscripcion = idInscripcion, idInscripcion };
                 return await conexion.QueryAsync<InscripcionMateria>(
                     "sp_inscripcion_materias",

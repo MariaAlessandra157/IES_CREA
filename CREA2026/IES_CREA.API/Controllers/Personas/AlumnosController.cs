@@ -1,8 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
 using FluentValidation;
-using FluentValidation.Results;
-using IES_CREA.API.DTOs.Persona; // Asumimos que tus DTOs están aquí
+using Microsoft.AspNetCore.Mvc;
 using IES_CREA.CORE.Servicios;
+using IES_CREA.CORE.Entidades;
+using IES_CREA.API.DTOs.Persona;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace IES_CREA.API.Controllers.Personas
 {
@@ -10,80 +14,66 @@ namespace IES_CREA.API.Controllers.Personas
     [ApiController]
     public class AlumnosController : ControllerBase
     {
-        // 1. Inyectamos las dependencias (Servicio y Validador)
-        private readonly ServicioPersona _servicioPersona;
-        private readonly IValidator<PersonaCrearDto> _validator;
+        private readonly ServicioAlumno _servicioAlumno;
+        private readonly IMapper _mapper;
 
-        public AlumnosController(ServicioPersona servicioPersona, IValidator<PersonaCrearDto> validator)
+        public AlumnosController(ServicioAlumno servicioAlumno, IMapper mapper)
         {
-            _servicioPersona = servicioPersona;
-            _validator = validator;
+            _servicioAlumno = servicioAlumno;
+            _mapper = mapper;
         }
 
         // GET: api/Alumnos
         [HttpGet]
         public async Task<IActionResult> ObtenerTodos()
         {
-            // TODO: Aquí llamarías a tu servicio para traer todos los alumnos de la BD.
-            // var alumnos = await _servicioPersona.ObtenerTodosLosAlumnosAsync();
-            // return Ok(alumnos);
-
-            return Ok(new { mensaje = "Lista de todos los alumnos (Por implementar)" });
-        }
-
-        // GET: api/Alumnos/5
-        [HttpGet("{id}")]
-        public async Task<IActionResult> ObtenerPorId(int id)
-        {
-            // TODO: var alumno = await _servicioPersona.ObtenerAlumnoPorIdAsync(id);
-            // if (alumno == null) return NotFound("Alumno no encontrado");
-            // return Ok(alumno);
-
-            return Ok(new { mensaje = $"Datos del alumno con ID {id} (Por implementar)" });
+            try
+            {
+                var alumnos = await _servicioAlumno.ObtenerTodosAsync();
+                var alumnosDto = _mapper.Map<IEnumerable<AlumnoDto>>(alumnos);
+                return Ok(alumnosDto);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error interno: {ex.Message}");
+            }
         }
 
         // POST: api/Alumnos
         [HttpPost]
-        public async Task<IActionResult> Crear([FromBody] PersonaCrearDto dto)
+        public async Task<IActionResult> Crear([FromBody] AlumnoCrearDto dto)
         {
-            // 1. Validar los datos del DTO usando FluentValidation
-            ValidationResult validationResult = await _validator.ValidateAsync(dto);
-
-            if (!validationResult.IsValid)
-            {
-                // Si hay errores, devolvemos un 400 Bad Request con los mensajes
-                return BadRequest(validationResult.Errors.Select(e => e.ErrorMessage));
-            }
-
-            // 2. Llamar al servicio para guardar en la base de datos
             try
             {
-                // TODO: Aquí llamas a tu método real: var nuevoAlumno = await _servicioPersona.CrearAlumnoAsync(dto);
+                var alumno = _mapper.Map<Alumno>(dto);
+                alumno.Activo = true; // Por defecto activo
 
-                // Simulamos la respuesta exitosa por ahora
-                return Ok(new { mensaje = "Alumno creado exitosamente", datos = dto });
+                var idGenerado = await _servicioAlumno.CrearAlumnoAsync(alumno);
+                return Ok(new { mensaje = "Alumno creado exitosamente", id = idGenerado });
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
             }
             catch (Exception ex)
             {
-                // Manejo de errores (podrías tener un logger aquí)
-                return StatusCode(500, $"Error interno del servidor: {ex.Message}");
+                return StatusCode(500, $"Error interno: {ex.Message}");
             }
         }
 
-        // PUT: api/Alumnos/5 (Actualizar)
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Actualizar(int id, [FromBody] PersonaActualizarDto dto)
+        // PUT: api/Alumnos (según tu interfaz, recibe un string)
+        [HttpPut("{busca}")]
+        public async Task<IActionResult> Actualizar(string busca)
         {
-            // Aquí iría la lógica para actualizar
-            return Ok(new { mensaje = $"Alumno con ID {id} actualizado (Por implementar)" });
-        }
-
-        // DELETE: api/Alumnos/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Eliminar(int id)
-        {
-            // Aquí iría la lógica para eliminar
-            return Ok(new { mensaje = $"Alumno con ID {id} eliminado (Por implementar)" });
+            try
+            {
+                var alumnosActualizados = await _servicioAlumno.ActualizarAlumnoAsync(busca);
+                return Ok(new { mensaje = "Alumnos actualizados exitosamente", datos = alumnosActualizados });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error interno: {ex.Message}");
+            }
         }
     }
 }
