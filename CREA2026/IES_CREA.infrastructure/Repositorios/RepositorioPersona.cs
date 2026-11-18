@@ -24,9 +24,9 @@ namespace IES_CREA.infrastructure.Repositorios
             try
             {
                 using var conexion = await _conn.ObtenerConexionAsync();
-                var parametros = new { p_busqueda = $"%{busca_}%" };
+                var parametros = new { p_id = (int?)null, p_busqueda = busca_ };
                 return await conexion.QueryAsync<Persona>(
-                    "sp_persona_buscar",
+                    "sp_persona_consultar",
                     parametros,
                     commandType: CommandType.StoredProcedure
                 );
@@ -44,9 +44,9 @@ namespace IES_CREA.infrastructure.Repositorios
             try
             {
                 using var conexion = await _conn.ObtenerConexionAsync();
-                var parametros = new { p_id = p_id };
+                var parametros = new { p_id = (int?)p_id, p_busqueda = (string?)null };
                 var resultado = await conexion.QueryFirstOrDefaultAsync<Persona>(
-                    "sp_persona_obtener", // Asumo que el SP acepta p_id para filtrar
+                    "sp_persona_consultar",
                     parametros,
                     commandType: CommandType.StoredProcedure
                 );
@@ -132,8 +132,8 @@ namespace IES_CREA.infrastructure.Repositorios
             {
                 using var conexion = await _conn.ObtenerConexionAsync();
                 return await conexion.QueryAsync<Persona>(
-                    "sp_persona_obtener",
-                    new { p_id = (int?)null }, // Enviamos null para que el SP devuelva todos
+                    "sp_persona_consultar",
+                    new { p_id = (int?)null, p_busqueda = (string?)null },
                     commandType: CommandType.StoredProcedure
                 );
             }
