@@ -23,15 +23,10 @@ namespace IES_CREA.infrastructure.Repositorios
             {
                 using var conexion = await _conn.ObtenerConexionAsync();
 
-                string sql = @"
-                    SELECT 
-                        IdMateria AS IdMateria,
-                        nombre AS Nombre,
-                        descripcion AS Descripcion,
-                        activo AS Activo
-                    FROM materias";
-
-                return await conexion.QueryAsync<Materia>(sql);
+                return await conexion.QueryAsync<Materia>(
+                    "sp_materia_consultar",
+                    new { p_id = (int?)null, p_id_inscripcion = (int?)null },
+                    commandType: System.Data.CommandType.StoredProcedure);
             }
             catch (Exception ex)
             {
@@ -47,19 +42,17 @@ namespace IES_CREA.infrastructure.Repositorios
             {
                 using var conexion = await _conn.ObtenerConexionAsync();
 
-                string sql = @"
-                    INSERT INTO materias (nombre, descripcion, activo) 
-                    VALUES (@Nombre, @Descripcion, @Activo);
-                    SELECT LAST_INSERT_ID();";
-
                 var parametros = new
                 {
-                    Nombre = materia.Nombre,
-                    Descripcion = materia.Descripcion,
-                    Activo = materia.Activo
+                    p_nombre = materia.Nombre,
+                    p_descripcion = materia.Descripcion,
+                    p_activo = materia.Activo
                 };
 
-                return await conexion.ExecuteScalarAsync<int>(sql, parametros);
+                return await conexion.ExecuteScalarAsync<int>(
+                    "sp_materia_insertar",
+                    parametros,
+                    commandType: System.Data.CommandType.StoredProcedure);
             }
             catch (Exception ex)
             {
@@ -75,22 +68,18 @@ namespace IES_CREA.infrastructure.Repositorios
             {
                 using var conexion = await _conn.ObtenerConexionAsync();
 
-                string sql = @"
-                    UPDATE materias 
-                    SET nombre = @Nombre,
-                        descripcion = @Descripcion,
-                        activo = @Activo
-                    WHERE IdMateria = @IdMateria";
-
                 var parametros = new
                 {
-                    IdMateria = materia.IdMateria,
-                    Nombre = materia.Nombre,
-                    Descripcion = materia.Descripcion,
-                    Activo = materia.Activo
+                    p_nombre = materia.Nombre,
+                    p_descripcion = materia.Descripcion,
+                    p_activo = materia.Activo,
+                    p_id = materia.IdMateria
                 };
 
-                await conexion.ExecuteAsync(sql, parametros);
+                await conexion.ExecuteAsync(
+                    "sp_materia_actualizar",
+                    parametros,
+                    commandType: System.Data.CommandType.StoredProcedure);
                 return materia;
             }
             catch (Exception ex)

@@ -24,22 +24,20 @@ namespace IES_CREA.infrastructure.Repositorios
             {
                 using var conexion = await _conn.ObtenerConexionAsync();
 
-                string sql = @"
-                    INSERT INTO inscripciones (id_alumno, fecha_inicio, fecha_fin, tipo_inscripcion, estado, observacion) 
-                    VALUES (@IdAlumno, @FechaInicio, @FechaFin, @TipoInscripcion, @Estado, @Observacion);
-                    SELECT LAST_INSERT_ID();";
-
                 var parametros = new
                 {
-                    IdAlumno = inscripcion.IdAlumno,
-                    FechaInicio = inscripcion.FechaInicio,
-                    FechaFin = inscripcion.FechaFin,
-                    TipoInscripcion = inscripcion.TipoInscripcion,
-                    Estado = inscripcion.Estado,
-                    Observacion = inscripcion.Observacion
+                    p_id_alumno = inscripcion.IdAlumno,
+                    p_fecha_inicio = inscripcion.FechaInicio,
+                    p_fecha_fin = inscripcion.FechaFin,
+                    p_tipo_inscripcion = inscripcion.TipoInscripcion,
+                    p_estado = inscripcion.Estado,
+                    p_observacion = inscripcion.Observacion
                 };
 
-                return await conexion.ExecuteScalarAsync<int>(sql, parametros);
+                return await conexion.ExecuteScalarAsync<int>(
+                    "sp_inscripcion_crear",
+                    parametros,
+                    commandType: CommandType.StoredProcedure);
             }
             catch (Exception ex)
             {
@@ -55,18 +53,10 @@ namespace IES_CREA.infrastructure.Repositorios
             {
                 using var conexion = await _conn.ObtenerConexionAsync();
 
-                string sql = @"
-                    SELECT 
-                        IdInscripcion AS IdInscripcion,
-                        id_alumno AS IdAlumno,
-                        fecha_inicio AS FechaInicio,
-                        fecha_fin AS FechaFin,
-                        tipo_inscripcion AS TipoInscripcion,
-                        estado AS Estado,
-                        observacion AS Observacion
-                    FROM inscripciones";
-
-                return await conexion.QueryAsync<Inscripcion>(sql);
+                return await conexion.QueryAsync<Inscripcion>(
+                    "sp_inscripcion_consultar",
+                    new { p_id = (int?)null, p_id_alumno = (int?)null },
+                    commandType: CommandType.StoredProcedure);
             }
             catch (Exception ex)
             {
@@ -82,19 +72,10 @@ namespace IES_CREA.infrastructure.Repositorios
             {
                 using var conexion = await _conn.ObtenerConexionAsync();
 
-                string sql = @"
-                    SELECT 
-                        IdInscripcion AS IdInscripcion,
-                        id_alumno AS IdAlumno,
-                        fecha_inicio AS FechaInicio,
-                        fecha_fin AS FechaFin,
-                        tipo_inscripcion AS TipoInscripcion,
-                        estado AS Estado,
-                        observacion AS Observacion
-                    FROM inscripciones
-                    WHERE id_alumno = @IdAlumno";
-
-                return await conexion.QueryAsync<Inscripcion>(sql, new { IdAlumno = idAlumno });
+                return await conexion.QueryAsync<Inscripcion>(
+                    "sp_inscripcion_consultar",
+                    new { p_id = (int?)null, p_id_alumno = (int?)idAlumno },
+                    commandType: CommandType.StoredProcedure);
             }
             catch (Exception ex)
             {
@@ -110,28 +91,19 @@ namespace IES_CREA.infrastructure.Repositorios
             {
                 using var conexion = await _conn.ObtenerConexionAsync();
 
-                string sql = @"
-                    UPDATE inscripciones 
-                    SET id_alumno = @IdAlumno,
-                        fecha_inicio = @FechaInicio,
-                        fecha_fin = @FechaFin,
-                        tipo_inscripcion = @TipoInscripcion,
-                        estado = @Estado,
-                        observacion = @Observacion
-                    WHERE IdInscripcion = @IdInscripcion";
-
                 var parametros = new
                 {
-                    IdInscripcion = inscripcion.IdInscripcion,
-                    IdAlumno = inscripcion.IdAlumno,
-                    FechaInicio = inscripcion.FechaInicio,
-                    FechaFin = inscripcion.FechaFin,
-                    TipoInscripcion = inscripcion.TipoInscripcion,
-                    Estado = inscripcion.Estado,
-                    Observacion = inscripcion.Observacion
+                    p_fecha_fin = inscripcion.FechaFin,
+                    p_tipo_inscripcion = inscripcion.TipoInscripcion,
+                    p_estado = inscripcion.Estado,
+                    p_observacion = inscripcion.Observacion,
+                    p_id = inscripcion.IdInscripcion
                 };
 
-                await conexion.ExecuteAsync(sql, parametros);
+                await conexion.ExecuteAsync(
+                    "sp_inscripcion_actualizar",
+                    parametros,
+                    commandType: CommandType.StoredProcedure);
                 return inscripcion;
             }
             catch (Exception ex)
