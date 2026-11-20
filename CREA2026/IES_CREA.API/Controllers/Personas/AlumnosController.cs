@@ -61,14 +61,29 @@ namespace IES_CREA.API.Controllers.Personas
             }
         }
 
+        public async Task GetAlumnosActualizadosAsync(string alumno)
+        {
+            await _servicioAlumno.ActualizarAlumnoAsync(alumno);
+        }
+
         // PUT: api/Alumnos (según tu interfaz, recibe un string)
-        [HttpPut("{busca}")]
-        public async Task<IActionResult> Actualizar(string busca)
+        [HttpPut("{alumno}")]
+        public async Task<IActionResult> Actualizar([FromBody] AlumnoActualizarDto dto)
         {
             try
             {
-                var alumnosActualizados = await _servicioAlumno.ActualizarAlumnoAsync(busca);
-                return Ok(new { mensaje = "Alumnos actualizados exitosamente", datos = alumnosActualizados });
+                var alumno = _mapper.Map<Alumno>(dto);
+
+                // Llamamos al método del servicio (asegúrate de que devuelva un Alumno)
+                var alumnoActualizado = await _servicioAlumno.ActualizarAlumnoAsync(alumno);
+
+                var alumnoDto = _mapper.Map<AlumnoDto>(alumnoActualizado);
+
+                return Ok(new { mensaje = "Alumno actualizado exitosamente", datos = alumnoDto });
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
             }
             catch (Exception ex)
             {

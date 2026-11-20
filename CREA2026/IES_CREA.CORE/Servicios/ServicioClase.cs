@@ -28,7 +28,7 @@ namespace IES_CREA.CORE.Servicios
             // Como Fecha es DateOnly, usamos DateOnly.FromDateTime para comparar
             var hoy = DateOnly.FromDateTime(DateTime.Today);
 
-            if (clase.Fecha < hoy)
+            if (DateOnly.FromDateTime(clase.Fecha) < hoy)
             {
                 throw new ArgumentException("La fecha de la clase no puede ser en el pasado.");
             }

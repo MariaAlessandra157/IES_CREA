@@ -84,7 +84,7 @@ namespace IES_CREA.API.Controllers.Personas
             {
                 var persona = _mapper.Map<Persona>(dto);
                 persona.Activo = true;
-                persona.FechaAlta = DateOnly.FromDateTime(DateTime.Today);
+                persona.FechaAlta = DateTime.Today;
 
                 var personaCreada = await _servicioPersona.CrearPersonaAsync(persona);
                 var personaDto = _mapper.Map<PersonaDto>(personaCreada);

@@ -35,8 +35,8 @@ namespace IES_CREA.CORE.Servicios
 
             // Regla: El usuario debe estar activo por defecto al crearse
             usuario.Activo = true;
-            usuario.FechaCreacion = DateOnly.FromDateTime(DateTime.Today);
-            usuario.UltimoAcceso = DateOnly.FromDateTime(DateTime.Today);
+            usuario.FechaCreacion = DateTime.Today;
+            usuario.UltimoAcceso = DateTime.Today;
 
             return await _repositorio.sp_usuario_crear(usuario);
         }
@@ -72,7 +72,7 @@ namespace IES_CREA.CORE.Servicios
                 throw new ArgumentException("Usuario o contraseña incorrectos.");
 
             // 4. Actualizar fecha de último acceso
-            usuario.UltimoAcceso = DateOnly.FromDateTime(DateTime.Today);
+            usuario.UltimoAcceso = DateTime.Today;
             await _repositorio.sp_usuario_actualizar(usuario);
 
             return usuario;

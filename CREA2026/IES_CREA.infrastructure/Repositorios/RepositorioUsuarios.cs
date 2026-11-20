@@ -104,11 +104,7 @@ namespace IES_CREA.infrastructure.Repositorios
         var parametros = new { p_usuario = nombreUsuario };
         
         // Usamos QueryFirstOrDefaultAsync porque un login devuelve un solo usuario (o null)
-        return await conexion.QueryFirstOrDefaultAsync<Usuario>(
-            "sp_usuario_login",
-            parametros,
-            commandType: CommandType.StoredProcedure
-        )!;
+        return await conexion.QueryFirstOrDefaultAsync<Usuario>("sp_usuario_login", parametros, commandType: CommandType.StoredProcedure)!;
     }
     catch (Exception ex)
     {

@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using IES_CREA.CORE.Servicios;
 using IES_CREA.CORE.Entidades;
-using IES_CREA.API.DTOs.Academico;
+using IES_CREA.API.DTOs.Academico; // Asegúrate de que este namespace sea el correcto para tus DTOs
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -29,6 +29,7 @@ namespace IES_CREA.API.Controllers.Academico
             try
             {
                 var seguimientos = await _servicioSeguimiento.ObtenerPorAlumnoAsync(idAlumno);
+                // Si usas DTOs para la respuesta, mapealos. Si no, puedes devolver el objeto directo.
                 var seguimientosDto = _mapper.Map<IEnumerable<SeguimientoDto>>(seguimientos);
                 return Ok(seguimientosDto);
             }
@@ -44,11 +45,7 @@ namespace IES_CREA.API.Controllers.Academico
 
         // POST: api/SeguimientoPedagogico
         [HttpPost]
-<<<<<<< HEAD
-        public async Task<IActionResult> Registrar([FromBody] ServicioSeguimiento seguimiento)
-=======
         public async Task<IActionResult> Registrar([FromBody] SeguimientoCrearDto dto)
->>>>>>> main
         {
             try
             {
@@ -66,15 +63,9 @@ namespace IES_CREA.API.Controllers.Academico
             }
         }
 
-<<<<<<< HEAD
-        // PUT: api/SeguimientoPedagogico/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Actualizar(int id, [FromBody] ServicioSeguimiento seguimiento)
-=======
         // PUT: api/SeguimientoPedagogico
         [HttpPut]
         public async Task<IActionResult> Actualizar([FromBody] SeguimientoActualizarDto dto)
->>>>>>> main
         {
             try
             {

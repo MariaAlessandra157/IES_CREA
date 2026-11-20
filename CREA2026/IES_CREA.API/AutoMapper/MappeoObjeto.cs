@@ -27,8 +27,7 @@ namespace IES_CREA.API.AutoMapper
 
             // 3. De DTO a Entidad (Para Actualizar - PUT)
             // Ignoramos FechaAlta para que no se modifique por accidente
-            CreateMap<PersonaActualizarDto, Persona>()
-                .ForMember(dest => dest.FechaAlta, opt => opt.Ignore());
+            CreateMap<PersonaActualizarDto, Persona>().ForMember(dest => dest.FechaAlta, opt => opt.Ignore());
 
             CreateMap<Aula, AulaDto>().ReverseMap();
             CreateMap<AulaCrearDto, Aula>();
@@ -69,9 +68,6 @@ namespace IES_CREA.API.AutoMapper
             CreateMap<Persona, PersonaDto>().ReverseMap();
             CreateMap<PersonaCrearDto, Persona>();
             CreateMap<PersonaActualizarDto, Persona>();
-<<<<<<< HEAD
-
-=======
             CreateMap<Seguimiento, SeguimientoDto>().ReverseMap();
             CreateMap<SeguimientoCrearDto, Seguimiento>();
             CreateMap<SeguimientoActualizarDto, Seguimiento>();
@@ -82,11 +78,8 @@ namespace IES_CREA.API.AutoMapper
             CreateMap<RolCrearDto, Rol>();
             CreateMap<RolActualizarDto, Rol>();
             CreateMap<Usuario, UsuarioDto>().ReverseMap();
-            CreateMap<UsuarioCrearDto, Usuario>()
-                .ForMember(dest => dest.PasswordHash, opt => opt.Ignore()); // Ignoramos el hash, lo asignamos manualmente
-            CreateMap<UsuarioActualizarDto, Usuario>()
-                .ForMember(dest => dest.PasswordHash, opt => opt.Ignore());
->>>>>>> main
+            CreateMap<UsuarioCrearDto, Usuario>().ForMember(dest => dest.PasswordHash, opt => opt.Ignore()); // Ignoramos el hash, lo asignamos manualmente
+            CreateMap<UsuarioActualizarDto, Usuario>().ForMember(dest => dest.PasswordHash, opt => opt.Ignore());
         }
     }
 }

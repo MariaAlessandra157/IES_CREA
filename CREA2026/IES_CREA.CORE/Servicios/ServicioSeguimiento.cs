@@ -32,7 +32,7 @@ namespace IES_CREA.CORE.Servicios
             }
 
             // Regla 2: La fecha no puede ser futura
-            var hoy = DateOnly.FromDateTime(DateTime.Today);
+            var hoy = DateTime.Today;
             if (seguimiento.Fecha > hoy)
             {
                 throw new ArgumentException("La fecha del seguimiento no puede ser futura.");

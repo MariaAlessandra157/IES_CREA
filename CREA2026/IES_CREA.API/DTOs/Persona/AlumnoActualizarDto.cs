@@ -12,10 +12,10 @@ namespace IES_CREA.API.DTOs.Persona
         public int IdPersona { get; set; }
 
         [Required(ErrorMessage = "La fecha de ingreso es obligatoria.")]
-        public DateOnly FechaIngreso { get; set; }
+        public DateTime FechaIngreso { get; set; }
 
         [Required(ErrorMessage = "La fecha de egreso es obligatoria.")]
-        public DateOnly FechaEgreso { get; set; }
+        public DateTime? FechaEgreso { get; set; }
 
         [Required(ErrorMessage = "La observación es obligatoria.")]
         [StringLength(300)]
