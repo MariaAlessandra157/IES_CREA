@@ -3,9 +3,6 @@ using IES_CREA.API.DTOs.Academico;
 
 namespace IES_CREA.API.Validators.Academico
 {
-    public class AulaValidator
-    {
-    }
     public class AulaValidator : AbstractValidator<AulaDto>
     {
         public AulaValidator()
