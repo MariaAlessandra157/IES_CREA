@@ -23,17 +23,15 @@ namespace IES_CREA.infrastructure.Repositorios
             {
                 using var conexion = await _conn.ObtenerConexionAsync();
 
-                string sql = @"
-            INSERT INTO responsable (id_persona) 
-            VALUES (@IdPersona);
-            SELECT LAST_INSERT_ID();";
-
                 var parametros = new
                 {
-                    IdPersona = responsable.IdPersona
+                    p_id_persona = responsable.IdPersona
                 };
 
-                return await conexion.ExecuteScalarAsync<int>(sql, parametros);
+                return await conexion.ExecuteScalarAsync<int>(
+                    "sp_responsable_insertar",
+                    parametros,
+                    commandType: CommandType.StoredProcedure);
             }
             catch (Exception ex)
             {
@@ -48,12 +46,16 @@ namespace IES_CREA.infrastructure.Repositorios
             {
                 using var conexion = await _conn.ObtenerConexionAsync();
 
-                // Si idResponsable es 0, traemos todos; si no, filtramos por ID
-                string sql = idResponsable > 0
-                    ? "SELECT * FROM responsable WHERE IdResponsable = @IdResponsable"
-                    : "SELECT * FROM responsable";
+                var parametros = new
+                {
+                    p_id_responsable = idResponsable > 0 ? (int?)idResponsable : null,
+                    p_id_alumno = (int?)null
+                };
 
-                return await conexion.QueryAsync<Responsable>(sql, new { IdResponsable = idResponsable });
+                return await conexion.QueryAsync<Responsable>(
+                    "sp_responsable_consultar",
+                    parametros,
+                    commandType: CommandType.StoredProcedure);
             }
             catch (Exception ex)
             {

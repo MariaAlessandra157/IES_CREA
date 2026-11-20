@@ -23,20 +23,18 @@ namespace IES_CREA.infrastructure.Repositorios
             {
                 using var conexion = await _conn.ObtenerConexionAsync();
 
-                string sql = @"
-            INSERT INTO personal (id_persona, id_cargo, fecha_ingreso, activo) 
-            VALUES (@IdPersona, @IdCargo, @FechaIngreso, @Activo);
-            SELECT LAST_INSERT_ID();";
-
                 var parametros = new
                 {
-                    IdPersona = personal.IdPersona,
-                    IdCargo = personal.IdCargo,
-                    FechaIngreso = personal.FechaIngreso,
-                    Activo = personal.Activo
+                    p_id_persona = personal.IdPersona,
+                    p_id_cargo = personal.IdCargo,
+                    p_fecha_ingreso = personal.FechaIngreso,
+                    p_activo = personal.Activo
                 };
 
-                return await conexion.ExecuteScalarAsync<int>(sql, parametros);
+                return await conexion.ExecuteScalarAsync<int>(
+                    "sp_personal_insertar",
+                    parametros,
+                    commandType: CommandType.StoredProcedure);
             }
             catch (Exception ex)
             {
@@ -50,7 +48,7 @@ namespace IES_CREA.infrastructure.Repositorios
             try
             {
                 using var conexion = await _conn.ObtenerConexionAsync();
-                var parametros = new { p_id = idPersonal > 0 ? (int?)idPersonal : null, idPersonal };
+                var parametros = new { p_id = idPersonal > 0 ? (int?)idPersonal : null };
                 return await conexion.QueryAsync<Personal>(
                     "sp_personal_consultar",
                     parametros,
@@ -73,11 +71,9 @@ namespace IES_CREA.infrastructure.Repositorios
                 // Enviamos TODOS los parámetros necesarios para actualizar
                 var parametros = new
                 {
-                    p_id_personal = personal.IdPersonal,
-                    p_id_persona = personal.IdPersona,
                     p_id_cargo = personal.IdCargo,
-                    p_fecha_ingreso = personal.FechaIngreso,
-                    p_activo = personal.Activo
+                    p_activo = personal.Activo,
+                    p_id = personal.IdPersonal
                 };
 
                 await conexion.ExecuteAsync(

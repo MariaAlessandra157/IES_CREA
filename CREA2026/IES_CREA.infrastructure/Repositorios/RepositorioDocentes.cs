@@ -23,20 +23,18 @@ namespace IES_CREA.infrastructure.Repositorios
             {
                 using var conexion = await _conn.ObtenerConexionAsync();
 
-                string sql = @"
-            INSERT INTO docentes (id_persona, especialidad, fecha_alta, activo) 
-            VALUES (@IdPersona, @Especialidad, @FechaAlta, @Activo);
-            SELECT LAST_INSERT_ID();";
-
                 var parametros = new
                 {
-                    IdPersona = docente.IdPersona,
-                    Especialidad = docente.Especialidad,
-                    FechaAlta = docente.FechaAlta,
-                    Activo = docente.Activo
+                    p_id_persona = docente.IdPersona,
+                    p_especialidad = docente.Especialidad,
+                    p_fecha_alta = docente.FechaAlta,
+                    p_activo = docente.Activo
                 };
 
-                return await conexion.ExecuteScalarAsync<int>(sql, parametros);
+                return await conexion.ExecuteScalarAsync<int>(
+                    "sp_docente_insertar",
+                    parametros,
+                    commandType: CommandType.StoredProcedure);
             }
             catch (Exception ex)
             {
@@ -72,10 +70,7 @@ namespace IES_CREA.infrastructure.Repositorios
                 {
                     p_id = docentes.IdDocente,
                     p_especialidad = docentes.Especialidad,
-                    p_activo = docentes.Activo,
-                    docentes.IdDocente,
-                    docentes.Especialidad,
-                    docentes.Activo
+                    p_activo = docentes.Activo
                 };
                 await conexion.ExecuteAsync(
                     "sp_docente_actualizar",
