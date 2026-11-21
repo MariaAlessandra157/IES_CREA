@@ -32,7 +32,7 @@ namespace IES_CREA.CORE.Entidades
 
         [Column("fecha")]
         [Required]
-        public DateOnly Fecha { get; set; }
+        public DateTime Fecha { get; set; }
 
         [Column("hora_inicio")]
         [Required]

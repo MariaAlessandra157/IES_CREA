@@ -24,7 +24,7 @@ namespace IES_CREA.CORE.Entidades
 
         [Column("fecha_alta")]
         [Required]
-        public DateOnly FechaAlta { get; set; }
+        public DateTime FechaAlta { get; set; }
 
         [Column("activo")]
         [Display(Name = "activo")]

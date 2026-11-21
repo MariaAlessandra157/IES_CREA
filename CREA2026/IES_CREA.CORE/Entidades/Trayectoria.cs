@@ -41,13 +41,13 @@ namespace IES_CREA.CORE.Entidades
         [Column("fecha_desde")]
         [Required]
         [NotFutureDate(ErrorMessage = "La fecha desde no puede ser futura")]
-        public DateOnly FechaDesde { get; set; }
+        public DateTime FechaDesde { get; set; }
 
         [Column ("fecha_hasta")]
         [Required]
         [NotFutureDate(ErrorMessage = "La fecha de hasta no puede ser futura")]
         [DateGreaterThan("fecha_desde")]
-        public DateOnly FechaHasta { get; set; }
+        public DateTime FechaHasta { get; set; }
 
         [Column ("observaciones")]
         [Required]
@@ -74,7 +74,7 @@ namespace IES_CREA.CORE.Entidades
 
             var otherValue = otherProperty.GetValue(context.ObjectInstance);
 
-            if (value is DateOnly fechaHasta && otherValue is DateOnly fechaDesde)
+            if (value is DateTime fechaHasta && otherValue is DateTime  fechaDesde)
             {
                 if (fechaHasta < fechaDesde)
                     return new ValidationResult("La fecha hasta debe ser mayor o igual que la fecha desde.");

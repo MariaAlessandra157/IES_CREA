@@ -37,7 +37,8 @@ namespace IES_CREA.CORE.Servicios
             }
 
             // Regla 3: La fecha de alta no puede ser futura
-            var hoy = DateOnly.FromDateTime(DateTime.Today);
+            // CORREGIDO: Usamos DateTime.Today para que coincida con el tipo de FechaAlta
+            var hoy = DateTime.Today;
             if (docente.FechaAlta > hoy)
             {
                 throw new ArgumentException("La fecha de alta no puede ser futura.");

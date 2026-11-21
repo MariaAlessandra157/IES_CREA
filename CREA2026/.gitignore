@@ -1,3 +1,21 @@
+<<<<<<< HEAD
+CREA2026/.vs/
+CREA2026/bin/
+CREA2026/obj/
+*.vsidx
+*.slnx
+*.cache
+
+# Carpetas de compilación de .NET
+[Bb]in/
+[Oo]bj/
+
+# Carpeta de configuración de Visual Studio
+.vs/
+
+# Archivos de usuario locales
+*.user
+=======
 ##############################
 # Visual Studio / .NET Ignore
 ##############################
@@ -66,5 +84,10 @@ project.fragment.lock.json
 
 # Publicaciones
 publish/
-*.dia.autosave
+
+# Archivos de diagramas Dia
 *.dia
+*.dia~
+
+# Archivos de Copilot en Visual Studio
+.vs/CopilotSnapshots/

@@ -32,7 +32,7 @@ namespace IES_CREA.CORE.Servicios
             }
 
             // Regla 2: La fecha desde no puede ser futura
-            var hoy = DateOnly.FromDateTime(DateTime.Today);
+            var hoy = DateTime.Today;
             if (trayectoria.FechaDesde > hoy)
             {
                 throw new ArgumentException("La fecha 'desde' no puede ser futura.");

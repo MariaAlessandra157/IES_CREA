@@ -40,7 +40,7 @@ namespace IES_CREA.CORE.Servicios
             }
 
             // Regla 3: La fecha de pago no puede ser futura
-            var hoy = DateOnly.FromDateTime(DateTime.Today);
+            var hoy = DateTime.Today;
             if (pago.FechaPago > hoy)
             {
                 throw new ArgumentException("La fecha de pago no puede ser futura.");

@@ -31,25 +31,45 @@ namespace IES_CREA.CORE.Servicios
             }
 
             // Regla 2: La fecha de ingreso no puede ser futura
-            var hoy = DateOnly.FromDateTime(DateTime.Today);
+            var hoy = DateTime.Today;
             if (alumno.FechaIngreso > hoy)
             {
                 throw new ArgumentException("La fecha de ingreso no puede ser futura.");
             }
 
             // Regla 3: La fecha de egreso no puede ser futura
-            if (alumno.FechaEgreso > hoy && alumno.FechaEgreso != DateOnly.MinValue)
+            if (alumno.FechaEgreso != DateTime.MinValue)
             {
-                throw new ArgumentException("La fecha de egreso no puede ser futura.");
+                // 1. Convertimos la fecha de egreso a DateOnly
+                var fechaEgresoDateOnly = DateOnly.FromDateTime(alumno.FechaEgreso);
+
+                // 2. Aseguramos que 'hoy' también sea DateOnly. 
+                // Si 'hoy' ya está declarado arriba como DateOnly, esta línea no es necesaria.
+                // Pero si 'hoy' es DateTime, haz la comparación así:
+                if (fechaEgresoDateOnly > DateOnly.FromDateTime(hoy))
+                {
+                    throw new ArgumentException("La fecha de egreso no puede ser futura.");
+                }
             }
 
             return await _repositorio.sp_alumno_insertar(alumno);
         }
 
         // 3. Actualizar un alumno (según tu interfaz, recibe un string)
-        public async Task<IEnumerable<Alumno>> ActualizarAlumnoAsync(string busca)
+        public async Task<Alumno> ActualizarAlumnoAsync(Alumno alumno)
         {
-            return await _repositorio.sp_alumno_actualizar(busca);
+            if (alumno.IdAlumno <= 0)
+            {
+                throw new ArgumentException("El ID del alumno es inválido.");
+            }
+
+            // Ahora el tipo de retorno coincide con lo que devuelve el repositorio
+            return await _repositorio.sp_alumno_actualizar(alumno);
+        }
+
+        public async Task ActualizarAlumnoAsync(string busca)
+        {
+            throw new NotImplementedException();
         }
     }
 }

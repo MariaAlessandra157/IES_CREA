@@ -26,7 +26,7 @@ namespace IES_CREA.CORE.Entidades
         [Column("fecha_pago")]
         [Required]
         [NotFutureDate(ErrorMessage = "La fecha de pago no puede ser futura.")]
-        public DateOnly FechaPago { get; set; }
+        public DateTime FechaPago { get; set; }
 
         [Column("monto")]
         [Required]

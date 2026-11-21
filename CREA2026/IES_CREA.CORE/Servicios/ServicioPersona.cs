@@ -50,12 +50,18 @@ namespace IES_CREA.CORE.Servicios
         }
 
         // 5. Actualizar una persona
+
         public async Task<Persona> ActualizarPersonaAsync(Persona persona)
         {
+            if (persona == null)
+                throw new ArgumentNullException(nameof(persona));
+
             if (persona.IdPersona <= 0)
                 throw new ArgumentException("El ID de la persona es inválido.");
 
-            return await _repositorio.sp_persona_actualizar(persona);
+            await _repositorio.sp_persona_actualizar(persona);
+
+            return persona;
         }
     }
 }

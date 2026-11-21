@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using IES_CREA.CORE.Servicios;
 using IES_CREA.CORE.Entidades;
-using IES_CREA.API.DTOs.Academico;
+using IES_CREA.API.DTOs.Academico; // Asegúrate de que este namespace sea el correcto para tus DTOs
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -29,6 +29,7 @@ namespace IES_CREA.API.Controllers.Academico
             try
             {
                 var seguimientos = await _servicioSeguimiento.ObtenerPorAlumnoAsync(idAlumno);
+                // Si usas DTOs para la respuesta, mapealos. Si no, puedes devolver el objeto directo.
                 var seguimientosDto = _mapper.Map<IEnumerable<SeguimientoDto>>(seguimientos);
                 return Ok(seguimientosDto);
             }

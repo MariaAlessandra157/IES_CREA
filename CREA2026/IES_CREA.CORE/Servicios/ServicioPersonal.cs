@@ -39,7 +39,7 @@ namespace IES_CREA.CORE.Servicios
             }
 
             // Regla 2: La fecha de ingreso no puede ser en el futuro
-            var hoy = DateOnly.FromDateTime(DateTime.Today);
+            var hoy = DateTime.Today;
             if (personal.FechaIngreso > hoy)
             {
                 throw new ArgumentException("La fecha de ingreso no puede ser futura.");

@@ -25,12 +25,12 @@ namespace IES_CREA.CORE.Entidades
 
         [Column("fecha_inicio")]
         [Required(ErrorMessage = "La fecha de inicio es obligatoria.")]
-        public DateOnly FechaInicio { get; set; }
+        public DateTime FechaInicio { get; set; }
 
         [Column("fecha_fin")]
         [NotFutureDate(ErrorMessage = "La fecha de fin no puede ser futura.")]
         [DateGreaterThan("fecha_inicio")]
-        public DateOnly FechaFin { get; set; }
+        public DateTime FechaFin { get; set; }
         
         [Column("estado")]
         [Display(Name = "estado")]
